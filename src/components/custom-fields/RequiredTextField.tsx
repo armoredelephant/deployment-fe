@@ -6,7 +6,7 @@ import SpacingWrapper from "../_wrappers/SpacingWrapper";
 const CustomTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
   ...props
-}) => {
+}: FieldAttributes<{}>) => {
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (

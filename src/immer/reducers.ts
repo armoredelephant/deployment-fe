@@ -8,7 +8,6 @@ interface SetUserCount {
 
 interface SetRemoteSetup {
   type: "SET_REMOTE_SETUP";
-  remoteSetup: boolean;
 }
 
 interface SetPrimaryMachine {
@@ -16,11 +15,14 @@ interface SetPrimaryMachine {
   primaryMachine: string;
 }
 
-type Action = SetUserCount | SetRemoteSetup | SetPrimaryMachine;
+export type DeploymentOptionsAction =
+  | SetUserCount
+  | SetRemoteSetup
+  | SetPrimaryMachine;
 
 export function deploymentOptionsReducer(
   draft: Draft<DeploymentOptions>,
-  action: Action
+  action: DeploymentOptionsAction
 ): Draft<DeploymentOptions> | void {
   switch (action.type) {
     case "SET_USER_COUNT":
