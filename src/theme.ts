@@ -17,6 +17,14 @@ export const theme = createMuiTheme({
           borderBottom: "2px solid rgb(223, 223, 223)"
         }
       }
+    },
+    MuiInputLabel: {
+      root: {
+        color: "rgb(223,223,223)",
+        "&$focused": {
+          color: "rgb(223,223,223)"
+        }
+      }
     }
   }
 });

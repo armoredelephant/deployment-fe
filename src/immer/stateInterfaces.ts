@@ -1,5 +1,5 @@
 export interface DeploymentOptions {
-  userCount: number;
+  userCount: number | string;
   remoteSetup: boolean;
   primaryMachine: string;
 }

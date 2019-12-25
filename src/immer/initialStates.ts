@@ -1,7 +1,7 @@
 import { DeploymentOptions } from "./stateInterfaces";
 
 export const deploymentOptionsInitialState: DeploymentOptions = {
-  userCount: 0,
+  userCount: "",
   remoteSetup: false,
   primaryMachine: "igel"
 };
