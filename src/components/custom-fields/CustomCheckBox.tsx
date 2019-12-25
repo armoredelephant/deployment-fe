@@ -7,11 +7,17 @@ import Checkbox from "@material-ui/core/Checkbox";
  * with props passed down
  */
 
+interface InputProps {
+  "aria-label": string;
+}
+
 interface BoxProps {
   checked: boolean | undefined;
   onChange?:
     | ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void)
     | undefined;
+  value: string;
+  inputProps: InputProps;
 }
 
 const CheckBox = withStyles({

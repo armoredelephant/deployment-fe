@@ -41,8 +41,12 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
 
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel>User count</InputLabel>
-      <Select value={optionsState.userCount} onChange={handleUserCountOption}>
+      <InputLabel id="user-count">User count</InputLabel>
+      <Select
+        labelId="user-count"
+        value={optionsState.userCount}
+        onChange={handleUserCountOption}
+      >
         {userCount.map((num: number) => {
           const rdmKey = Math.random()
             .toString(36)

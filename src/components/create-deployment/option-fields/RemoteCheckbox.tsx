@@ -17,6 +17,8 @@ const RemoteCheckbox: React.FC<DeploymentOptionsProps> = ({
         <CustomCheckBox
           checked={optionsState.remoteSetup}
           onChange={handleRemoteOption}
+          value="remote-setup"
+          inputProps={{ "aria-label": "Remote Setup" }}
         />
       }
       label="Remote setups"
