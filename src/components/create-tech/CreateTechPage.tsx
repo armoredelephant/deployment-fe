@@ -10,9 +10,6 @@ import FlexContainer from "../_containers/FlexContainer";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
-/** Things needed */
-// refactor Wrapper with the RequiredField into separate component.
-
 /**
  * This component will be used for the create tech page.
  * It will be under Admin from the nav list.

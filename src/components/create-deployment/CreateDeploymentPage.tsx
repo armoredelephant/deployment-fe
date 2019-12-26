@@ -4,6 +4,7 @@ import { deploymentOptionsReducer } from "../../immer/reducers";
 import { deploymentOptionsInitialState } from "../../immer/initialStates";
 import MainContainer from "../_containers/MainContainer";
 import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
+import StyledDivider from "../_dividers/StyledDivider";
 
 /**
  * top form that asks:
@@ -31,6 +32,7 @@ const CreateDeploymentPage: React.FC = () => {
         optionsDispatch={optionsDispatch}
         optionsState={optionsState}
       />
+      <StyledDivider />
       <StateContext.Provider value={optionsState}>
         <div></div>
       </StateContext.Provider>

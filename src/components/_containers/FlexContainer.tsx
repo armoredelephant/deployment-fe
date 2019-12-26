@@ -5,13 +5,13 @@ interface Props {
   flow: string;
 }
 
-const FlexContainer = styled.div<Props>`
+const SimplyFlexContainer = styled.div<Props>`
   display: flex;
   flex-flow: ${(props: Props): string => props.flow};
 `;
 
-const SimplyFlexContainer: React.FC<Props> = (props: Props) => {
-  return <FlexContainer {...props} />;
+const FlexContainer: React.FC<Props> = (props: Props) => {
+  return <SimplyFlexContainer {...props} />;
 };
 
-export default SimplyFlexContainer;
+export default FlexContainer;
