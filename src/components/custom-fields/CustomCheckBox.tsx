@@ -22,12 +22,8 @@ interface BoxProps {
 
 const CheckBox = withStyles({
   root: {
-    color: "rgb(223, 223, 223)",
-    "&$checked": {
-      color: "rgb(223, 223, 223)"
-    }
-  },
-  checked: {}
+    color: "rgb(223, 223, 223)"
+  }
 })((props: BoxProps) => <Checkbox color="default" {...props} />);
 
 const CustomCheckBox: React.FC<BoxProps> = props => {

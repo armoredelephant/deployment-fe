@@ -42,7 +42,7 @@ const CreateTechPage: React.FC = () => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer content="center">
       <Formik
         initialValues={initialValues}
         validationSchema={CreateTechSchema}
@@ -58,7 +58,7 @@ const CreateTechPage: React.FC = () => {
       >
         {() => (
           <Form>
-            <FlexContainer>
+            <FlexContainer flow="row">
               <RequiredTextField
                 placeholder="first name"
                 name="firstName"

@@ -3,7 +3,7 @@ import { useImmerReducer } from "use-immer";
 import { deploymentOptionsReducer } from "../../immer/reducers";
 import { deploymentOptionsInitialState } from "../../immer/initialStates";
 import MainContainer from "../_containers/MainContainer";
-import CreateDeploymentOptions from "./CreateDeploymentOptions";
+import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 
 /**
  * top form that asks:
@@ -26,7 +26,7 @@ const CreateDeploymentPage: React.FC = () => {
   );
   console.log(optionsState);
   return (
-    <MainContainer>
+    <MainContainer content="flex-start">
       <CreateDeploymentOptions
         optionsDispatch={optionsDispatch}
         optionsState={optionsState}

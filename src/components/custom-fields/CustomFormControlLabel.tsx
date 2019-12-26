@@ -1,19 +1,16 @@
 import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControlLabel, {
+  FormControlLabelProps
+} from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
-
-interface FormLabelProps {
-  control: React.ReactElement;
-  label: React.ReactNode;
-}
 
 const CustomLabel = withStyles({
   root: {
     color: "rgb(223, 223, 223)"
   }
-})((props: FormLabelProps) => <FormControlLabel {...props} />);
+})((props: FormControlLabelProps) => <FormControlLabel {...props} />);
 
-const CustomFormControlLabel: React.FC<FormLabelProps> = props => {
+const CustomFormControlLabel: React.FC<FormControlLabelProps> = props => {
   return <CustomLabel {...props} />;
 };
 
