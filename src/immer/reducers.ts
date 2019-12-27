@@ -1,6 +1,7 @@
 import { Draft } from "immer";
 import { DeploymentOptions, DeploymentForms } from "./stateInterfaces";
 import { DeploymentOptionsAction, DeploymentFormsAction } from "./actionTypes";
+import { deploymentOptionsInitialState } from "./initialStates";
 
 /**
  * Reducer for the DeploymentOptions logic
@@ -13,6 +14,8 @@ export function deploymentOptionsReducer(
   switch (action.type) {
     case "SET_USER_COUNT":
       draft.userCount = action.userCount;
+      draft.formCount = action.formCount;
+      draft.formValues = action.formValues;
       return;
     case "SET_REMOTE_SETUP":
       draft.remoteSetup = !draft.remoteSetup;
@@ -20,6 +23,8 @@ export function deploymentOptionsReducer(
     case "SET_PRIMARY_MACHINE":
       draft.primaryMachine = action.primaryMachine;
       return;
+    case "RESET":
+      return deploymentOptionsInitialState;
     default:
       return draft;
   }

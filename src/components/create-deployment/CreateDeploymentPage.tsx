@@ -1,10 +1,11 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { useImmerReducer } from "use-immer";
 import { deploymentOptionsReducer } from "../../immer/reducers";
 import { deploymentOptionsInitialState } from "../../immer/initialStates";
 import MainContainer from "../_containers/MainContainer";
 import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 import StyledDivider from "../_dividers/StyledDivider";
+import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
 
 /**
  * top form that asks:
@@ -25,7 +26,9 @@ const CreateDeploymentPage: React.FC = () => {
     deploymentOptionsReducer,
     deploymentOptionsInitialState
   );
-  console.log(optionsState);
+  useEffect(() => {
+    console.log(optionsState);
+  });
   return (
     <MainContainer content="flex-start">
       <CreateDeploymentOptions
@@ -34,7 +37,12 @@ const CreateDeploymentPage: React.FC = () => {
       />
       <StyledDivider />
       <StateContext.Provider value={optionsState}>
-        <div></div>
+        {optionsState.formValues.length >= 1 && (
+          <CreateDeploymentUserForms
+            optionsDispatch={optionsDispatch}
+            optionsState={optionsState}
+          />
+        )}
       </StateContext.Provider>
     </MainContainer>
   );

@@ -1,3 +1,5 @@
+import { IndividualDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
+
 /**
  * Action for DeploymentOptions
  */
@@ -5,6 +7,8 @@
 interface SetUserCount {
   type: "SET_USER_COUNT";
   userCount: number;
+  formCount: number[];
+  formValues: IndividualDeploymentFormField[];
 }
 
 interface SetRemoteSetup {
@@ -16,10 +20,15 @@ interface SetPrimaryMachine {
   primaryMachine: string;
 }
 
+interface ResetForm {
+  type: "RESET";
+}
+
 export type DeploymentOptionsAction =
   | SetUserCount
   | SetRemoteSetup
-  | SetPrimaryMachine;
+  | SetPrimaryMachine
+  | ResetForm;
 
 /**
  * Action for DeploymentForms

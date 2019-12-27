@@ -3,7 +3,10 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import {
+  DeploymentOptionsProps,
+  IndividualDeploymentFormField
+} from "../deploymentInterfaces";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 /**
@@ -24,20 +27,38 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
 }: DeploymentOptionsProps) => {
   const classes = useStyles();
 
-  const handleUserCountOption = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ): void => {
-    const count = event.target.value as number;
-    optionsDispatch({
-      type: "SET_USER_COUNT",
-      userCount: count
-    });
-  };
-
   const userCount: number[] = [];
   for (let i = 1; i <= 20; i++) {
     userCount.push(i);
   }
+  const handleUserCountOption = async (
+    event: React.ChangeEvent<{ value: unknown }>
+  ): Promise<void> => {
+    const count = event.target.value as number;
+    const formCount = userCount.slice(0, count);
+    const newDeploymentValue = {
+      endUser: "",
+      product: "",
+      modelType: "",
+      serialNumber: "",
+      techName: "",
+      ticketNumber: 0
+    };
+    const vals: IndividualDeploymentFormField[] = [];
+
+    formCount.forEach(() => vals.push(newDeploymentValue));
+
+    await optionsDispatch({
+      type: "RESET"
+    });
+
+    await optionsDispatch({
+      type: "SET_USER_COUNT",
+      userCount: count,
+      formCount: formCount,
+      formValues: vals
+    });
+  };
 
   return (
     <FormControl className={classes.formControl}>
