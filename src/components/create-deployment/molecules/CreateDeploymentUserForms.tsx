@@ -5,9 +5,11 @@ import {
 } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik } from "formik";
-import RequiredTextField from "../../custom-fields/RequiredTextField";
+import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
 
 // Nothing actually needs to be handled by state? just handle in submit?
+
+// add button to add a new deployment for the endUSer
 
 // const CREATE_DEPLOYMENT
 const initialValues: DeploymentFormValues = {
@@ -23,7 +25,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
       initialValues.deployments = [...optionsState.formValues];
     }
   }, [optionsState.formValues]);
-
+  console.log(initialValues);
   return (
     <FlexContainer flow="row">
       <Formik
@@ -35,13 +37,11 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
           <Form>
             {initialValues.deployments.map((value, i) => {
               return (
-                <FlexContainer flow="row" key={i}>
-                  <RequiredTextField
-                    placeholder="enduser"
-                    name={`deployments[${i}].endUser`}
-                    type="input"
-                  />
-                </FlexContainer>
+                <EndUserDeploymentsFieldArray
+                  formValues={values}
+                  key={i}
+                  ind={i}
+                />
               );
             })}
             <pre>{JSON.stringify(values, null, 2)}</pre>

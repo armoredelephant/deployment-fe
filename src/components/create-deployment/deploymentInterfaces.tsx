@@ -31,21 +31,25 @@ export interface CreateDeploymentStateProps {
   formsProps: DeploymentFormProps;
 }
 
-/**
- * Interface for the form fields that make up a deployment
- */
-export interface IndividualDeploymentFormField {
-  endUser: string;
+export interface IndividualDeploymentItem {
   product: string;
   modelType: string;
   serialNumber: string;
+}
+
+/**
+ * Interface for the form fields that make up a deployment
+ */
+export interface EndUserDeploymentFormField {
+  endUser: string;
   techName: string;
   ticketNumber: number;
+  items: IndividualDeploymentItem[];
 }
 
 /**
  * Interface for an array containing all deployments
  */
 export interface DeploymentFormValues {
-  deployments: IndividualDeploymentFormField[];
+  deployments: EndUserDeploymentFormField[];
 }

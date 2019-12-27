@@ -1,4 +1,4 @@
-import { IndividualDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
+import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
 
 /**
  * Action for DeploymentOptions
@@ -8,7 +8,7 @@ interface SetUserCount {
   type: "SET_USER_COUNT";
   userCount: number;
   formCount: number[];
-  formValues: IndividualDeploymentFormField[];
+  formValues: EndUserDeploymentFormField[];
 }
 
 interface SetRemoteSetup {

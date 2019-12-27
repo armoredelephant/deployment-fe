@@ -1,9 +1,9 @@
-import { IndividualDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
+import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
 
 export interface DeploymentOptions {
   userCount: number | string;
   formCount: number[];
-  formValues: IndividualDeploymentFormField[];
+  formValues: EndUserDeploymentFormField[];
   remoteSetup: boolean;
   primaryMachine: string;
 }

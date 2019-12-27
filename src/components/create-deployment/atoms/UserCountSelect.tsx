@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {
   DeploymentOptionsProps,
-  IndividualDeploymentFormField
+  EndUserDeploymentFormField
 } from "../deploymentInterfaces";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
@@ -13,6 +13,16 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
  * Select field for CreateDeploymentOptions
  */
 
+/**
+  *       items: [
+        {
+          product: "",
+          modelType: "",
+          serialNumber: ""
+        }
+      ]
+
+  */
 const useStyles = makeStyles(() =>
   createStyles({
     formControl: {
@@ -38,13 +48,17 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
     const formCount = userCount.slice(0, count);
     const newDeploymentValue = {
       endUser: "",
-      product: "",
-      modelType: "",
-      serialNumber: "",
       techName: "",
-      ticketNumber: 0
+      ticketNumber: 0,
+      items: [
+        {
+          product: "",
+          modelType: "",
+          serialNumber: ""
+        }
+      ]
     };
-    const vals: IndividualDeploymentFormField[] = [];
+    const vals: EndUserDeploymentFormField[] = [];
 
     formCount.forEach(() => vals.push(newDeploymentValue));
 
