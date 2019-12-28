@@ -6,6 +6,7 @@ import MainContainer from "../_containers/MainContainer";
 import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
+import GenerateFormButton from "./atoms/GenerateFormButton";
 
 /**
  * top form that asks:
@@ -32,6 +33,10 @@ const CreateDeploymentPage: React.FC = () => {
   return (
     <MainContainer content="flex-start">
       <CreateDeploymentOptions
+        optionsDispatch={optionsDispatch}
+        optionsState={optionsState}
+      />
+      <GenerateFormButton
         optionsDispatch={optionsDispatch}
         optionsState={optionsState}
       />

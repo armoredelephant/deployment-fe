@@ -1,4 +1,4 @@
-import React, { ReactChild, useEffect } from "react";
+import React, { ReactChild, useEffect, useState } from "react";
 import {
   DeploymentOptionsProps,
   DeploymentFormValues
@@ -12,19 +12,22 @@ import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
 // add button to add a new deployment for the endUSer
 
 // const CREATE_DEPLOYMENT
-const initialValues: DeploymentFormValues = {
-  deployments: []
-};
-
 const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
   optionsDispatch,
   optionsState
 }: DeploymentOptionsProps) => {
+  const [initialValues, setInitialValues] = useState({
+    deployments: [...optionsState.formValues]
+  });
+
   useEffect(() => {
-    if (initialValues.deployments.length !== optionsState.formValues.length) {
-      initialValues.deployments = [...optionsState.formValues];
-    }
-  }, [optionsState.formValues]);
+    setInitialValues({
+      deployments: [...optionsState.formValues]
+    });
+    // if (initialValues.deployments.length !== optionsState.formValues.length) {
+    //   initialValues.deployments = [...optionsState.formValues];
+    // }
+  }, [optionsState]);
   console.log(initialValues);
   return (
     <FlexContainer flow="row">

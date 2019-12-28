@@ -8,7 +8,6 @@ interface SetUserCount {
   type: "SET_USER_COUNT";
   userCount: number;
   formCount: number[];
-  formValues: EndUserDeploymentFormField[];
 }
 
 interface SetRemoteSetup {
@@ -20,6 +19,11 @@ interface SetPrimaryMachine {
   primaryMachine: string;
 }
 
+interface SetInitialFormValues {
+  type: "SET_INITIAL_FORM_VALUES";
+  formValues: EndUserDeploymentFormField[];
+}
+
 interface ResetForm {
   type: "RESET";
 }
@@ -28,6 +32,7 @@ export type DeploymentOptionsAction =
   | SetUserCount
   | SetRemoteSetup
   | SetPrimaryMachine
+  | SetInitialFormValues
   | ResetForm;
 
 /**

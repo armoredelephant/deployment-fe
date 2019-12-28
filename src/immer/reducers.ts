@@ -15,13 +15,15 @@ export function deploymentOptionsReducer(
     case "SET_USER_COUNT":
       draft.userCount = action.userCount;
       draft.formCount = action.formCount;
-      draft.formValues = action.formValues;
       return;
     case "SET_REMOTE_SETUP":
       draft.remoteSetup = !draft.remoteSetup;
       return;
     case "SET_PRIMARY_MACHINE":
       draft.primaryMachine = action.primaryMachine;
+      return;
+    case "SET_INITIAL_FORM_VALUES":
+      draft.formValues = action.formValues;
       return;
     case "RESET":
       return deploymentOptionsInitialState;
