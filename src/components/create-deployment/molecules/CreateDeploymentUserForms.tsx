@@ -1,8 +1,5 @@
 import React, { ReactChild, useEffect, useState } from "react";
-import {
-  DeploymentOptionsProps,
-  DeploymentFormValues
-} from "../deploymentInterfaces";
+import { DeploymentOptionsProps } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik } from "formik";
 import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
@@ -13,7 +10,6 @@ import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
 
 // const CREATE_DEPLOYMENT
 const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
-  optionsDispatch,
   optionsState
 }: DeploymentOptionsProps) => {
   const [initialValues, setInitialValues] = useState({
@@ -24,11 +20,8 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
     setInitialValues({
       deployments: [...optionsState.formValues]
     });
-    // if (initialValues.deployments.length !== optionsState.formValues.length) {
-    //   initialValues.deployments = [...optionsState.formValues];
-    // }
   }, [optionsState]);
-  console.log(initialValues);
+
   return (
     <FlexContainer flow="row">
       <Formik

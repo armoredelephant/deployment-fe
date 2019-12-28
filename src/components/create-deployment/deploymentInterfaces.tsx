@@ -42,7 +42,6 @@ export interface IndividualDeploymentItem {
  */
 export interface EndUserDeploymentFormField {
   endUser: string;
-  techName: string;
   ticketNumber: number;
   items: IndividualDeploymentItem[];
 }
