@@ -1,27 +1,32 @@
-import React, { ReactChild, useEffect, useState } from "react";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import React, { ReactChild, useEffect } from "react";
+import {
+  DeploymentOptionsProps,
+  DeploymentFormValues
+} from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik } from "formik";
 import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
+import StyledDivider from "../../_dividers/StyledDivider";
 
 // Nothing actually needs to be handled by state? just handle in submit?
 
 // add button to add a new deployment for the endUSer
 
 // const CREATE_DEPLOYMENT
+const initialValues: DeploymentFormValues = {
+  deployments: []
+};
+
 const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
+  optionsDispatch,
   optionsState
 }: DeploymentOptionsProps) => {
-  const [initialValues, setInitialValues] = useState({
-    deployments: [...optionsState.formValues]
-  });
-
   useEffect(() => {
-    setInitialValues({
-      deployments: [...optionsState.formValues]
-    });
-  }, [optionsState]);
-
+    if (initialValues.deployments.length !== optionsState.formValues.length) {
+      initialValues.deployments = [...optionsState.formValues];
+    }
+  }, [optionsState.formValues]);
+  console.log(initialValues);
   return (
     <FlexContainer flow="row">
       <Formik
@@ -33,11 +38,14 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
           <Form>
             {initialValues.deployments.map((value, i) => {
               return (
-                <EndUserDeploymentsFieldArray
-                  formValues={values}
-                  key={i}
-                  ind={i}
-                />
+                <>
+                  <EndUserDeploymentsFieldArray
+                    formValues={values}
+                    key={i}
+                    ind={i}
+                  />
+                  <StyledDivider />
+                </>
               );
             })}
             <pre>{JSON.stringify(values, null, 2)}</pre>

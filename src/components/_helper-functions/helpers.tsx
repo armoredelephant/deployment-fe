@@ -8,11 +8,11 @@ import {
 
 class InitialFormValues {
   endUser: string;
-  ticketNumber: number;
+  ticketNumber: number | string;
   items: IndividualDeploymentItem[];
   constructor() {
     this.endUser = "";
-    this.ticketNumber = 0;
+    this.ticketNumber = "";
     this.items = [];
   }
 }

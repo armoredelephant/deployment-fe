@@ -15,35 +15,39 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
 }: FieldArrayProps) => {
   console.log(formValues);
   return (
-    <FlexContainer flow="row">
-      <RequiredTextField
-        placeholder="enduser"
-        name={`deployments[${ind}].endUser`}
-        type="input"
-      />
-      <RequiredTextField
-        placeholder="ticket number"
-        name={`deployments[${ind}].ticketNumber`}
-        type="input"
-      />
-      <FieldArray
-        name={`deployments[${ind}].items`}
-        render={arrayHelpers => (
-          <FlexContainer flow="row">
-            {formValues.deployments[ind].items.map(
-              (val: IndividualDeploymentItem, index: number) => {
-                return (
-                  <RequiredTextField
-                    key={index}
-                    placeholder="product"
-                    name={`deployments[${ind}].items[${index}].product`}
-                  />
-                );
-              }
-            )}
-          </FlexContainer>
-        )}
-      />
+    <FlexContainer flow="column">
+      <FlexContainer flow="row">
+        <RequiredTextField
+          placeholder="enduser"
+          name={`deployments[${ind}].endUser`}
+          type="input"
+        />
+        <RequiredTextField
+          placeholder="ticket number"
+          name={`deployments[${ind}].ticketNumber`}
+          type="input"
+        />
+      </FlexContainer>
+      <FlexContainer flow="column">
+        <FieldArray
+          name={`deployments[${ind}].items`}
+          render={arrayHelpers => (
+            <>
+              {formValues.deployments[ind].items.map(
+                (val: IndividualDeploymentItem, index: number) => {
+                  return (
+                    <RequiredTextField
+                      key={index}
+                      placeholder="product"
+                      name={`deployments[${ind}].items[${index}].product`}
+                    />
+                  );
+                }
+              )}
+            </>
+          )}
+        />
+      </FlexContainer>
     </FlexContainer>
   );
 };
