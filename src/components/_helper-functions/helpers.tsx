@@ -33,24 +33,35 @@ export const generateInitialFormValues = ({
     serialNumber: ""
   };
 
+  // const initialFormValues: EndUserDeploymentFormField = {
+  //   endUser: "",
+  //   ticketNumber: "",
+  //   items: []
+  // };
+
   optionsState.formCount.forEach(() => {
     const values = new InitialFormValues();
+    // const values = initialFormValues;
     vals.push(values);
   });
 
   if (optionsState.remoteSetup) {
     if (optionsState.primaryMachine === "laptop") {
       vals.forEach(enduser => {
+        console.log(enduser);
         for (let i = 1; i <= maxEquipmentRemoteWithLaptop; i++) {
+          console.log(enduser.items);
           enduser.items.push(itemValues);
         }
       });
     } else {
-      vals.forEach(enduser => {
-        for (let i = 1; i <= maxEquipmentRemoteWithDesktop; i++) {
-          enduser.items.push(itemValues);
+      console.log(vals);
+      for (let i = 0; i < vals.length; i++) {
+        for (let num = 1; num <= maxEquipmentRemoteWithDesktop; num++) {
+          console.log(vals[i]);
+          vals[i].items.push(itemValues);
         }
-      });
+      }
     }
   } else {
     vals.forEach(enduser => {

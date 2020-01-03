@@ -11,7 +11,7 @@ const CustomTextField: React.FC<FieldAttributes<{}>> = ({
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
     <TextField
-      placeholder={placeholder}
+      label={placeholder}
       {...field}
       helperText={errorText}
       error={!!errorText}

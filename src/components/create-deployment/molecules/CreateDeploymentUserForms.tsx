@@ -37,15 +37,14 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
         {({ values }): ReactChild => (
           <Form>
             {initialValues.deployments.map((value, i) => {
+              const rdmKey = Math.random()
+                .toString(36)
+                .substring(7);
               return (
-                <>
-                  <EndUserDeploymentsFieldArray
-                    formValues={values}
-                    key={i}
-                    ind={i}
-                  />
+                <FlexContainer key={rdmKey} flow="column">
+                  <EndUserDeploymentsFieldArray formValues={values} ind={i} />
                   <StyledDivider />
-                </>
+                </FlexContainer>
               );
             })}
             <pre>{JSON.stringify(values, null, 2)}</pre>

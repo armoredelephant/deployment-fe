@@ -11,7 +11,7 @@ const GenerateFormButton: React.FC<DeploymentOptionsProps> = ({
   const handleFormCreation = async (): Promise<void> => {
     await optionsDispatch({ type: "RESET" });
 
-    const initialFormValues = generateInitialFormValues({ optionsState });
+    const initialFormValues = await generateInitialFormValues({ optionsState });
 
     if (initialFormValues) {
       await optionsDispatch({

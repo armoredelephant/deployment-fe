@@ -13,9 +13,8 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
   ind,
   formValues
 }: FieldArrayProps) => {
-  console.log(formValues);
   return (
-    <FlexContainer flow="column">
+    <>
       <FlexContainer flow="row">
         <RequiredTextField
           placeholder="enduser"
@@ -35,9 +34,12 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
             <>
               {formValues.deployments[ind].items.map(
                 (val: IndividualDeploymentItem, index: number) => {
+                  const rdmKey = Math.random()
+                    .toString(36)
+                    .substring(7);
                   return (
                     <RequiredTextField
-                      key={index}
+                      key={rdmKey}
                       placeholder="product"
                       name={`deployments[${ind}].items[${index}].product`}
                     />
@@ -48,7 +50,7 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
           )}
         />
       </FlexContainer>
-    </FlexContainer>
+    </>
   );
 };
 

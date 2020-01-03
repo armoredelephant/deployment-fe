@@ -12,3 +12,5 @@ export const CreateTechSchema = yup.object().shape({
     .max(25, "Last name is too long.")
     .required("Last name is required")
 });
+
+export const CreateDeploymentSchema = yup.object().shape({});
