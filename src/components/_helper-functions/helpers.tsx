@@ -4,26 +4,13 @@ import {
   IndividualDeploymentItem
 } from "../create-deployment/deploymentInterfaces";
 
-// possibly create a class?
-
-class InitialFormValues {
-  endUser: string;
-  ticketNumber: number | string;
-  items: IndividualDeploymentItem[];
-  constructor() {
-    this.endUser = "";
-    this.ticketNumber = "";
-    this.items = [];
-  }
-}
-
 export const generateInitialFormValues = ({
   optionsState
 }: Partial<DeploymentOptionsProps>): EndUserDeploymentFormField[] | void => {
   const maxEquipmentRemoteWithLaptop = 7;
   const maxEquipmentRemoteWithDesktop = 6;
 
-  const vals: EndUserDeploymentFormField[] = [];
+  const forms: EndUserDeploymentFormField[] = [];
 
   if (!optionsState) return;
 
@@ -33,40 +20,38 @@ export const generateInitialFormValues = ({
     serialNumber: ""
   };
 
-  // const initialFormValues: EndUserDeploymentFormField = {
-  //   endUser: "",
-  //   ticketNumber: "",
-  //   items: []
-  // };
+  const initialFormValues: EndUserDeploymentFormField = {
+    endUser: "",
+    ticketNumber: "",
+    items: []
+  };
 
   optionsState.formCount.forEach(() => {
-    const values = new InitialFormValues();
+    // const values = new InitialFormValues();
     // const values = initialFormValues;
-    vals.push(values);
+    const initialFormValue = { ...initialFormValues, items: [] }
+    forms.push(initialFormValue);
   });
 
   if (optionsState.remoteSetup) {
     if (optionsState.primaryMachine === "laptop") {
-      vals.forEach(enduser => {
-        console.log(enduser);
+      forms.forEach(endUser => {
         for (let i = 1; i <= maxEquipmentRemoteWithLaptop; i++) {
-          console.log(enduser.items);
-          enduser.items.push(itemValues);
+          endUser.items.push({ ...itemValues });
         }
       });
     } else {
-      console.log(vals);
-      for (let i = 0; i < vals.length; i++) {
+      forms.forEach(endUser => {
         for (let num = 1; num <= maxEquipmentRemoteWithDesktop; num++) {
-          console.log(vals[i]);
-          vals[i].items.push(itemValues);
+          endUser.items.push({ ...itemValues });
         }
-      }
+      })
     }
   } else {
-    vals.forEach(enduser => {
-      enduser.items.push(itemValues);
+    forms.forEach(enduser => {
+      console.log('enduser', enduser, itemValues)
+      enduser.items.push({ ...itemValues });
     });
   }
-  return vals;
+  return forms;
 };
