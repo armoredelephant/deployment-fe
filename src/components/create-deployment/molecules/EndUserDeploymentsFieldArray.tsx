@@ -34,12 +34,8 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
             <>
               {formValues.deployments[ind].items.map(
                 (val: IndividualDeploymentItem, index: number) => {
-                  const rdmKey = Math.random()
-                    .toString(36)
-                    .substring(7);
                   return (
                     <RequiredTextField
-                      key={rdmKey}
                       placeholder="product"
                       name={`deployments[${ind}].items[${index}].product`}
                     />
