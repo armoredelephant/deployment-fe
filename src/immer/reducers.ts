@@ -14,7 +14,7 @@ export function deploymentOptionsReducer(
   switch (action.type) {
     case "SET_USER_COUNT":
       draft.userCount = action.userCount;
-      draft.formCount = action.formCount;
+      draft.formCounts = action.formCounts;
       return;
     case "SET_REMOTE_SETUP":
       draft.remoteSetup = !draft.remoteSetup;

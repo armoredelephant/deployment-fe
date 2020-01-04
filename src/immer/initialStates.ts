@@ -2,7 +2,7 @@ import { DeploymentOptions } from "./stateInterfaces";
 
 export const deploymentOptionsInitialState: DeploymentOptions = {
   userCount: "",
-  formCount: [],
+  formCounts: [],
   formValues: [],
   remoteSetup: false,
   primaryMachine: "igel"

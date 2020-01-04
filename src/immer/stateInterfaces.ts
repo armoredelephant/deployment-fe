@@ -2,7 +2,7 @@ import { EndUserDeploymentFormField } from "../components/create-deployment/depl
 
 export interface DeploymentOptions {
   userCount: number | string;
-  formCount: number[];
+  formCounts: number[];
   formValues: EndUserDeploymentFormField[];
   remoteSetup: boolean;
   primaryMachine: string;

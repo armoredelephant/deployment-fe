@@ -31,12 +31,12 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
     event: React.ChangeEvent<{ value: unknown }>
   ): Promise<void> => {
     const count = event.target.value as number;
-    const formCount = userCount.slice(0, count);
+    const formCounts = userCount.slice(0, count);
 
     await optionsDispatch({
       type: "SET_USER_COUNT",
       userCount: count,
-      formCount: formCount
+      formCounts: formCounts
     });
   };
 

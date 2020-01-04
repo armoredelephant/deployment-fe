@@ -26,10 +26,8 @@ export const generateInitialFormValues = ({
     items: []
   };
 
-  optionsState.formCount.forEach(() => {
-    // const values = new InitialFormValues();
-    // const values = initialFormValues;
-    const initialFormValue = { ...initialFormValues, items: [] }
+  optionsState.formCounts.forEach(() => {
+    const initialFormValue = { ...initialFormValues, items: [] };
     forms.push(initialFormValue);
   });
 
@@ -45,11 +43,11 @@ export const generateInitialFormValues = ({
         for (let num = 1; num <= maxEquipmentRemoteWithDesktop; num++) {
           endUser.items.push({ ...itemValues });
         }
-      })
+      });
     }
   } else {
     forms.forEach(enduser => {
-      console.log('enduser', enduser, itemValues)
+      console.log("enduser", enduser, itemValues);
       enduser.items.push({ ...itemValues });
     });
   }

@@ -7,7 +7,7 @@ import { EndUserDeploymentFormField } from "../components/create-deployment/depl
 interface SetUserCount {
   type: "SET_USER_COUNT";
   userCount: number;
-  formCount: number[];
+  formCounts: number[];
 }
 
 interface SetRemoteSetup {
