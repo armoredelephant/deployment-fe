@@ -36,6 +36,7 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                 (val: IndividualDeploymentItem, index: number) => {
                   return (
                     <RequiredTextField
+                      key={`deployment-${index}`}
                       placeholder="product"
                       name={`deployments[${ind}].items[${index}].product`}
                     />

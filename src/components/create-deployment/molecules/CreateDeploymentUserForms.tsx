@@ -38,7 +38,10 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
           <Form>
             {initialValues.deployments.map((value, i) => {
               return (
-                <EndUserDeploymentsFieldArray formValues={values} ind={i} />
+                <FlexContainer key={`enduser-${i}`} flow="column">
+                  <EndUserDeploymentsFieldArray formValues={values} ind={i} />
+                  <StyledDivider />
+                </FlexContainer>
               );
             })}
             <pre>{JSON.stringify(values, null, 2)}</pre>
