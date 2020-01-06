@@ -52,6 +52,11 @@ export const theme = createMuiTheme({
       icon: {
         color: colors.primary
       }
+    },
+    MuiFormControl: {
+      root: {
+        minWidth: "9.375rem"
+      }
     }
   }
 });

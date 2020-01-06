@@ -4,25 +4,15 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { DeploymentOptionsProps } from "../deploymentInterfaces";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 /**
  * Select field for CreateDeploymentOptions
  */
-const useStyles = makeStyles(() =>
-  createStyles({
-    formControl: {
-      minWidth: 100
-    }
-  })
-);
 
 const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
   optionsState,
   optionsDispatch
 }: DeploymentOptionsProps) => {
-  const classes = useStyles();
-
   const userCount: number[] = [];
   for (let i = 1; i <= 20; i++) {
     userCount.push(i);
@@ -41,7 +31,7 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
   };
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl>
       <InputLabel id="user-count">User count</InputLabel>
       <Select
         labelId="user-count"
