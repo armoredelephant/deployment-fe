@@ -26,7 +26,6 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
       initialValues.deployments = [...optionsState.formValues];
     }
   }, [optionsState.formValues]);
-  console.log(initialValues);
   return (
     <FlexContainer flow="row">
       <Formik

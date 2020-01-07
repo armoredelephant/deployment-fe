@@ -46,7 +46,6 @@ export const generateInitialFormValues = ({
       forms.forEach(endUser => {
         for (let i = 0; i < maxEquipmentRemoteWithLaptop; i++) {
           endUser.items.push({ ...itemValues, product: laptopDeployment[i] });
-          console.log(endUser.items);
         }
       });
     } else {
@@ -62,7 +61,6 @@ export const generateInitialFormValues = ({
     }
   } else {
     forms.forEach(enduser => {
-      console.log("enduser", enduser, itemValues);
       enduser.items.push({ ...itemValues });
     });
   }

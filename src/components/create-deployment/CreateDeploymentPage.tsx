@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext } from "react";
 import { useImmerReducer } from "use-immer";
 import { deploymentOptionsReducer } from "../../immer/reducers";
 import { deploymentOptionsInitialState } from "../../immer/initialStates";
@@ -27,9 +27,7 @@ const CreateDeploymentPage: React.FC = () => {
     deploymentOptionsReducer,
     deploymentOptionsInitialState
   );
-  useEffect(() => {
-    console.log(optionsState);
-  });
+
   return (
     <MainContainer content="flex-start">
       <CreateDeploymentOptions
