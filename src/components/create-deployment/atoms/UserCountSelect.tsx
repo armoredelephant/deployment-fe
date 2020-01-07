@@ -37,6 +37,10 @@ const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
         labelId="user-count"
         value={optionsState.userCount}
         onChange={handleUserCountOption}
+        MenuProps={{
+          getContentAnchorEl: null,
+          anchorOrigin: { vertical: "bottom", horizontal: "left" }
+        }}
       >
         {userCount.map((num: number) => {
           const rdmKey = Math.random()

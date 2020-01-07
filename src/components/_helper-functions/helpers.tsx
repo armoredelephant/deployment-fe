@@ -26,6 +26,16 @@ export const generateInitialFormValues = ({
     items: []
   };
 
+  const laptopDeployment = [
+    "Computer",
+    "Other",
+    "Other",
+    "Network Device",
+    "Other",
+    "Other",
+    "Phone"
+  ];
+
   optionsState.formCounts.forEach(() => {
     const initialFormValue = { ...initialFormValues, items: [] };
     forms.push(initialFormValue);
@@ -34,14 +44,19 @@ export const generateInitialFormValues = ({
   if (optionsState.remoteSetup) {
     if (optionsState.primaryMachine === "laptop") {
       forms.forEach(endUser => {
-        for (let i = 1; i <= maxEquipmentRemoteWithLaptop; i++) {
-          endUser.items.push({ ...itemValues });
+        for (let i = 0; i < maxEquipmentRemoteWithLaptop; i++) {
+          endUser.items.push({ ...itemValues, product: laptopDeployment[i] });
+          console.log(endUser.items);
         }
       });
     } else {
+      const desktopDeployment = [...laptopDeployment];
+
+      desktopDeployment.splice(1, 1);
+
       forms.forEach(endUser => {
-        for (let num = 1; num <= maxEquipmentRemoteWithDesktop; num++) {
-          endUser.items.push({ ...itemValues });
+        for (let i = 0; i < maxEquipmentRemoteWithDesktop; i++) {
+          endUser.items.push({ ...itemValues, product: desktopDeployment[i] });
         }
       });
     }
