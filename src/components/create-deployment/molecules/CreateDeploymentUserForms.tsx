@@ -7,6 +7,7 @@ import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik } from "formik";
 import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
 import StyledDivider from "../../_dividers/StyledDivider";
+import { CreateDeploymentSchema } from "../../../formSchemas";
 
 // Nothing actually needs to be handled by state? just handle in submit?
 
@@ -31,6 +32,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
       <Formik
         initialValues={initialValues}
         enableReinitialize={true}
+        validationSchema={CreateDeploymentSchema}
         onSubmit={(data): void => console.log(data)}
       >
         {({ values }): ReactChild => (
