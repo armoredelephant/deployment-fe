@@ -8,16 +8,13 @@ import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
 import GenerateFormButton from "./atoms/GenerateFormButton";
 
-/**
- * top form that asks:
- * How many users are you deploying equipment to? Dropdown with #?
- * Will these be remote setups? No defaulted, with Yes radio button
- * Primary PC for the majority? Laptop/Desktop/Igel
- */
 
 /**
- * bottom form is populated based on responses:
- *
+ * This component contaains the entirety of
+ * the create deployment form. 
+ * Contains an immer state for the options selected
+ * and generate form button will create 
+ * a form based on those options.
  */
 
 const StateContext = createContext({});
@@ -39,14 +36,14 @@ const CreateDeploymentPage: React.FC = () => {
         optionsState={optionsState}
       />
       <StyledDivider />
-      <StateContext.Provider value={optionsState}>
-        {optionsState.formValues.length >= 1 && (
-          <CreateDeploymentUserForms
-            optionsDispatch={optionsDispatch}
-            optionsState={optionsState}
-          />
-        )}
-      </StateContext.Provider>
+      {optionsState.formValues.length >= 1 && (
+          <StateContext.Provider value={optionsState}>
+              <CreateDeploymentUserForms
+                optionsDispatch={optionsDispatch}
+                optionsState={optionsState}
+              />
+          </StateContext.Provider>
+      )}
     </MainContainer>
   );
 };

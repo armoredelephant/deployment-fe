@@ -52,3 +52,17 @@ export interface EndUserDeploymentFormField {
 export interface DeploymentFormValues {
   deployments: EndUserDeploymentFormField[];
 }
+
+/**
+ * Interface for data sent to gql for creating a deployment
+ */
+export interface GraphQLDeployment {
+  techName: string;
+  endUser: string;
+  product: string;
+  modelType: string;
+  serialNumber: string;
+  timeStamp: string;
+  ticketNumber: number;
+  techId?: number;
+}

@@ -6,6 +6,7 @@ export interface DeploymentOptions {
   formValues: EndUserDeploymentFormField[];
   remoteSetup: boolean;
   primaryMachine: string;
+  tech: string;
 }
 
 export interface DeploymentForms {

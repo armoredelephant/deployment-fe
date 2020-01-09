@@ -5,5 +5,6 @@ export const deploymentOptionsInitialState: DeploymentOptions = {
   formCounts: [],
   formValues: [],
   remoteSetup: false,
-  primaryMachine: "igel"
+  primaryMachine: "igel",
+  tech: "Keith Alleman"
 };
