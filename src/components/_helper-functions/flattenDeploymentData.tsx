@@ -22,7 +22,8 @@ export const flattenDeploymentData = ({
       endUser: endUser,
       ticketNumber: parseInt(ticketNumber),
       techName: tech,
-      timeStamp: timestamp
+      timeStamp: timestamp,
+      techId: 1
     };
   });
   return toBeDeployed;

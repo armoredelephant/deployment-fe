@@ -20,8 +20,12 @@ const initialValues: DeploymentFormValues = {
   deployments: []
 };
 
+/**
+ * techName and techId will have to be pulled from gql
+ */
+
 const CREATE_DEPLOYMENT = gql`
-  mutation CreateDeployment($data: DeploymentGraphQLInput!) {
+  mutation CreateDeployment($data: DeploymentInput!) {
     createDeployment(deployment: $data) {
       id
       techName
@@ -35,9 +39,6 @@ const CREATE_DEPLOYMENT = gql`
     }
   }
 `;
-
-// need timeStamp
-// need ticketNumber to be parsed
 
 const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
   optionsState
@@ -72,7 +73,8 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
         initialValues={initialValues}
         enableReinitialize={true}
         validationSchema={CreateDeploymentSchema}
-        onSubmit={(data): void => {
+        onSubmit={(data, actions): void => {
+          actions.setSubmitting(true);
           data.deployments.forEach(
             (deploymentData: EndUserDeploymentFormField) => {
               const gqlMutationData = flattenDeploymentData({
@@ -80,12 +82,13 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
                 tech
               });
               console.log(gqlMutationData);
-              // createDeploymentMutation(gqlMutationData);
+              createDeploymentMutation(gqlMutationData);
             }
           );
+          actions.setSubmitting(false);
         }}
       >
-        {({ values }): ReactChild => (
+        {({ values, isSubmitting }): ReactChild => (
           <Form>
             {initialValues.deployments.map((value, i) => {
               return (
@@ -96,9 +99,11 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
               );
             })}
             <SpacingWrapper>
-              <Button variant="contained" type="submit">
-                Submit Deployments
-              </Button>
+              {!isSubmitting && (
+                <Button variant="contained" type="submit">
+                  Submit Deployments
+                </Button>
+              )}
             </SpacingWrapper>
             <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
