@@ -2,7 +2,6 @@ import React, { ReactChild, useEffect } from "react";
 import {
   DeploymentOptionsProps,
   DeploymentFormValues,
-  EndUserDeploymentFormField,
   GraphQLDeployment
 } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
@@ -73,19 +72,15 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
         initialValues={initialValues}
         enableReinitialize={true}
         validationSchema={CreateDeploymentSchema}
-        onSubmit={(data, actions): void => {
-          actions.setSubmitting(true);
-          data.deployments.forEach(
-            (deploymentData: EndUserDeploymentFormField) => {
-              const gqlMutationData = flattenDeploymentData({
-                deploymentData,
-                tech
-              });
-              console.log(gqlMutationData);
-              createDeploymentMutation(gqlMutationData);
-            }
-          );
-          actions.setSubmitting(false);
+        onSubmit={async (data): Promise<void> => {
+          for (const deploymentData of data.deployments) {
+            const gqlMutationData = await flattenDeploymentData({
+              deploymentData,
+              tech
+            });
+            console.log(gqlMutationData);
+            await createDeploymentMutation(gqlMutationData);
+          }
         }}
       >
         {({ values, isSubmitting }): ReactChild => (
@@ -99,11 +94,9 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
               );
             })}
             <SpacingWrapper>
-              {!isSubmitting && (
-                <Button variant="contained" type="submit">
-                  Submit Deployments
-                </Button>
-              )}
+              <Button variant="contained" type="submit" disabled={isSubmitting}>
+                Submit Deployments
+              </Button>
             </SpacingWrapper>
             <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
