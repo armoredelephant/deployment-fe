@@ -10,10 +10,10 @@ import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
 import StyledDivider from "../../_dividers/StyledDivider";
 import { CreateDeploymentSchema } from "../../../formSchemas";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
-import Button from "@material-ui/core/Button";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import { flattenDeploymentData } from "../../_helper-functions/flattenDeploymentData";
+import SpinnerButton from "../../_spinner/SpinnerButton";
 
 const initialValues: DeploymentFormValues = {
   deployments: []
@@ -94,9 +94,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
               );
             })}
             <SpacingWrapper>
-              <Button variant="contained" type="submit" disabled={isSubmitting}>
-                Submit Deployments
-              </Button>
+              <SpinnerButton isSubmitting={isSubmitting} />
             </SpacingWrapper>
             <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
