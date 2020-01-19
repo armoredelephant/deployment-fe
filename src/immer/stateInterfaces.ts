@@ -17,3 +17,9 @@ export interface DeploymentForms {
   techName: string;
   ticketNumber: number;
 }
+
+export interface DeploymentStatus {
+  postAttempted: boolean;
+  postError: boolean;
+  postSuccessful: boolean;
+}

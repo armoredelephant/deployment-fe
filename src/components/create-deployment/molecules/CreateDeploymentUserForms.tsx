@@ -1,8 +1,8 @@
 import React, { ReactChild, useEffect } from "react";
 import {
-  DeploymentOptionsProps,
   DeploymentFormValues,
-  GraphQLDeployment
+  GraphQLDeployment,
+  DeploymentStatusAndOptionsProps
 } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik } from "formik";
@@ -39,9 +39,11 @@ const CREATE_DEPLOYMENT = gql`
   }
 `;
 
-const CreateDeploymentUserForms: React.FC<DeploymentOptionsProps> = ({
-  optionsState
-}: DeploymentOptionsProps) => {
+const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
+  optionsState,
+  deploymentState,
+  deploymentDispatch
+}: DeploymentStatusAndOptionsProps) => {
   const [createDeployment] = useMutation(CREATE_DEPLOYMENT);
   const { tech } = optionsState;
 

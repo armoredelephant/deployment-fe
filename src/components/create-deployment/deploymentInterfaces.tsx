@@ -1,16 +1,36 @@
 import {
   DeploymentOptions,
-  DeploymentForms
+  DeploymentForms,
+  DeploymentStatus
 } from "../../immer/stateInterfaces";
 import {
   DeploymentFormsAction,
-  DeploymentOptionsAction
+  DeploymentOptionsAction,
+  DeploymentStatusAction
 } from "../../immer/actionTypes";
 
 /**
  * Props interface from deploymentOptionsReducer
  */
 export interface DeploymentOptionsProps {
+  optionsDispatch: React.Dispatch<DeploymentOptionsAction>;
+  optionsState: DeploymentOptions;
+}
+
+/**
+ * Props interface from deploymentStatusReducer
+ */
+export interface DeploymentStatusProps {
+  deploymentDispatch: React.Dispatch<DeploymentStatusAction>;
+  deploymentState: DeploymentStatus;
+}
+
+/**
+ * Props interface from deploymentStatusReducer and deploymentOptionsReducer
+ */
+export interface DeploymentStatusAndOptionsProps {
+  deploymentDispatch: React.Dispatch<DeploymentStatusAction>;
+  deploymentState: DeploymentStatus;
   optionsDispatch: React.Dispatch<DeploymentOptionsAction>;
   optionsState: DeploymentOptions;
 }
