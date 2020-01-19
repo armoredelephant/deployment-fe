@@ -14,6 +14,7 @@ import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import { flattenDeploymentData } from "../../_helper-functions/flattenDeploymentData";
 import SpinnerButton from "../../_spinner/SpinnerButton";
+import { PostError } from "../../../utils/customErrors";
 
 const initialValues: DeploymentFormValues = {
   deployments: []
@@ -58,7 +59,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
           }
         });
       } catch (error) {
-        console.log(error);
+        throw new PostError(error);
       }
     }
   };
@@ -81,7 +82,12 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               tech
             });
             console.log(gqlMutationData);
-            await createDeploymentMutation(gqlMutationData);
+            try {
+              await createDeploymentMutation(gqlMutationData);
+            } catch (error) {
+              console.log(error);
+              deploymentDispatch({ type: "SET_POST_ERROR", postError: true });
+            }
           }
         }}
       >
