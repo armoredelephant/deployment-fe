@@ -9,7 +9,10 @@ import {
   DeploymentFormsAction,
   DeploymentStatusAction
 } from "./actionTypes";
-import { deploymentOptionsInitialState } from "./initialStates";
+import {
+  deploymentOptionsInitialState,
+  deploymentStatusInitialState
+} from "./initialStates";
 
 /**
  * Reducer for the DeploymentOptions logic
@@ -86,10 +89,14 @@ export function deploymentStatusReducer(
       return;
     case "SET_POST_SUCCESSFUL":
       draft.postSuccessful = true;
+      draft.showDeploymentSnackbar = true;
       return;
     case "SET_POST_ERROR":
       draft.postError = true;
+      draft.showDeploymentSnackbar = true;
       return;
+    case "RESET_DEPLOYMENT_STATUS":
+      return deploymentStatusInitialState;
     default:
       return draft;
   }

@@ -12,5 +12,6 @@ export const deploymentOptionsInitialState: DeploymentOptions = {
 export const deploymentStatusInitialState: DeploymentStatus = {
   postAttempted: false,
   postError: false,
-  postSuccessful: false
+  postSuccessful: false,
+  showDeploymentSnackbar: false
 };

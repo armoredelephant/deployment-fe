@@ -83,20 +83,22 @@ export type DeploymentFormsAction =
 
 interface SetPostAttempt {
   type: "SET_POST_ATTEMPT";
-  postAttempt: boolean;
 }
 
 interface SetPostError {
   type: "SET_POST_ERROR";
-  postError: boolean;
 }
 
 interface SetPostSuccessful {
   type: "SET_POST_SUCCESSFUL";
-  postSuccessful: boolean;
+}
+
+interface ResetDeploymentStatus {
+  type: "RESET_DEPLOYMENT_STATUS";
 }
 
 export type DeploymentStatusAction =
   | SetPostAttempt
   | SetPostError
-  | SetPostSuccessful;
+  | SetPostSuccessful
+  | ResetDeploymentStatus;

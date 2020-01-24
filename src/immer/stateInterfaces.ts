@@ -22,4 +22,5 @@ export interface DeploymentStatus {
   postAttempted: boolean;
   postError: boolean;
   postSuccessful: boolean;
+  showDeploymentSnackbar: boolean;
 }
