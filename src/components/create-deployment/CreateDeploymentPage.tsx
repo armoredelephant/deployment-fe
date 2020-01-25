@@ -13,6 +13,7 @@ import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
 import GenerateFormButton from "./atoms/GenerateFormButton";
+import DeploymentSnackbar from "./atoms/DeploymentSnackbar";
 
 /**
  * This component contaains the entirety of
@@ -65,6 +66,10 @@ const CreateDeploymentPage: React.FC = () => {
           />
         </StateContext.Provider>
       )}
+      <DeploymentSnackbar
+        deploymentState={deploymentState}
+        deploymentDispatch={deploymentDispatch}
+      />
     </MainContainer>
   );
 };

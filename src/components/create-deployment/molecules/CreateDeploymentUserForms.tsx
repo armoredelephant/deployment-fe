@@ -47,6 +47,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
 }: DeploymentStatusAndOptionsProps) => {
   const [createDeployment] = useMutation(CREATE_DEPLOYMENT);
   const { tech } = optionsState;
+  const { postError } = deploymentState;
 
   const createDeploymentMutation = async (
     gqlMutationData: GraphQLDeployment[]
@@ -89,6 +90,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               deploymentDispatch({ type: "SET_POST_ERROR" });
             }
           }
+          if (!postError) deploymentDispatch({ type: "SET_POST_SUCCESSFUL" });
         }}
       >
         {({ values, isSubmitting }): ReactChild => (
