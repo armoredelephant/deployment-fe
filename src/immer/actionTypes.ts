@@ -35,6 +35,10 @@ export type DeploymentOptionsAction =
   | SetInitialFormValues
   | ResetForm;
 
+export type DeploymentOptionsDispatch = (
+  action: DeploymentOptionsAction
+) => void;
+
 /**
  * Action for DeploymentForms
  */

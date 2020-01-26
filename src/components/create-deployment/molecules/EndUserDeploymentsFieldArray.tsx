@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FlexContainer from "../../_containers/FlexContainer";
 import RequiredTextField from "../../custom-fields/RequiredTextField";
 import { FormikValues, FieldArray } from "formik";
 import { IndividualDeploymentItem } from "../deploymentInterfaces";
 import ProductSelect from "../atoms/ProductSelect";
+import AddSingleDeploymentButton from "../atoms/AddSingleDeploymentButton";
 
 /**
  * Computer = Computer
@@ -13,12 +14,12 @@ import ProductSelect from "../atoms/ProductSelect";
  */
 
 interface FieldArrayProps {
-  ind: number;
+  deploymentIndex: number;
   formValues: FormikValues;
 }
 
 const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
-  ind,
+  deploymentIndex,
   formValues
 }: FieldArrayProps) => {
   return (
@@ -26,34 +27,34 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
       <FlexContainer flow="row">
         <RequiredTextField
           placeholder="enduser"
-          name={`deployments[${ind}].endUser`}
+          name={`deployments[${deploymentIndex}].endUser`}
           type="input"
         />
         <RequiredTextField
           placeholder="ticket number"
-          name={`deployments[${ind}].ticketNumber`}
+          name={`deployments[${deploymentIndex}].ticketNumber`}
           type="input"
         />
       </FlexContainer>
       <FlexContainer flow="column">
         <FieldArray
-          name={`deployments[${ind}].items`}
+          name={`deployments[${deploymentIndex}].items`}
           render={arrayHelpers => (
             <>
-              {formValues.deployments[ind].items.map(
+              {formValues.deployments[deploymentIndex].items.map(
                 (val: IndividualDeploymentItem, index: number) => {
                   return (
                     <FlexContainer key={`deployment-${index}`} flow="row">
                       <ProductSelect
-                        name={`deployments[${ind}].items[${index}].product`}
+                        name={`deployments[${deploymentIndex}].items[${index}].product`}
                       />
                       <RequiredTextField
                         placeholder="model"
-                        name={`deployments[${ind}].items[${index}].modelType`}
+                        name={`deployments[${deploymentIndex}].items[${index}].modelType`}
                       />
                       <RequiredTextField
                         placeholder="serial number"
-                        name={`deployments[${ind}].items[${index}].serialNumber`}
+                        name={`deployments[${deploymentIndex}].items[${index}].serialNumber`}
                       />
                     </FlexContainer>
                   );
@@ -63,6 +64,7 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
           )}
         />
       </FlexContainer>
+      <AddSingleDeploymentButton deploymentIndex={deploymentIndex} />
     </>
   );
 };

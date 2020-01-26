@@ -69,6 +69,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
     if (initialValues.deployments.length !== optionsState.formValues.length) {
       initialValues.deployments = [...optionsState.formValues];
     }
+    // ADD LISTEN FOR INDEX OF FORM VALUES
   }, [optionsState.formValues]);
   return (
     <FlexContainer flow="row">
@@ -98,7 +99,10 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
             {initialValues.deployments.map((value, i) => {
               return (
                 <FlexContainer key={`enduser-${i}`} flow="column">
-                  <EndUserDeploymentsFieldArray formValues={values} ind={i} />
+                  <EndUserDeploymentsFieldArray
+                    formValues={values}
+                    deploymentIndex={i}
+                  />
                   <StyledDivider />
                 </FlexContainer>
               );

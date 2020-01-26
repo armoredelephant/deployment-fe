@@ -57,6 +57,11 @@ export const theme = createMuiTheme({
       root: {
         minWidth: "9.375rem"
       }
+    },
+    MuiButton: {
+      colorInherit: {
+        color: colors.primary
+      }
     }
   }
 });

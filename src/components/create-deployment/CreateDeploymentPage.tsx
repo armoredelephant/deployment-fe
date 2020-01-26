@@ -14,6 +14,8 @@ import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
 import GenerateFormButton from "./atoms/GenerateFormButton";
 import DeploymentSnackbar from "./atoms/DeploymentSnackbar";
+import { DeploymentOptions } from "../../immer/stateInterfaces";
+import { DeploymentOptionsDispatch } from "../../immer/actionTypes";
 
 /**
  * This component contaains the entirety of
@@ -33,7 +35,12 @@ import DeploymentSnackbar from "./atoms/DeploymentSnackbar";
  * Create a field next to submit button that will display deploymentState successful or error
  */
 
-const StateContext = createContext({});
+export const OptionsStateContext = createContext<DeploymentOptions | undefined>(
+  undefined
+);
+export const OptionsDispatchContext = createContext<
+  DeploymentOptionsDispatch | undefined
+>(undefined);
 
 const CreateDeploymentPage: React.FC = () => {
   const [optionsState, optionsDispatch] = useImmerReducer(
@@ -57,14 +64,16 @@ const CreateDeploymentPage: React.FC = () => {
       />
       <StyledDivider />
       {optionsState.formValues.length >= 1 && (
-        <StateContext.Provider value={optionsState}>
-          <CreateDeploymentUserForms
-            optionsDispatch={optionsDispatch}
-            optionsState={optionsState}
-            deploymentState={deploymentState}
-            deploymentDispatch={deploymentDispatch}
-          />
-        </StateContext.Provider>
+        <OptionsDispatchContext.Provider value={optionsDispatch}>
+          <OptionsStateContext.Provider value={optionsState}>
+            <CreateDeploymentUserForms
+              optionsDispatch={optionsDispatch}
+              optionsState={optionsState}
+              deploymentState={deploymentState}
+              deploymentDispatch={deploymentDispatch}
+            />
+          </OptionsStateContext.Provider>
+        </OptionsDispatchContext.Provider>
       )}
       <DeploymentSnackbar
         deploymentState={deploymentState}
