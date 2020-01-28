@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FlexContainer from "../../_containers/FlexContainer";
 import RequiredTextField from "../../custom-fields/RequiredTextField";
 import { FormikValues, FieldArray } from "formik";
@@ -60,11 +60,20 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                   );
                 }
               )}
+              <AddSingleDeploymentButton
+                onClick={(): void =>
+                  arrayHelpers.push({
+                    product: "",
+                    modelType: "",
+                    serialNumber: ""
+                  })
+                }
+                deploymentIndex={deploymentIndex}
+              />
             </>
           )}
         />
       </FlexContainer>
-      <AddSingleDeploymentButton deploymentIndex={deploymentIndex} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { ReactChild, useEffect } from "react";
+import React, { ReactChild, useEffect, useState } from "react";
 import {
   DeploymentFormValues,
   GraphQLDeployment,
@@ -16,7 +16,7 @@ import { flattenDeploymentData } from "../../_helper-functions/flattenDeployment
 import SpinnerButton from "../../_spinner/SpinnerButton";
 import { PostError } from "../../../utils/customErrors";
 
-const initialValues: DeploymentFormValues = {
+const initialFormValues: DeploymentFormValues = {
   deployments: []
 };
 
@@ -45,6 +45,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   deploymentState,
   deploymentDispatch
 }: DeploymentStatusAndOptionsProps) => {
+  const [initialValues, setInitialValues] = useState(initialFormValues);
   const [createDeployment] = useMutation(CREATE_DEPLOYMENT);
   const { tech } = optionsState;
   const { postError } = deploymentState;
@@ -66,11 +67,23 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   };
 
   useEffect(() => {
-    if (initialValues.deployments.length !== optionsState.formValues.length) {
-      initialValues.deployments = [...optionsState.formValues];
-    }
-    // ADD LISTEN FOR INDEX OF FORM VALUES
+    // if (initialValues.deployments.length) {
+    //   const firstHalf = [...initialValues.deployments].splice(0, indexToUpdate);
+    //   const secondHalf = [...initialValues.deployments].splice(
+    //     indexToUpdate + 1,
+    //     initialValues.deployments.length - 1
+    //   );
+    //   const usersItemsToEdit = { ...optionsState.formValues[indexToUpdate] };
+    //   const newInitialValues = {
+    //     deployments: [...firstHalf, usersItemsToEdit, ...secondHalf]
+    //   };
+    //   setInitialValues(newInitialValues);
+    // } else {
+    setInitialValues({ deployments: optionsState.formValues });
   }, [optionsState.formValues]);
+
+  if (!initialValues.deployments.length) return <></>;
+
   return (
     <FlexContainer flow="row">
       <Formik

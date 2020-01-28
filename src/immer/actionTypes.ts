@@ -24,6 +24,11 @@ interface SetInitialFormValues {
   formValues: EndUserDeploymentFormField[];
 }
 
+// interface SetIndexToUpdate {
+//   type: "SET_INDEX_TO_UPDATE";
+//   indexToUpdate: number;
+// }
+
 interface ResetForm {
   type: "RESET";
 }
@@ -33,6 +38,7 @@ export type DeploymentOptionsAction =
   | SetRemoteSetup
   | SetPrimaryMachine
   | SetInitialFormValues
+  // | SetIndexToUpdate
   | ResetForm;
 
 export type DeploymentOptionsDispatch = (

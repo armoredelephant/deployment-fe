@@ -1,14 +1,6 @@
 import { Draft } from "immer";
-import {
-  DeploymentOptions,
-  DeploymentForms,
-  DeploymentStatus
-} from "./stateInterfaces";
-import {
-  DeploymentOptionsAction,
-  DeploymentFormsAction,
-  DeploymentStatusAction
-} from "./actionTypes";
+import { DeploymentOptions, DeploymentStatus } from "./stateInterfaces";
+import { DeploymentOptionsAction, DeploymentStatusAction } from "./actionTypes";
 import {
   deploymentOptionsInitialState,
   deploymentStatusInitialState
@@ -36,45 +28,15 @@ export function deploymentOptionsReducer(
     case "SET_INITIAL_FORM_VALUES":
       draft.formValues = action.formValues;
       return;
+    // case "SET_INDEX_TO_UPDATE":
+    //   draft.indexToUpdate = action.indexToUpdate;
+    //   return;
     case "RESET":
       return deploymentOptionsInitialState;
     default:
       return draft;
   }
 }
-
-/**
- * Reducer for the DeploymentForms logic
- */
-
-export function deploymentFormsReducer(
-  draft: Draft<DeploymentForms>,
-  action: DeploymentFormsAction
-): Draft<DeploymentForms> | void {
-  switch (action.type) {
-    case "SET_ENDUSER":
-      draft.endUser = action.endUser;
-      return;
-    case "SET_MODEL_TYPE":
-      draft.modelType = action.modelType;
-      return;
-    case "SET_PRODUCT":
-      draft.product = action.product;
-      return;
-    case "SET_SERIAL_NUMBER":
-      draft.serialNumber = action.serialNumber;
-      return;
-    case "SET_TECH_NAME":
-      draft.techName = action.techName;
-      return;
-    case "SET_TICKET_NUMBER":
-      draft.ticketNumber = action.ticketNumber;
-      return;
-    default:
-      return draft;
-  }
-}
-
 /**
  * Reducer for the Deployment status logic
  */
@@ -101,3 +63,35 @@ export function deploymentStatusReducer(
       return draft;
   }
 }
+
+/**
+ * Reducer for the DeploymentForms logic
+ */
+
+// export function deploymentFormsReducer(
+//   draft: Draft<DeploymentForms>,
+//   action: DeploymentFormsAction
+// ): Draft<DeploymentForms> | void {
+//   switch (action.type) {
+//     case "SET_ENDUSER":
+//       draft.endUser = action.endUser;
+//       return;
+//     case "SET_MODEL_TYPE":
+//       draft.modelType = action.modelType;
+//       return;
+//     case "SET_PRODUCT":
+//       draft.product = action.product;
+//       return;
+//     case "SET_SERIAL_NUMBER":
+//       draft.serialNumber = action.serialNumber;
+//       return;
+//     case "SET_TECH_NAME":
+//       draft.techName = action.techName;
+//       return;
+//     case "SET_TICKET_NUMBER":
+//       draft.ticketNumber = action.ticketNumber;
+//       return;
+//     default:
+//       return draft;
+//   }
+// }

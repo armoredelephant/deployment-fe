@@ -4,6 +4,7 @@ export interface DeploymentOptions {
   userCount: number | string;
   formCounts: number[];
   formValues: EndUserDeploymentFormField[];
+  // indexToUpdate: number;
   remoteSetup: boolean;
   primaryMachine: string;
   tech: string;

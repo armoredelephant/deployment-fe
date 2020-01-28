@@ -1,51 +1,56 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import FlexContainer from "../../_containers/FlexContainer";
-import {
-  OptionsDispatchContext,
-  OptionsStateContext
-} from "../CreateDeploymentPage";
-import { IndividualDeploymentItem } from "../deploymentInterfaces";
+// import {
+// OptionsDispatchContext,
+// OptionsStateContext
+// } from "../CreateDeploymentPage";
+// import { IndividualDeploymentItem } from "../deploymentInterfaces";
 
 interface AddSingleDeploymentProps {
   deploymentIndex: number;
+  onClick: () => void;
 }
 
 const AddSingleDeploymentButton: React.FC<AddSingleDeploymentProps> = ({
-  deploymentIndex
+  // deploymentIndex,
+  onClick
 }: AddSingleDeploymentProps) => {
-  const optionsDispatch = useContext(OptionsDispatchContext);
-  const optionsState = useContext(OptionsStateContext);
+  // const optionsDispatch = useContext(OptionsDispatchContext);
+  // const optionsState = useContext(OptionsStateContext);
 
-  const addSingleDeployment = (): void => {
-    const newDeploymentItems: IndividualDeploymentItem = {
-      product: "",
-      modelType: "",
-      serialNumber: ""
-    };
-    console.log(optionsState?.formValues, deploymentIndex);
-    if (optionsState) {
-      if (optionsState.formValues.length && optionsDispatch) {
-        const deployments = Array.from(optionsState.formValues);
-        const length = deployments[deploymentIndex].items.length;
-        deployments[deploymentIndex] = {
-          endUser: "",
-          ticketNumber: "",
-          items: []
-        };
-        for (let i = 0; i <= length; i++)
-          deployments[deploymentIndex].items.push(newDeploymentItems);
+  // const addSingleDeployment = async (): Promise<void> => {
+  //   const newDeploymentItems: IndividualDeploymentItem = {
+  //     product: "",
+  //     modelType: "",
+  //     serialNumber: ""
+  //   };
+  //   console.log(optionsState?.formValues, deploymentIndex);
+  //   if (optionsState) {
+  //     if (optionsState.formValues.length && optionsDispatch) {
+  //       const deployments = Array.from(optionsState.formValues);
+  //       const length = deployments[deploymentIndex].items.length;
+  //       deployments[deploymentIndex] = {
+  //         endUser: "",
+  //         ticketNumber: "",
+  //         items: []
+  //       };
+  //       for (let i = 0; i <= length; i++)
+  //         deployments[deploymentIndex].items.push(newDeploymentItems);
 
-        // ADD INDEX TO UPDATE TO STATE WITH A DISPATCH, THEN THE USEEFFECT CAN LISTEN FOR IT?
+  //       await optionsDispatch({
+  //         type: "SET_INDEX_TO_UPDATE",
+  //         indexToUpdate: deploymentIndex
+  //       });
 
-        optionsDispatch({
-          type: "SET_INITIAL_FORM_VALUES",
-          formValues: deployments
-        });
-      }
-    }
-  };
+  //       await optionsDispatch({
+  //         type: "SET_INITIAL_FORM_VALUES",
+  //         formValues: deployments
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <FlexContainer margin="auto" flow="row">
@@ -55,7 +60,7 @@ const AddSingleDeploymentButton: React.FC<AddSingleDeploymentProps> = ({
         variant="outlined"
         type="button"
         startIcon={<AddIcon />}
-        onClick={addSingleDeployment}
+        onClick={onClick}
       >
         Add Deployment
       </Button>
