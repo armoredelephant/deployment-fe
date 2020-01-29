@@ -9,11 +9,9 @@ import StyledDivider from "../../_dividers/StyledDivider";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+
 /**
- * Computer = Computer
- * Network Device = Network Device
- * Other = Other Configuration Item
- * Phone = Telephony Equipment
+ * This component displays the inner array of deployments for each user being deployed to.
  */
 
 interface FieldArrayProps {

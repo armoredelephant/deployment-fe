@@ -6,6 +6,10 @@ import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 
+/**
+ * Custom radio button component used within the CreateDeploymentOptions component.
+ */
+
 const PrimaryMachineRadio: React.FC<DeploymentOptionsProps> = ({
   optionsDispatch,
   optionsState

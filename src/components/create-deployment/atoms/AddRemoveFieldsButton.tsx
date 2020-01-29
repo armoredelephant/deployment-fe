@@ -11,6 +11,10 @@ interface AddRemoveFieldsButtonProps {
   onClick: () => void;
 }
 
+/**
+ * Button used for both adding a deployment or removing a user from deployments in EndUserDeploymentFieldArray
+ */
+
 const AddRemoveFieldsButton: React.FC<AddRemoveFieldsButtonProps> = ({
   add,
   onClick,

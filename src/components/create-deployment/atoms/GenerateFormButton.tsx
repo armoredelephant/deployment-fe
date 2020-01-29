@@ -4,6 +4,10 @@ import { DeploymentOptionsProps } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { generateInitialFormValues } from "../../_helper-functions/helpers";
 
+/**
+ * Button used to generate the initial deployment form.
+ */
+
 const GenerateFormButton: React.FC<DeploymentOptionsProps> = ({
   optionsDispatch,
   optionsState

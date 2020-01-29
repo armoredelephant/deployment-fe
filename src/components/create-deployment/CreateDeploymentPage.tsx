@@ -25,16 +25,6 @@ import { DeploymentOptionsDispatch } from "../../immer/actionTypes";
  * a form based on those options.
  */
 
-/**
- * Form should reset if posted with no errors
- * Generate form button should reset initialState of deploymentState
- * onSubmit will handle the deploymentState
- * onSubmit will dispatch SET_POST_ATTEMPT
- * at end of onSubmit will SET_POST_SUCCESSFUL
- * if any errors during the posts, catch will dispatch custom Error with SET_POST_ERROR
- * Create a field next to submit button that will display deploymentState successful or error
- */
-
 export const OptionsStateContext = createContext<DeploymentOptions | undefined>(
   undefined
 );

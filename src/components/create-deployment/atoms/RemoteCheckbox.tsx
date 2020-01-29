@@ -3,6 +3,11 @@ import { DeploymentOptionsProps } from "../deploymentInterfaces";
 import CustomFormControlLabel from "../../custom-fields/CustomFormControlLabel";
 import CustomCheckBox from "../../custom-fields/CustomCheckBox";
 
+/**
+ * Checkbox component for selecting whether the deployments will be remote setups
+ * Used within CreateDeploymentOptions
+ */
+
 const RemoteCheckbox: React.FC<DeploymentOptionsProps> = ({
   optionsDispatch,
   optionsState

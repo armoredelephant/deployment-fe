@@ -20,7 +20,7 @@ const initialFormValues: DeploymentFormValues = {
 };
 
 /**
- * techName and techId will have to be pulled from gql
+ * Start of the deployment form. All deployment form dats is a child this component.
  */
 
 const CREATE_DEPLOYMENT = gql`

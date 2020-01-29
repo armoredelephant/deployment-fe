@@ -6,7 +6,7 @@ import Select from "@material-ui/core/Select";
 import { DeploymentOptionsProps } from "../deploymentInterfaces";
 
 /**
- * Select field for CreateDeploymentOptions
+ * Select field for selecting the amoount of users being deployed to in CreateDeploymentOptions
  */
 
 const UserCountSelect: React.FC<DeploymentOptionsProps> = ({

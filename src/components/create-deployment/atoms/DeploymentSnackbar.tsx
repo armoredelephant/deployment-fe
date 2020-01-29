@@ -8,8 +8,9 @@ function Alert(props: AlertProps): JSX.Element {
 }
 
 /**
- * This function will display a snackbar for the deployment status
+ * This component displays a snackbar for the deployment status
  */
+
 const DeploymentSnackbar: React.FC<DeploymentStatusProps> = ({
   deploymentDispatch,
   deploymentState

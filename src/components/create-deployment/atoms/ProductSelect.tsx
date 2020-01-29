@@ -7,12 +7,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
 
+/**
+ * Custom field for the product select withint the deployment form.
+ */
+
 const ProductSelect: React.FC<FieldAttributes<{}>> = ({
   ...props
 }: FieldAttributes<{}>) => {
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? "Invalid product." : "";
   const products = ["Computer", "Network Device", "Other", "Phone"];
+
   return (
     <SpacingWrapper>
       <FormControl>
