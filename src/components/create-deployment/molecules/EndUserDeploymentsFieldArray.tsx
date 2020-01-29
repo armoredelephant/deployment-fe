@@ -4,8 +4,11 @@ import RequiredTextField from "../../custom-fields/RequiredTextField";
 import { FormikValues, FieldArray } from "formik";
 import { IndividualDeploymentItem } from "../deploymentInterfaces";
 import ProductSelect from "../atoms/ProductSelect";
-import AddSingleDeploymentButton from "../atoms/AddSingleDeploymentButton";
-
+import AddRemoveFieldsButton from "../atoms/AddRemoveFieldsButton";
+import StyledDivider from "../../_dividers/StyledDivider";
+import SpacingWrapper from "../../_wrappers/SpacingWrapper";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 /**
  * Computer = Computer
  * Network Device = Network Device
@@ -15,13 +18,17 @@ import AddSingleDeploymentButton from "../atoms/AddSingleDeploymentButton";
 
 interface FieldArrayProps {
   deploymentIndex: number;
+  handleRemove: () => void;
   formValues: FormikValues;
 }
 
 const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
   deploymentIndex,
+  handleRemove,
   formValues
 }: FieldArrayProps) => {
+  if (!formValues.deployments[deploymentIndex]) return <> </>;
+
   return (
     <>
       <FlexContainer flow="row">
@@ -39,7 +46,7 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
       <FlexContainer flow="column">
         <FieldArray
           name={`deployments[${deploymentIndex}].items`}
-          render={arrayHelpers => (
+          render={(arrayHelpers): React.ReactNode => (
             <>
               {formValues.deployments[deploymentIndex].items.map(
                 (val: IndividualDeploymentItem, index: number) => {
@@ -56,24 +63,45 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                         placeholder="serial number"
                         name={`deployments[${deploymentIndex}].items[${index}].serialNumber`}
                       />
+                      {formValues.deployments[deploymentIndex].items.length >
+                        1 && (
+                        <IconButton
+                          aria-label="delete"
+                          onClick={(): void => arrayHelpers.remove(index)}
+                        >
+                          <DeleteForeverIcon color="error" />
+                        </IconButton>
+                      )}
                     </FlexContainer>
                   );
                 }
               )}
-              <AddSingleDeploymentButton
-                onClick={(): void =>
-                  arrayHelpers.push({
-                    product: "",
-                    modelType: "",
-                    serialNumber: ""
-                  })
-                }
-                deploymentIndex={deploymentIndex}
-              />
+              <SpacingWrapper>
+                <AddRemoveFieldsButton
+                  onClick={(): void =>
+                    arrayHelpers.push({
+                      product: "",
+                      modelType: "",
+                      serialNumber: ""
+                    })
+                  }
+                  add={true}
+                  text="Add Deployment"
+                  deploymentIndex={deploymentIndex}
+                />
+                {formValues.deployments.length > 1 && (
+                  <AddRemoveFieldsButton
+                    onClick={handleRemove}
+                    text="Remove User"
+                    deploymentIndex={deploymentIndex}
+                  />
+                )}
+              </SpacingWrapper>
             </>
           )}
         />
       </FlexContainer>
+      <StyledDivider />
     </>
   );
 };

@@ -11,7 +11,7 @@ const ProductSelect: React.FC<FieldAttributes<{}>> = ({
   ...props
 }: FieldAttributes<{}>) => {
   const [field, meta] = useField<{}>(props);
-  const errorText = meta.error && meta.touched ? meta.error : "";
+  const errorText = meta.error && meta.touched ? "Invalid product." : "";
   const products = ["Computer", "Network Device", "Other", "Phone"];
   return (
     <SpacingWrapper>
@@ -33,7 +33,9 @@ const ProductSelect: React.FC<FieldAttributes<{}>> = ({
             );
           })}
         </Select>
-        <FormHelperText>{errorText}</FormHelperText>
+        <FormHelperText error={errorText === "Invalid product."}>
+          {errorText}
+        </FormHelperText>
       </FormControl>
     </SpacingWrapper>
   );

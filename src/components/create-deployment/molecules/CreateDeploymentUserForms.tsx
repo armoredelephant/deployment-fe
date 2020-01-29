@@ -5,9 +5,8 @@ import {
   DeploymentStatusAndOptionsProps
 } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
-import { Form, Formik } from "formik";
+import { Form, Formik, FieldArray } from "formik";
 import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
-import StyledDivider from "../../_dividers/StyledDivider";
 import { CreateDeploymentSchema } from "../../../formSchemas";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
 import { gql } from "apollo-boost";
@@ -67,18 +66,6 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   };
 
   useEffect(() => {
-    // if (initialValues.deployments.length) {
-    //   const firstHalf = [...initialValues.deployments].splice(0, indexToUpdate);
-    //   const secondHalf = [...initialValues.deployments].splice(
-    //     indexToUpdate + 1,
-    //     initialValues.deployments.length - 1
-    //   );
-    //   const usersItemsToEdit = { ...optionsState.formValues[indexToUpdate] };
-    //   const newInitialValues = {
-    //     deployments: [...firstHalf, usersItemsToEdit, ...secondHalf]
-    //   };
-    //   setInitialValues(newInitialValues);
-    // } else {
     setInitialValues({ deployments: optionsState.formValues });
   }, [optionsState.formValues]);
 
@@ -109,17 +96,24 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
       >
         {({ values, isSubmitting }): ReactChild => (
           <Form>
-            {initialValues.deployments.map((value, i) => {
-              return (
-                <FlexContainer key={`enduser-${i}`} flow="column">
-                  <EndUserDeploymentsFieldArray
-                    formValues={values}
-                    deploymentIndex={i}
-                  />
-                  <StyledDivider />
-                </FlexContainer>
-              );
-            })}
+            <FieldArray
+              name="deployments"
+              render={(arrayHelpers): React.ReactNode => (
+                <>
+                  {initialValues.deployments.map((value, i) => {
+                    return (
+                      <FlexContainer key={`enduser-${i}`} flow="column">
+                        <EndUserDeploymentsFieldArray
+                          formValues={values}
+                          deploymentIndex={i}
+                          handleRemove={(): void => arrayHelpers.remove(i)}
+                        />
+                      </FlexContainer>
+                    );
+                  })}
+                </>
+              )}
+            />
             <SpacingWrapper>
               <SpinnerButton isSubmitting={isSubmitting} />
             </SpacingWrapper>

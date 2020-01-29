@@ -8,7 +8,7 @@ const CustomTextField: React.FC<FieldAttributes<{}>> = ({
   ...props
 }: FieldAttributes<{}>) => {
   const [field, meta] = useField<{}>(props);
-  const errorText = meta.error && meta.touched ? meta.error : "";
+  const errorText = meta.error && meta.touched ? `Invalid ${placeholder}.` : "";
   return (
     <TextField
       label={placeholder}
