@@ -85,13 +85,11 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                   }
                   add={true}
                   text="Add Deployment"
-                  deploymentIndex={deploymentIndex}
                 />
                 {formValues.deployments.length > 1 && (
                   <AddRemoveFieldsButton
                     onClick={handleRemove}
                     text="Remove User"
-                    deploymentIndex={deploymentIndex}
                   />
                 )}
               </SpacingWrapper>

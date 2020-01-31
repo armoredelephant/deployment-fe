@@ -5,7 +5,6 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import FlexContainer from "../../_containers/FlexContainer";
 
 interface AddRemoveFieldsButtonProps {
-  deploymentIndex: number;
   text: string;
   add?: boolean;
   onClick: () => void;

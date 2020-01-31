@@ -2,7 +2,9 @@ import React, { ReactChild, useEffect, useState } from "react";
 import {
   DeploymentFormValues,
   GraphQLDeployment,
-  DeploymentStatusAndOptionsProps
+  DeploymentStatusAndOptionsProps,
+  EndUserDeploymentFormField,
+  IndividualDeploymentItem
 } from "../deploymentInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik, FieldArray } from "formik";
@@ -14,9 +16,22 @@ import { useMutation } from "@apollo/react-hooks";
 import { flattenDeploymentData } from "../../_helper-functions/flattenDeploymentData";
 import SpinnerButton from "../../_spinner/SpinnerButton";
 import { PostError } from "../../../utils/customErrors";
+import AddRemoveFieldsButton from "../atoms/AddRemoveFieldsButton";
 
 const initialFormValues: DeploymentFormValues = {
   deployments: []
+};
+
+const deploymentItems: IndividualDeploymentItem = {
+  product: "",
+  modelType: "",
+  serialNumber: ""
+};
+
+const additionalDeployment: EndUserDeploymentFormField = {
+  endUser: "",
+  ticketNumber: "",
+  items: []
 };
 
 /**
@@ -100,7 +115,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               name="deployments"
               render={(arrayHelpers): React.ReactNode => (
                 <>
-                  {initialValues.deployments.map((value, i) => {
+                  {values.deployments.map((value, i) => {
                     return (
                       <FlexContainer key={`enduser-${i}`} flow="column">
                         <EndUserDeploymentsFieldArray
@@ -111,6 +126,18 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
                       </FlexContainer>
                     );
                   })}
+                  <FlexContainer flow="row">
+                    <AddRemoveFieldsButton
+                      onClick={(): void =>
+                        arrayHelpers.push({
+                          ...additionalDeployment,
+                          items: [{ ...deploymentItems }]
+                        })
+                      }
+                      add={true}
+                      text="Add User"
+                    />
+                  </FlexContainer>
                 </>
               )}
             />
