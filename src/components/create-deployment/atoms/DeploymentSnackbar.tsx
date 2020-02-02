@@ -1,7 +1,7 @@
 import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { DeploymentStatusProps } from "../deploymentInterfaces";
+import { DeploymentStatusProps } from "../deploymentCreateInterfaces";
 
 function Alert(props: AlertProps): JSX.Element {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -21,7 +21,7 @@ const DeploymentSnackbar: React.FC<DeploymentStatusProps> = ({
     if (reason === "clickaway") {
       return;
     }
-    deploymentDispatch({ type: "RESET_DEPLOYMENT_STATUS" });
+    deploymentDispatch({ type: "RESET_DEPLOYMENT_CREATE_STATUS" });
   };
 
   return (
@@ -33,7 +33,7 @@ const DeploymentSnackbar: React.FC<DeploymentStatusProps> = ({
       <Alert onClose={handleClose} severity={postError ? "error" : "success"}>
         {postError
           ? "There was an error with one or more of the deployments."
-          : "All deployments were successful."}
+          : "All deployments were created successfully."}
       </Alert>
     </Snackbar>
   );

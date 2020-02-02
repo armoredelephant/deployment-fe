@@ -11,34 +11,38 @@ import SpacingWrapper from "../../_wrappers/SpacingWrapper";
  * Custom field for the product select withint the deployment form.
  */
 
-const ProductSelect: React.FC<FieldAttributes<{}>> = ({
+const CustomSelect: React.FC<FieldAttributes<{
+  options: string[];
+  title: string;
+}>> = ({
+  options,
+  title,
   ...props
-}: FieldAttributes<{}>) => {
+}: FieldAttributes<{ options: string[]; title: string }>) => {
   const [field, meta] = useField<{}>(props);
-  const errorText = meta.error && meta.touched ? "Invalid product." : "";
-  const products = ["Computer", "Network Device", "Other", "Phone"];
+  const errorText = meta.error && meta.touched ? "Invalid option." : "";
 
   return (
     <SpacingWrapper>
       <FormControl>
-        <InputLabel id="product">Product</InputLabel>
+        <InputLabel id="option">{title}</InputLabel>
         <Select
-          labelId="product"
+          labelId="option"
           {...field}
           MenuProps={{
             getContentAnchorEl: null,
             anchorOrigin: { vertical: "bottom", horizontal: "left" }
           }}
         >
-          {products.map((product: string, index: number) => {
+          {options.map((option: string, index: number) => {
             return (
-              <MenuItem key={`product-${index}`} value={product}>
-                {product}
+              <MenuItem key={`option-${index}`} value={option}>
+                {option}
               </MenuItem>
             );
           })}
         </Select>
-        <FormHelperText error={errorText === "Invalid product."}>
+        <FormHelperText error={errorText === "Invalid option."}>
           {errorText}
         </FormHelperText>
       </FormControl>
@@ -46,4 +50,4 @@ const ProductSelect: React.FC<FieldAttributes<{}>> = ({
   );
 };
 
-export default ProductSelect;
+export default CustomSelect;

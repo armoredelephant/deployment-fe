@@ -1,19 +1,30 @@
 import { Draft } from "immer";
-import { DeploymentOptions, DeploymentStatus } from "./stateInterfaces";
-import { DeploymentOptionsAction, DeploymentStatusAction } from "./actionTypes";
 import {
-  deploymentOptionsInitialState,
-  deploymentStatusInitialState
+  DeploymentCreateOptions,
+  DeploymentCreateStatus,
+  // DeploymentViewOptions,
+  DeploymentViewStatus
+} from "./stateInterfaces";
+import {
+  DeploymentCreateOptionsAction,
+  DeploymentCreateStatusAction,
+  // DeploymentViewOptionsAction,
+  DeploymentViewStatusAction
+} from "./actionTypes";
+import {
+  deploymentCreateOptionsInitialState,
+  deploymentCreateStatusInitialState,
+  deploymentViewStatusInitialState
 } from "./initialStates";
 
 /**
- * Reducer for the DeploymentOptions logic
+ * Reducer for the DeploymentCreateOptions logic
  */
 
-export function deploymentOptionsReducer(
-  draft: Draft<DeploymentOptions>,
-  action: DeploymentOptionsAction
-): Draft<DeploymentOptions> | void {
+export function deploymentCreateOptionsReducer(
+  draft: Draft<DeploymentCreateOptions>,
+  action: DeploymentCreateOptionsAction
+): Draft<DeploymentCreateOptions> | void {
   switch (action.type) {
     case "SET_USER_COUNT":
       draft.userCount = action.userCount;
@@ -28,11 +39,8 @@ export function deploymentOptionsReducer(
     case "SET_INITIAL_FORM_VALUES":
       draft.formValues = action.formValues;
       return;
-    // case "SET_INDEX_TO_UPDATE":
-    //   draft.indexToUpdate = action.indexToUpdate;
-    //   return;
     case "RESET":
-      return deploymentOptionsInitialState;
+      return deploymentCreateOptionsInitialState;
     default:
       return draft;
   }
@@ -41,10 +49,10 @@ export function deploymentOptionsReducer(
  * Reducer for the Deployment status logic
  */
 
-export function deploymentStatusReducer(
-  draft: Draft<DeploymentStatus>,
-  action: DeploymentStatusAction
-): Draft<DeploymentStatus> | void {
+export function deploymentCreateStatusReducer(
+  draft: Draft<DeploymentCreateStatus>,
+  action: DeploymentCreateStatusAction
+): Draft<DeploymentCreateStatus> | void {
   switch (action.type) {
     case "SET_POST_ATTEMPT":
       draft.postAttempted = true;
@@ -57,12 +65,62 @@ export function deploymentStatusReducer(
       draft.postError = true;
       draft.showDeploymentSnackbar = true;
       return;
-    case "RESET_DEPLOYMENT_STATUS":
-      return deploymentStatusInitialState;
+    case "RESET_DEPLOYMENT_CREATE_STATUS":
+      return deploymentCreateStatusInitialState;
     default:
       return draft;
   }
 }
+
+/**
+ * Reducer for the DeploymentQueryStatus logic
+ */
+
+export function deploymentQueryStatusReducer(
+  draft: Draft<DeploymentViewStatus>,
+  action: DeploymentViewStatusAction
+): Draft<DeploymentViewStatus> | void {
+  switch (action.type) {
+    case "SET_DEPLOYMENT_VIEW_DATA":
+      draft.deploymentData = action.deploymentData;
+      return;
+    case "SET_QUERY_ATTEMPT":
+      draft.queryAttempted = true;
+      return;
+    case "SET_QUERY_SUCCESSFUL":
+      draft.querySuccessful = true;
+      draft.showSnackbar = true;
+      return;
+    case "SET_QUERY_ERROR":
+      draft.queryError = true;
+      draft.showSnackbar = true;
+      return;
+    case "RESET_DEPLOYMENT_VIEW_STATUS":
+      return deploymentViewStatusInitialState;
+    default:
+      return draft;
+  }
+}
+
+/**
+ * Reducer for the DeploymentViewOptions logic
+ */
+
+// export function deploymentViewOptionsReducer(
+//   draft: Draft<DeploymentViewOptions>,
+//   action: DeploymentViewOptionsAction
+// ): Draft<DeploymentViewOptions> | void {
+//   switch (action.type) {
+//     case "SET_SELECTED_SEARCH":
+//       draft.selected = action.type;
+//       return;
+//     case "SET_TEXT_TO_SEARCH":
+//       draft.textToSearch = action.type;
+//       return;
+//     default:
+//       return draft;
+//   }
+// }
 
 /**
  * Reducer for the DeploymentForms logic

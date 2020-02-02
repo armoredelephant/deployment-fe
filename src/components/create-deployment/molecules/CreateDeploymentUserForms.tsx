@@ -5,7 +5,7 @@ import {
   DeploymentStatusAndOptionsProps,
   EndUserDeploymentFormField,
   IndividualDeploymentItem
-} from "../deploymentInterfaces";
+} from "../deploymentCreateInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Form, Formik, FieldArray } from "formik";
 import EndUserDeploymentsFieldArray from "./EndUserDeploymentsFieldArray";
@@ -142,7 +142,10 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               )}
             />
             <SpacingWrapper>
-              <SpinnerButton isSubmitting={isSubmitting} />
+              <SpinnerButton
+                isSubmitting={isSubmitting}
+                title="Submit Deployments"
+              />
             </SpacingWrapper>
             <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>

@@ -1,7 +1,7 @@
 import {
   EndUserDeploymentFormField,
   GraphQLDeployment
-} from "../create-deployment/deploymentInterfaces";
+} from "../create-deployment/deploymentCreateInterfaces";
 
 interface DeploymentMutationProps {
   deploymentData: EndUserDeploymentFormField;

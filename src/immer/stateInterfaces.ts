@@ -1,14 +1,19 @@
-import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
+import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
+import { GraphQLDeploymentData } from "../components/view-deployments/deploymentViewInterfaces";
 
-export interface DeploymentOptions {
+export interface DeploymentCreateOptions {
   userCount: number | string;
   formCounts: number[];
   formValues: EndUserDeploymentFormField[];
-  // indexToUpdate: number;
   remoteSetup: boolean;
   primaryMachine: string;
   tech: string;
 }
+
+// export interface DeploymentViewOptions {
+//   selected: string;
+//   textToSearch: string;
+// }
 
 export interface DeploymentForms {
   endUser: string;
@@ -19,9 +24,17 @@ export interface DeploymentForms {
   ticketNumber: number;
 }
 
-export interface DeploymentStatus {
+export interface DeploymentCreateStatus {
   postAttempted: boolean;
   postError: boolean;
   postSuccessful: boolean;
   showDeploymentSnackbar: boolean;
+}
+
+export interface DeploymentViewStatus {
+  deploymentData: GraphQLDeploymentData[];
+  queryAttempted: boolean;
+  queryError: boolean;
+  querySuccessful: boolean;
+  showSnackbar: boolean;
 }

@@ -1,12 +1,14 @@
 import {
-  DeploymentOptionsProps,
+  DeploymentCreateOptionsProps,
   EndUserDeploymentFormField,
   IndividualDeploymentItem
-} from "../create-deployment/deploymentInterfaces";
+} from "../create-deployment/deploymentCreateInterfaces";
 
 export const generateInitialFormValues = ({
   optionsState
-}: Partial<DeploymentOptionsProps>): EndUserDeploymentFormField[] | void => {
+}: Partial<DeploymentCreateOptionsProps>):
+  | EndUserDeploymentFormField[]
+  | void => {
   const maxEquipmentRemoteWithLaptop = 7;
   const maxEquipmentRemoteWithDesktop = 6;
 

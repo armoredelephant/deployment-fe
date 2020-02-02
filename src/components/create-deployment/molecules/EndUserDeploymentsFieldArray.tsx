@@ -2,8 +2,8 @@ import React from "react";
 import FlexContainer from "../../_containers/FlexContainer";
 import RequiredTextField from "../../custom-fields/RequiredTextField";
 import { FormikValues, FieldArray } from "formik";
-import { IndividualDeploymentItem } from "../deploymentInterfaces";
-import ProductSelect from "../atoms/ProductSelect";
+import { IndividualDeploymentItem } from "../deploymentCreateInterfaces";
+import CustomSelect from "../atoms/CustomSelect";
 import AddRemoveFieldsButton from "../atoms/AddRemoveFieldsButton";
 import StyledDivider from "../../_dividers/StyledDivider";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
@@ -19,6 +19,8 @@ interface FieldArrayProps {
   handleRemove: () => void;
   formValues: FormikValues;
 }
+
+const products = ["Computer", "Network Device", "Other", "Phone"];
 
 const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
   deploymentIndex,
@@ -50,7 +52,9 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                 (val: IndividualDeploymentItem, index: number) => {
                   return (
                     <FlexContainer key={`deployment-${index}`} flow="row">
-                      <ProductSelect
+                      <CustomSelect
+                        options={products}
+                        title="Products"
                         name={`deployments[${deploymentIndex}].items[${index}].product`}
                       />
                       <RequiredTextField

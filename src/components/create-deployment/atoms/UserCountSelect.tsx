@@ -3,16 +3,16 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 
 /**
  * Select field for selecting the amoount of users being deployed to in CreateDeploymentOptions
  */
 
-const UserCountSelect: React.FC<DeploymentOptionsProps> = ({
+const UserCountSelect: React.FC<DeploymentCreateOptionsProps> = ({
   optionsState,
   optionsDispatch
-}: DeploymentOptionsProps) => {
+}: DeploymentCreateOptionsProps) => {
   const userCount: number[] = [];
   for (let i = 1; i <= 20; i++) {
     userCount.push(i);

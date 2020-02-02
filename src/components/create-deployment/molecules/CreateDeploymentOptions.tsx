@@ -1,6 +1,6 @@
 import React from "react";
 import FlexContainer from "../../_containers/FlexContainer";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import UserCountSelect from "../atoms/UserCountSelect";
 import RemoteCheckbox from "../atoms/RemoteCheckbox";
 import PrimaryMachineRadio from "../atoms/PrimaryMachineRadio";
@@ -11,10 +11,10 @@ import OptionsContainer from "../../_containers/OptionsContainers";
  * Located at the top of the CreateDeploymentPage.
  */
 
-const CreateDeploymentOptions: React.FC<DeploymentOptionsProps> = ({
+const CreateDeploymentOptions: React.FC<DeploymentCreateOptionsProps> = ({
   optionsDispatch,
   optionsState
-}: DeploymentOptionsProps) => {
+}: DeploymentCreateOptionsProps) => {
   return (
     <FlexContainer flow="row">
       <OptionsContainer>

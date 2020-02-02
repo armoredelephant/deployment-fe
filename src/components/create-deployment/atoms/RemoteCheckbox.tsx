@@ -1,5 +1,5 @@
 import React from "react";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import CustomFormControlLabel from "../../custom-fields/CustomFormControlLabel";
 import CustomCheckBox from "../../custom-fields/CustomCheckBox";
 
@@ -8,10 +8,10 @@ import CustomCheckBox from "../../custom-fields/CustomCheckBox";
  * Used within CreateDeploymentOptions
  */
 
-const RemoteCheckbox: React.FC<DeploymentOptionsProps> = ({
+const RemoteCheckbox: React.FC<DeploymentCreateOptionsProps> = ({
   optionsDispatch,
   optionsState
-}: DeploymentOptionsProps) => {
+}: DeploymentCreateOptionsProps) => {
   const handleRemoteOption = (): void => {
     optionsDispatch({ type: "SET_REMOTE_SETUP" });
   };

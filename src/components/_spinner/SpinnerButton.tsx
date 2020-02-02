@@ -5,6 +5,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 interface SpinnerProps {
   isSubmitting: boolean;
+  handleClick?: () => void;
+  title: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,15 +31,27 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const SpinnerButton: React.FC<SpinnerProps> = ({
-  isSubmitting
+  isSubmitting,
+  handleClick,
+  title
 }: SpinnerProps) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <Button variant="contained" type="submit" disabled={isSubmitting}>
-          Submit Deployments
-        </Button>
+        {handleClick ? (
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            disabled={isSubmitting}
+          >
+            {title}
+          </Button>
+        ) : (
+          <Button variant="contained" type="submit" disabled={isSubmitting}>
+            {title}
+          </Button>
+        )}
         {isSubmitting && (
           <CircularProgress size={24} className={classes.buttonProgress} />
         )}

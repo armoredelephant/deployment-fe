@@ -1,12 +1,12 @@
 import React, { createContext } from "react";
 import { useImmerReducer } from "use-immer";
 import {
-  deploymentOptionsReducer,
-  deploymentStatusReducer
+  deploymentCreateOptionsReducer,
+  deploymentCreateStatusReducer
 } from "../../immer/reducers";
 import {
-  deploymentOptionsInitialState,
-  deploymentStatusInitialState
+  deploymentCreateOptionsInitialState,
+  deploymentCreateStatusInitialState
 } from "../../immer/initialStates";
 import MainContainer from "../_containers/MainContainer";
 import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
@@ -14,8 +14,8 @@ import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
 import GenerateFormButton from "./atoms/GenerateFormButton";
 import DeploymentSnackbar from "./atoms/DeploymentSnackbar";
-import { DeploymentOptions } from "../../immer/stateInterfaces";
-import { DeploymentOptionsDispatch } from "../../immer/actionTypes";
+import { DeploymentCreateOptions } from "../../immer/stateInterfaces";
+import { DeploymentCreateOptionsDispatch } from "../../immer/actionTypes";
 
 /**
  * This component contaains the entirety of
@@ -25,21 +25,21 @@ import { DeploymentOptionsDispatch } from "../../immer/actionTypes";
  * a form based on those options.
  */
 
-export const OptionsStateContext = createContext<DeploymentOptions | undefined>(
-  undefined
-);
-export const OptionsDispatchContext = createContext<
-  DeploymentOptionsDispatch | undefined
+export const DeploymentCreateOptionsStateContext = createContext<
+  DeploymentCreateOptions | undefined
+>(undefined);
+export const DeploymentCreateOptionsDispatchContext = createContext<
+  DeploymentCreateOptionsDispatch | undefined
 >(undefined);
 
 const CreateDeploymentPage: React.FC = () => {
   const [optionsState, optionsDispatch] = useImmerReducer(
-    deploymentOptionsReducer,
-    deploymentOptionsInitialState
+    deploymentCreateOptionsReducer,
+    deploymentCreateOptionsInitialState
   );
   const [deploymentState, deploymentDispatch] = useImmerReducer(
-    deploymentStatusReducer,
-    deploymentStatusInitialState
+    deploymentCreateStatusReducer,
+    deploymentCreateStatusInitialState
   );
 
   return (
@@ -54,16 +54,18 @@ const CreateDeploymentPage: React.FC = () => {
       />
       <StyledDivider />
       {optionsState.formValues.length >= 1 && (
-        <OptionsDispatchContext.Provider value={optionsDispatch}>
-          <OptionsStateContext.Provider value={optionsState}>
+        <DeploymentCreateOptionsDispatchContext.Provider
+          value={optionsDispatch}
+        >
+          <DeploymentCreateOptionsStateContext.Provider value={optionsState}>
             <CreateDeploymentUserForms
               optionsDispatch={optionsDispatch}
               optionsState={optionsState}
               deploymentState={deploymentState}
               deploymentDispatch={deploymentDispatch}
             />
-          </OptionsStateContext.Provider>
-        </OptionsDispatchContext.Provider>
+          </DeploymentCreateOptionsStateContext.Provider>
+        </DeploymentCreateOptionsDispatchContext.Provider>
       )}
       <DeploymentSnackbar
         deploymentState={deploymentState}

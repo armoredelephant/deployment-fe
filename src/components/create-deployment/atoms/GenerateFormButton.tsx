@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { generateInitialFormValues } from "../../_helper-functions/helpers";
 
@@ -8,10 +8,10 @@ import { generateInitialFormValues } from "../../_helper-functions/helpers";
  * Button used to generate the initial deployment form.
  */
 
-const GenerateFormButton: React.FC<DeploymentOptionsProps> = ({
+const GenerateFormButton: React.FC<DeploymentCreateOptionsProps> = ({
   optionsDispatch,
   optionsState
-}: DeploymentOptionsProps) => {
+}: DeploymentCreateOptionsProps) => {
   const handleFormCreation = async (): Promise<void> => {
     await optionsDispatch({ type: "RESET" });
 

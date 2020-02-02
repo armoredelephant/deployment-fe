@@ -1,16 +1,33 @@
-import { DeploymentOptions, DeploymentStatus } from "./stateInterfaces";
+import {
+  DeploymentCreateOptions,
+  DeploymentCreateStatus,
+  // DeploymentViewOptions,
+  DeploymentViewStatus
+} from "./stateInterfaces";
 
-export const deploymentOptionsInitialState: DeploymentOptions = {
+export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
   userCount: "",
   formCounts: [],
   formValues: [],
-  // indexToUpdate: 0,
   remoteSetup: false,
   primaryMachine: "igel",
   tech: "Keith Alleman"
 };
 
-export const deploymentStatusInitialState: DeploymentStatus = {
+// export const deploymentViewOptionsInitialState: DeploymentViewOptions = {
+//   selected: "",
+//   textToSearch: ""
+// };
+
+export const deploymentViewStatusInitialState: DeploymentViewStatus = {
+  deploymentData: [],
+  queryAttempted: false,
+  queryError: false,
+  querySuccessful: false,
+  showSnackbar: false
+};
+
+export const deploymentCreateStatusInitialState: DeploymentCreateStatus = {
   postAttempted: false,
   postError: false,
   postSuccessful: false,

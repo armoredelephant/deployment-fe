@@ -7,7 +7,8 @@ import FixedDrawer from "../drawer/FixedDrawer";
 // import CreateTechPage from "../create-tech/CreateTechPage";
 import { MuiThemeProvider } from "@material-ui/core";
 import { theme } from "../../theme";
-import CreateDeploymentPage from "../create-deployment/CreateDeploymentPage";
+// import CreateDeploymentPage from "../create-deployment/CreateDeploymentPage";
+import ViewDeploymentsPage from "../view-deployments/ViewDeploymentsPage";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -18,7 +19,8 @@ const App: React.FC = () => {
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
         <FixedDrawer />
-        <CreateDeploymentPage />
+        <ViewDeploymentsPage />
+        {/* <CreateDeploymentPage /> */}
         {/* <CreateTechPage /> */}
       </MuiThemeProvider>
     </ApolloProvider>

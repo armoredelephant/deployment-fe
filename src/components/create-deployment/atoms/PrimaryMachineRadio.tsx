@@ -1,5 +1,5 @@
 import React from "react";
-import { DeploymentOptionsProps } from "../deploymentInterfaces";
+import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import CustomFormControlLabel from "../../custom-fields/CustomFormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -10,10 +10,10 @@ import Radio from "@material-ui/core/Radio";
  * Custom radio button component used within the CreateDeploymentOptions component.
  */
 
-const PrimaryMachineRadio: React.FC<DeploymentOptionsProps> = ({
+const PrimaryMachineRadio: React.FC<DeploymentCreateOptionsProps> = ({
   optionsDispatch,
   optionsState
-}: DeploymentOptionsProps) => {
+}: DeploymentCreateOptionsProps) => {
   const handlePrimaryMachineOption = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {

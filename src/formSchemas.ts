@@ -56,3 +56,8 @@ export const DeploymentInitialFormValues = yup.object().shape({
 export const CreateDeploymentSchema = yup.object().shape({
   deployments: yup.array().of(DeploymentInitialFormValues)
 });
+
+export const DeploymentViewOptionsSchema = yup.object().shape({
+  selected: yup.string().required(),
+  textToSearch: yup.string().required()
+});

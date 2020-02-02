@@ -1,4 +1,5 @@
-import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentInterfaces";
+import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
+import { GraphQLDeploymentData } from "../components/view-deployments/deploymentViewInterfaces";
 
 /**
  * Action for DeploymentOptions
@@ -24,25 +25,19 @@ interface SetInitialFormValues {
   formValues: EndUserDeploymentFormField[];
 }
 
-// interface SetIndexToUpdate {
-//   type: "SET_INDEX_TO_UPDATE";
-//   indexToUpdate: number;
-// }
-
 interface ResetForm {
   type: "RESET";
 }
 
-export type DeploymentOptionsAction =
+export type DeploymentCreateOptionsAction =
   | SetUserCount
   | SetRemoteSetup
   | SetPrimaryMachine
   | SetInitialFormValues
-  // | SetIndexToUpdate
   | ResetForm;
 
-export type DeploymentOptionsDispatch = (
-  action: DeploymentOptionsAction
+export type DeploymentCreateOptionsDispatch = (
+  action: DeploymentCreateOptionsAction
 ) => void;
 
 /**
@@ -103,12 +98,64 @@ interface SetPostSuccessful {
   type: "SET_POST_SUCCESSFUL";
 }
 
-interface ResetDeploymentStatus {
-  type: "RESET_DEPLOYMENT_STATUS";
+interface ResetDeploymentCreateStatus {
+  type: "RESET_DEPLOYMENT_CREATE_STATUS";
 }
 
-export type DeploymentStatusAction =
+export type DeploymentCreateStatusAction =
   | SetPostAttempt
   | SetPostError
   | SetPostSuccessful
-  | ResetDeploymentStatus;
+  | ResetDeploymentCreateStatus;
+
+/**
+ * Actions for DeploymentViewOptions
+ */
+
+// interface SetSelectedSearch {
+//   type: "SET_SELECTED_SEARCH";
+//   selected: string;
+// }
+
+// interface SetTextToSearch {
+//   type: "SET_TEXT_TO_SEARCH";
+//   textToSearch: string;
+// }
+
+// export type DeploymentViewOptionsAction = SetSelectedSearch | SetTextToSearch;
+
+// export type DeploymentViewOptionsDispatch = (
+//   action: DeploymentViewOptionsAction
+// ) => void;
+
+/**
+ * Actions for DeploymentQueryStatus
+ */
+
+interface SetDeploymentViewData {
+  type: "SET_DEPLOYMENT_VIEW_DATA";
+  deploymentData: GraphQLDeploymentData[];
+}
+
+interface SetQueryAttempt {
+  type: "SET_QUERY_ATTEMPT";
+}
+
+interface SetQueryError {
+  type: "SET_QUERY_ERROR";
+}
+
+interface SetQuerySuccessful {
+  type: "SET_QUERY_SUCCESSFUL";
+}
+
+interface ResetDeploymentViewStatus {
+  type: "RESET_DEPLOYMENT_VIEW_STATUS";
+}
+
+export type DeploymentViewStatusAction =
+  | SetDeploymentViewData
+  | SetQueryAttempt
+  | SetQueryError
+  | SetQuerySuccessful
+  | ResetDeploymentViewStatus;
