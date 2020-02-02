@@ -76,7 +76,7 @@ export function deploymentCreateStatusReducer(
  * Reducer for the DeploymentQueryStatus logic
  */
 
-export function deploymentQueryStatusReducer(
+export function deploymentViewStatusReducer(
   draft: Draft<DeploymentViewStatus>,
   action: DeploymentViewStatusAction
 ): Draft<DeploymentViewStatus> | void {

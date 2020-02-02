@@ -1,3 +1,6 @@
+import { DeploymentViewStatusAction } from "../../immer/actionTypes";
+import { DeploymentViewStatus } from "../../immer/stateInterfaces";
+
 export interface GraphQLDeploymentData {
   techName: string;
   endUser: string;
@@ -11,4 +14,9 @@ export interface GraphQLDeploymentData {
 export interface DeploymentViewOptions {
   selected: string;
   textToSearch: string;
+}
+
+export interface DeploymentViewStatusProps {
+  viewDispatch: React.Dispatch<DeploymentViewStatusAction>;
+  viewState: DeploymentViewStatus;
 }

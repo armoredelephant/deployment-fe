@@ -2,30 +2,38 @@ import React, { createContext } from "react";
 import MainContainer from "../_containers/MainContainer";
 import StyledDivider from "../_dividers/StyledDivider";
 import ViewDeploymentsOptions from "./molecules/ViewDeploymentOptions";
-// import { DeploymentViewOptions } from "../../immer/stateInterfaces";
-// import { DeploymentViewOptionsDispatch } from "../../immer/actionTypes";
-// import { deploymentViewOptionsReducer } from "../../immer/reducers";
-// import { deploymentViewOptionsInitialState } from "../../immer/initialStates";
-// import { useImmerReducer } from "use-immer";
+import { useImmerReducer } from "use-immer";
+import { DeploymentViewStatus } from "../../immer/stateInterfaces";
+import { DeploymentViewStatusDispatch } from "../../immer/actionTypes";
+import { deploymentViewStatusReducer } from "../../immer/reducers";
+import { deploymentViewStatusInitialState } from "../../immer/initialStates";
+import ViewDeploymentsSnackbar from "./atoms/ViewDeploymentsSnackbar";
 
-// export const DeploymentViewOptionsStateContext = createContext<
-//   DeploymentViewOptions | undefined
-// >(undefined);
-// export const DeploymentViewOptionsDispatchContext = createContext<
-//   DeploymentViewOptionsDispatch | undefined
-// >(undefined);
+export const DeploymentViewsStatusStateContext = createContext<
+  DeploymentViewStatus | undefined
+>(undefined);
+export const DeploymentViewStatusDispatchContext = createContext<
+  DeploymentViewStatusDispatch | undefined
+>(undefined);
 
 const ViewDeploymentsPage: React.FC = () => {
-  // const [optionsState, optionsDispatch] = useImmerReducer(
-  //   deploymentViewOptionsReducer,
-  //   deploymentViewOptionsInitialState
-  // );
+  const [deploymentViewState, deploymentViewDispatch] = useImmerReducer(
+    deploymentViewStatusReducer,
+    deploymentViewStatusInitialState
+  );
 
   return (
     <MainContainer content="flex-start">
-      <ViewDeploymentsOptions />
+      <ViewDeploymentsOptions
+        viewState={deploymentViewState}
+        viewDispatch={deploymentViewDispatch}
+      />
       <StyledDivider />
       {/* <ViewDeploymentsTable optionsState={optionsState} /> */}
+      <ViewDeploymentsSnackbar
+        viewDispatch={deploymentViewDispatch}
+        viewState={deploymentViewState}
+      />
     </MainContainer>
   );
 };

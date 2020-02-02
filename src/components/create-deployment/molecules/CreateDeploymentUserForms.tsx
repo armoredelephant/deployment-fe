@@ -103,7 +103,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               await createDeploymentMutation(gqlMutationData);
             } catch (error) {
               console.log(error);
-              deploymentDispatch({ type: "SET_POST_ERROR" });
+              await deploymentDispatch({ type: "SET_POST_ERROR" });
             }
           }
           if (!postError) deploymentDispatch({ type: "SET_POST_SUCCESSFUL" });

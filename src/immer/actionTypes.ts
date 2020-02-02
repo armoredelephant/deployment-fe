@@ -129,7 +129,7 @@ export type DeploymentCreateStatusAction =
 // ) => void;
 
 /**
- * Actions for DeploymentQueryStatus
+ * Actions for DeploymentViewStatus
  */
 
 interface SetDeploymentViewData {
@@ -159,3 +159,7 @@ export type DeploymentViewStatusAction =
   | SetQueryError
   | SetQuerySuccessful
   | ResetDeploymentViewStatus;
+
+export type DeploymentViewStatusDispatch = (
+  action: DeploymentViewStatusAction
+) => void;
