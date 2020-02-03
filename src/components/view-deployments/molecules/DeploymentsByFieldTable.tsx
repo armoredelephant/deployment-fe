@@ -1,15 +1,12 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { DeploymentViewOptionsAndStatusProps } from "../deploymentViewInterfaces";
+import { DeploymentViewOptionsProps } from "../deploymentViewInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import { querySelector } from "../../_helper-functions/querySelector";
-import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
 
-const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsAndStatusProps> = ({
-  optionsState,
-  viewState,
-  viewDispatch
-}: DeploymentViewOptionsAndStatusProps) => {
+const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
+  optionsState
+}: DeploymentViewOptionsProps) => {
   const { loading, error, data } = useQuery(
     querySelector(optionsState.selected),
     {
@@ -19,15 +16,9 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsAndStatusProps> = (
 
   console.log(data);
   return (
-    <>
-      <FlexContainer flow="row">
-        <> </>
-      </FlexContainer>
-      <ViewDeploymentsSnackbar
-        viewDispatch={viewDispatch}
-        viewState={viewState}
-      />
-    </>
+    <FlexContainer flow="row">
+      <> </>
+    </FlexContainer>
   );
 };
 

@@ -42,8 +42,22 @@ const PRODUCT_QUERY = gql`
   }
 `;
 
+const ALL_QUERY = gql`
+  query {
+    findDeployments {
+      endUser
+      techName
+      product
+      modelType
+      serialNumber
+      timeStamp
+      ticketNumber
+    }
+  }
+`;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const querySelector = (selected: string): any => {
+export const querySelector = (selected?: string): any => {
   switch (selected) {
     case "Enduser":
       return ENDUSER_QUERY;
@@ -51,5 +65,7 @@ export const querySelector = (selected: string): any => {
       return TICKET_QUERY;
     case "Product":
       return PRODUCT_QUERY;
+    case "All":
+      return ALL_QUERY;
   }
 };

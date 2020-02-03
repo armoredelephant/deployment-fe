@@ -36,3 +36,19 @@ export interface DeploymentViewOptionsAndStatusProps {
   viewDispatch: React.Dispatch<DeploymentViewStatusAction>;
   viewState: DeploymentViewStatus;
 }
+
+// Table iterfaces
+
+export interface Column {
+  id:
+    | "techName"
+    | "endUser"
+    | "product"
+    | "modelType"
+    | "serialNumber"
+    | "timeStamp"
+    | "ticketNumber";
+  label: string;
+  minWidth?: number;
+  align?: "right" | "left";
+}

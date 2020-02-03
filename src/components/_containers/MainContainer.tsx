@@ -5,6 +5,7 @@ interface Props {
 }
 
 const MainContainer = styled.main`
+  min-width: 56.25rem;
   width: 100%;
   display: flex;
   flex-flow: column;

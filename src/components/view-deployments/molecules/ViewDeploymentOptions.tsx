@@ -18,12 +18,10 @@ const options = ["Enduser", "Ticket", "Product"];
 
 const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
   viewDispatch,
-  viewState,
   optionsDispatch
 }: DeploymentViewOptionsAndStatusProps) => {
   const resetOptionsView = async (): Promise<void> => {
     await viewDispatch({ type: "RESET_DEPLOYMENT_VIEW_STATUS" });
-    await viewDispatch({ type: "SET_QUERY_ATTEMPT" });
     await optionsDispatch({ type: "RESET_DEPLOYMENT_VIEW_OPTIONS" });
   };
 
@@ -32,13 +30,8 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
       <OptionsContainer>
         <Formik
           initialValues={deploymentViewOptionsInitialState}
-          enableReinitialize={true}
           validationSchema={DeploymentViewOptionsSchema}
           onSubmit={async (data): Promise<void> => {
-            await viewDispatch({ type: "RESET_DEPLOYMENT_VIEW_STATUS" });
-
-            await viewDispatch({ type: "SET_QUERY_ATTEMPT" });
-
             await optionsDispatch({
               type: "SET_DEPLOYMENT_VIEW_OPTIONS",
               selected: data.selected,
@@ -46,7 +39,7 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
             });
           }}
         >
-          {({ values, isSubmitting }): ReactChild => (
+          {({ isSubmitting }): ReactChild => (
             <Form>
               <FlexContainer flow="row">
                 <CustomSelect

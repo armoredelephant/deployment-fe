@@ -1,16 +1,8 @@
-import React, { createContext } from "react";
+import React from "react";
 import MainContainer from "../_containers/MainContainer";
 import StyledDivider from "../_dividers/StyledDivider";
 import ViewDeploymentsOptions from "./molecules/ViewDeploymentOptions";
 import { useImmerReducer } from "use-immer";
-import {
-  DeploymentViewStatus,
-  DeploymentViewOptions
-} from "../../immer/stateInterfaces";
-import {
-  DeploymentViewStatusDispatch,
-  DeploymentViewOptionsDispatch
-} from "../../immer/actionTypes";
 import {
   deploymentViewStatusReducer,
   deploymentViewOptionsReducer
@@ -20,20 +12,6 @@ import {
   deploymentViewOptionsInitialState
 } from "../../immer/initialStates";
 import ViewDeploymentsLoader from "./molecules/ViewDeploymentsLoader";
-
-export const DeploymentViewsStatusStateContext = createContext<
-  DeploymentViewStatus | undefined
->(undefined);
-export const DeploymentViewStatusDispatchContext = createContext<
-  DeploymentViewStatusDispatch | undefined
->(undefined);
-
-export const DeploymentViewOptionsStateContext = createContext<
-  DeploymentViewOptions | undefined
->(undefined);
-export const DeploymentViewOptionsDispatchContext = createContext<
-  DeploymentViewOptionsDispatch | undefined
->(undefined);
 
 const ViewDeploymentsPage: React.FC = () => {
   const [deploymentViewState, deploymentViewDispatch] = useImmerReducer(
@@ -60,8 +38,6 @@ const ViewDeploymentsPage: React.FC = () => {
       <ViewDeploymentsLoader
         optionsState={deploymentViewOptionsState}
         optionsDispatch={deploymentViewOptionsDispatch}
-        viewState={deploymentViewState}
-        viewDispatch={deploymentViewDispatch}
       />
       {/* <ViewDeploymentsTable optionsState={optionsState} /> */}
     </MainContainer>
