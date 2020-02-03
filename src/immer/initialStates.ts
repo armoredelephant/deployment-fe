@@ -2,7 +2,8 @@ import {
   DeploymentCreateOptions,
   DeploymentCreateStatus,
   // DeploymentViewOptions,
-  DeploymentViewStatus
+  DeploymentViewStatus,
+  DeploymentViewOptions
 } from "./stateInterfaces";
 
 export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
@@ -14,14 +15,15 @@ export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
   tech: "Keith Alleman"
 };
 
-// export const deploymentViewOptionsInitialState: DeploymentViewOptions = {
-//   selected: "",
-//   textToSearch: ""
-// };
+export const deploymentViewOptionsInitialState: DeploymentViewOptions = {
+  selected: "",
+  textToSearch: "",
+  view: "all"
+};
 
 export const deploymentViewStatusInitialState: DeploymentViewStatus = {
-  deploymentData: [],
   queryAttempted: false,
+  isFetching: false,
   queryError: false,
   querySuccessful: false,
   showSnackbar: false

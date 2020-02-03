@@ -112,30 +112,27 @@ export type DeploymentCreateStatusAction =
  * Actions for DeploymentViewOptions
  */
 
-// interface SetSelectedSearch {
-//   type: "SET_SELECTED_SEARCH";
-//   selected: string;
-// }
+interface SetDeploymentViewOptions {
+  type: "SET_DEPLOYMENT_VIEW_OPTIONS";
+  selected: string;
+  textToSearch: string;
+}
 
-// interface SetTextToSearch {
-//   type: "SET_TEXT_TO_SEARCH";
-//   textToSearch: string;
-// }
+interface ResetDeploymentViewOptions {
+  type: "RESET_DEPLOYMENT_VIEW_OPTIONS";
+}
 
-// export type DeploymentViewOptionsAction = SetSelectedSearch | SetTextToSearch;
+export type DeploymentViewOptionsAction =
+  | SetDeploymentViewOptions
+  | ResetDeploymentViewOptions;
 
-// export type DeploymentViewOptionsDispatch = (
-//   action: DeploymentViewOptionsAction
-// ) => void;
+export type DeploymentViewOptionsDispatch = (
+  action: DeploymentViewOptionsAction
+) => void;
 
 /**
  * Actions for DeploymentViewStatus
  */
-
-interface SetDeploymentViewData {
-  type: "SET_DEPLOYMENT_VIEW_DATA";
-  deploymentData: GraphQLDeploymentData[];
-}
 
 interface SetQueryAttempt {
   type: "SET_QUERY_ATTEMPT";
@@ -154,7 +151,6 @@ interface ResetDeploymentViewStatus {
 }
 
 export type DeploymentViewStatusAction =
-  | SetDeploymentViewData
   | SetQueryAttempt
   | SetQueryError
   | SetQuerySuccessful

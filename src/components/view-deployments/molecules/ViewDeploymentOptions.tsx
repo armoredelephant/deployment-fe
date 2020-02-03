@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import FlexContainer from "../../_containers/FlexContainer";
 import { Formik, Form } from "formik";
 import { DeploymentViewOptionsSchema } from "../../../formSchemas";
@@ -6,85 +6,47 @@ import RequiredTextField from "../../custom-fields/RequiredTextField";
 import CustomSelect from "../../create-deployment/atoms/CustomSelect";
 import OptionsContainer from "../../_containers/OptionsContainers";
 import SpinnerButton from "../../_spinner/SpinnerButton";
-import {
-  DeploymentViewOptions,
-  DeploymentViewStatusProps
-} from "../deploymentViewInterfaces";
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/react-hooks";
+import { DeploymentViewOptionsAndStatusProps } from "../deploymentViewInterfaces";
+import { deploymentViewOptionsInitialState } from "../../../immer/initialStates";
 
 /**
  * This component sontains the components that make up the options for the form
  * at the top of ViewDeploymentsPage
  */
 
-/**
- * Needs deplotmentViewStatus props for submitting. and dispatch.
- */
-const options = ["End User", "Ticket", "Product"];
+const options = ["Enduser", "Ticket", "Product"];
 
-const initialValues: DeploymentViewOptions = {
-  selected: "",
-  textToSearch: ""
-};
-
-const VIEW_ALL_DEPLOYMENTS = gql`
-  query {
-    findDeployments {
-      endUser
-      techName
-      product
-      modelType
-      serialNumber
-      timeStamp
-      ticketNumber
-    }
-  }
-`;
-
-const ViewDeploymentOptions: React.FC<DeploymentViewStatusProps> = ({
-  viewDispatch
-}: DeploymentViewStatusProps) => {
-  const { loading, error, data } = useQuery(VIEW_ALL_DEPLOYMENTS);
-
-  const FetchAllDeployments = async (): Promise<void> => {
+const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
+  viewDispatch,
+  viewState,
+  optionsDispatch
+}: DeploymentViewOptionsAndStatusProps) => {
+  const resetOptionsView = async (): Promise<void> => {
     await viewDispatch({ type: "RESET_DEPLOYMENT_VIEW_STATUS" });
-
     await viewDispatch({ type: "SET_QUERY_ATTEMPT" });
-
-    if (error) {
-      return viewDispatch({ type: "SET_QUERY_ERROR" });
-    }
-
-    await viewDispatch({
-      type: "SET_DEPLOYMENT_VIEW_DATA",
-      deploymentData: data
-    });
-
-    await viewDispatch({ type: "SET_QUERY_SUCCESSFUL" });
+    await optionsDispatch({ type: "RESET_DEPLOYMENT_VIEW_OPTIONS" });
   };
 
   return (
     <FlexContainer flow="column">
       <OptionsContainer>
         <Formik
-          initialValues={initialValues}
+          initialValues={deploymentViewOptionsInitialState}
           enableReinitialize={true}
           validationSchema={DeploymentViewOptionsSchema}
           onSubmit={async (data): Promise<void> => {
-            // function that taks the fields and selects schema based on fields.
-            // dispatches to state so ViewDeploymentTable updates with data.
-            try {
-              console.log(data);
-              // createMutation and dispatch success
-            } catch (error) {
-              console.log(error);
-              // dispatch error
-            }
-            // if !queryError dispatch(successful table update)
+            await viewDispatch({ type: "RESET_DEPLOYMENT_VIEW_STATUS" });
+
+            await viewDispatch({ type: "SET_QUERY_ATTEMPT" });
+
+            await optionsDispatch({
+              type: "SET_DEPLOYMENT_VIEW_OPTIONS",
+              selected: data.selected,
+              textToSearch: data.textToSearch
+            });
           }}
         >
-          {({ values, isSubmitting }) => (
+          {({ values, isSubmitting }): ReactChild => (
             <Form>
               <FlexContainer flow="row">
                 <CustomSelect
@@ -99,16 +61,16 @@ const ViewDeploymentOptions: React.FC<DeploymentViewStatusProps> = ({
                 />
                 <SpinnerButton isSubmitting={isSubmitting} title="Search" />
               </FlexContainer>
+              <FlexContainer margin="auto" flow="row" center="center">
+                <SpinnerButton
+                  isSubmitting={false}
+                  handleClick={resetOptionsView}
+                  title="View All"
+                />
+              </FlexContainer>
             </Form>
           )}
         </Formik>
-        <FlexContainer margin="auto" flow="row" center="center">
-          <SpinnerButton
-            isSubmitting={loading}
-            handleClick={FetchAllDeployments}
-            title="View All"
-          />
-        </FlexContainer>
       </OptionsContainer>
     </FlexContainer>
   );

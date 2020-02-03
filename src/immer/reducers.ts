@@ -3,18 +3,21 @@ import {
   DeploymentCreateOptions,
   DeploymentCreateStatus,
   // DeploymentViewOptions,
-  DeploymentViewStatus
+  DeploymentViewStatus,
+  DeploymentViewOptions
 } from "./stateInterfaces";
 import {
   DeploymentCreateOptionsAction,
   DeploymentCreateStatusAction,
   // DeploymentViewOptionsAction,
-  DeploymentViewStatusAction
+  DeploymentViewStatusAction,
+  DeploymentViewOptionsAction
 } from "./actionTypes";
 import {
   deploymentCreateOptionsInitialState,
   deploymentCreateStatusInitialState,
-  deploymentViewStatusInitialState
+  deploymentViewStatusInitialState,
+  deploymentViewOptionsInitialState
 } from "./initialStates";
 
 /**
@@ -81,18 +84,18 @@ export function deploymentViewStatusReducer(
   action: DeploymentViewStatusAction
 ): Draft<DeploymentViewStatus> | void {
   switch (action.type) {
-    case "SET_DEPLOYMENT_VIEW_DATA":
-      draft.deploymentData = action.deploymentData;
-      return;
     case "SET_QUERY_ATTEMPT":
       draft.queryAttempted = true;
+      draft.isFetching = true;
       return;
     case "SET_QUERY_SUCCESSFUL":
       draft.querySuccessful = true;
+      draft.isFetching = false;
       draft.showSnackbar = true;
       return;
     case "SET_QUERY_ERROR":
       draft.queryError = true;
+      draft.isFetching = false;
       draft.showSnackbar = true;
       return;
     case "RESET_DEPLOYMENT_VIEW_STATUS":
@@ -106,21 +109,22 @@ export function deploymentViewStatusReducer(
  * Reducer for the DeploymentViewOptions logic
  */
 
-// export function deploymentViewOptionsReducer(
-//   draft: Draft<DeploymentViewOptions>,
-//   action: DeploymentViewOptionsAction
-// ): Draft<DeploymentViewOptions> | void {
-//   switch (action.type) {
-//     case "SET_SELECTED_SEARCH":
-//       draft.selected = action.type;
-//       return;
-//     case "SET_TEXT_TO_SEARCH":
-//       draft.textToSearch = action.type;
-//       return;
-//     default:
-//       return draft;
-//   }
-// }
+export function deploymentViewOptionsReducer(
+  draft: Draft<DeploymentViewOptions>,
+  action: DeploymentViewOptionsAction
+): Draft<DeploymentViewOptions> | void {
+  switch (action.type) {
+    case "SET_DEPLOYMENT_VIEW_OPTIONS":
+      draft.selected = action.selected;
+      draft.textToSearch = action.textToSearch;
+      draft.view = "custom";
+      return;
+    case "RESET_DEPLOYMENT_VIEW_OPTIONS":
+      return deploymentViewOptionsInitialState;
+    default:
+      return draft;
+  }
+}
 
 /**
  * Reducer for the DeploymentForms logic

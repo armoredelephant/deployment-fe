@@ -10,10 +10,11 @@ export interface DeploymentCreateOptions {
   tech: string;
 }
 
-// export interface DeploymentViewOptions {
-//   selected: string;
-//   textToSearch: string;
-// }
+export interface DeploymentViewOptions {
+  selected: string;
+  textToSearch: string;
+  view: string;
+}
 
 export interface DeploymentForms {
   endUser: string;
@@ -32,7 +33,7 @@ export interface DeploymentCreateStatus {
 }
 
 export interface DeploymentViewStatus {
-  deploymentData: GraphQLDeploymentData[];
+  isFetching: boolean;
   queryAttempted: boolean;
   queryError: boolean;
   querySuccessful: boolean;
