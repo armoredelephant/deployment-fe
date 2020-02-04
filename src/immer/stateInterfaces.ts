@@ -32,9 +32,5 @@ export interface DeploymentCreateStatus {
 }
 
 export interface DeploymentViewStatus {
-  isFetching: boolean;
-  queryAttempted: boolean;
   queryError: boolean;
-  querySuccessful: boolean;
-  showSnackbar: boolean;
 }

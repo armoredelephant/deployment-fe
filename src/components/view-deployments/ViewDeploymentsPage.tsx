@@ -12,6 +12,7 @@ import {
   deploymentViewOptionsInitialState
 } from "../../immer/initialStates";
 import ViewDeploymentsLoader from "./molecules/ViewDeploymentsLoader";
+import ViewDeploymentsSnackbar from "./atoms/ViewDeploymentsSnackbar";
 
 const ViewDeploymentsPage: React.FC = () => {
   const [deploymentViewState, deploymentViewDispatch] = useImmerReducer(
@@ -39,7 +40,12 @@ const ViewDeploymentsPage: React.FC = () => {
         optionsState={deploymentViewOptionsState}
         optionsDispatch={deploymentViewOptionsDispatch}
       />
-      {/* <ViewDeploymentsTable optionsState={optionsState} /> */}
+      {deploymentViewState.queryError && (
+        <ViewDeploymentsSnackbar
+          viewDispatch={deploymentViewDispatch}
+          message="Please enter a valid ticket number."
+        />
+      )}
     </MainContainer>
   );
 };

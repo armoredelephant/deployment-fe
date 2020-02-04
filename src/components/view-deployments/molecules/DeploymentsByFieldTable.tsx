@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { querySelector } from "../../_helper-functions/querySelector";
 import { DeploymentViewOptionsProps } from "../deploymentViewInterfaces";
@@ -22,13 +22,14 @@ import {
   getSorting,
   Order
 } from "../../_helper-functions/tableHelpers";
+import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
 
 const useStyles = makeStyles({
   root: {
     width: "100%"
   },
   container: {
-    maxHeight: 700,
+    maxHeight: 800,
     minHeight: 400
   }
 });
@@ -38,6 +39,7 @@ const tableColumns = columns;
 const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
   optionsState
 }: DeploymentViewOptionsProps) => {
+  console.log(optionsState.textToSearch);
   const { loading, error, data } = useQuery(
     querySelector(optionsState.selected),
     {
@@ -54,8 +56,13 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [dense, setDense] = React.useState(false);
 
-  if (error) return <></>;
-
+  if (error) {
+    return (
+      <FlexContainer height="100%" flow="row">
+        <ViewDeploymentsSnackbar message="Search returned no data." />
+      </FlexContainer>
+    );
+  }
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof GraphQLDeploymentData

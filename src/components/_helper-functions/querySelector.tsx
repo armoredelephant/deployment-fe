@@ -15,7 +15,7 @@ const ENDUSER_QUERY = gql`
 `;
 
 const TICKET_QUERY = gql`
-  query FindDeploymentByField($option: String!) {
+  query FindDeploymentByField($option: Float!) {
     findDeploymentsByField(ticketNumber: $option) {
       endUser
       techName

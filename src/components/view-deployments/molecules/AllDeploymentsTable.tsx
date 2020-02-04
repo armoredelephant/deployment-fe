@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     width: "100%"
   },
   container: {
-    maxHeight: 700,
+    maxHeight: 800,
     minHeight: 400
   }
 });
@@ -46,7 +46,13 @@ const AllDeploymentsTable: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [dense, setDense] = React.useState(false);
 
-  // display loading
+  if (error) {
+    return (
+      <FlexContainer height="100%" flow="row">
+        <ViewDeploymentsSnackbar message="Unable to fetch data at this time." />
+      </FlexContainer>
+    );
+  }
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -143,7 +149,6 @@ const AllDeploymentsTable: React.FC = () => {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
-      {error && <ViewDeploymentsSnackbar />}
     </FlexContainer>
   );
 };

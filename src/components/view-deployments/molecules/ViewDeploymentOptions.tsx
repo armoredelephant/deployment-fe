@@ -30,26 +30,29 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
       <OptionsContainer>
         <Formik
           initialValues={deploymentViewOptionsInitialState}
+          enableReinitialize={true}
           validationSchema={DeploymentViewOptionsSchema}
-          /**
-           * if Ticket is selected, textToSearch needs to be parsed
-           * backend expects a number
-           */
-          onSubmit={async (data): Promise<void> => {
-            const text = data.textToSearch;
-            let num;
-            console.log(text);
+          onSubmit={async (data, { resetForm }): Promise<void> => {
             if (data.selected === "Ticket") {
-              num = parseInt(text);
+              const ticket = parseInt(data.textToSearch as string);
+              isNaN(ticket)
+                ? viewDispatch({ type: "SET_QUERY_ERROR" })
+                : await optionsDispatch({
+                    type: "SET_DEPLOYMENT_VIEW_OPTIONS",
+                    selected: data.selected,
+                    textToSearch: ticket
+                  });
+            } else {
+              await optionsDispatch({
+                type: "SET_DEPLOYMENT_VIEW_OPTIONS",
+                selected: data.selected,
+                textToSearch: data.textToSearch
+              });
             }
-            await optionsDispatch({
-              type: "SET_DEPLOYMENT_VIEW_OPTIONS",
-              selected: data.selected,
-              textToSearch: text
-            });
+            resetForm();
           }}
         >
-          {({ isSubmitting }): ReactChild => (
+          {({ values, isSubmitting }): ReactChild => (
             <Form>
               <FlexContainer flow="row">
                 <CustomSelect

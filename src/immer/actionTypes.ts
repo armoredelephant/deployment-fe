@@ -1,5 +1,4 @@
 import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
-import { GraphQLDeploymentData } from "../components/view-deployments/deploymentViewInterfaces";
 
 /**
  * Action for DeploymentOptions
@@ -134,16 +133,8 @@ export type DeploymentViewOptionsDispatch = (
  * Actions for DeploymentViewStatus
  */
 
-interface SetQueryAttempt {
-  type: "SET_QUERY_ATTEMPT";
-}
-
 interface SetQueryError {
   type: "SET_QUERY_ERROR";
-}
-
-interface SetQuerySuccessful {
-  type: "SET_QUERY_SUCCESSFUL";
 }
 
 interface ResetDeploymentViewStatus {
@@ -151,9 +142,7 @@ interface ResetDeploymentViewStatus {
 }
 
 export type DeploymentViewStatusAction =
-  | SetQueryAttempt
   | SetQueryError
-  | SetQuerySuccessful
   | ResetDeploymentViewStatus;
 
 export type DeploymentViewStatusDispatch = (

@@ -84,19 +84,8 @@ export function deploymentViewStatusReducer(
   action: DeploymentViewStatusAction
 ): Draft<DeploymentViewStatus> | void {
   switch (action.type) {
-    case "SET_QUERY_ATTEMPT":
-      draft.queryAttempted = true;
-      draft.isFetching = true;
-      return;
-    case "SET_QUERY_SUCCESSFUL":
-      draft.querySuccessful = true;
-      draft.isFetching = false;
-      draft.showSnackbar = true;
-      return;
     case "SET_QUERY_ERROR":
       draft.queryError = true;
-      draft.isFetching = false;
-      draft.showSnackbar = true;
       return;
     case "RESET_DEPLOYMENT_VIEW_STATUS":
       return deploymentViewStatusInitialState;

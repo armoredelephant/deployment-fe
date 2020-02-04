@@ -98,7 +98,6 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
               deploymentData,
               tech
             });
-            console.log(gqlMutationData);
             try {
               await createDeploymentMutation(gqlMutationData);
             } catch (error) {

@@ -21,11 +21,7 @@ export const deploymentViewOptionsInitialState: DeploymentViewOptions = {
 };
 
 export const deploymentViewStatusInitialState: DeploymentViewStatus = {
-  queryAttempted: false,
-  isFetching: false,
-  queryError: false,
-  querySuccessful: false,
-  showSnackbar: false
+  queryError: false
 };
 
 export const deploymentCreateStatusInitialState: DeploymentCreateStatus = {

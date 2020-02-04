@@ -59,5 +59,5 @@ export const CreateDeploymentSchema = yup.object().shape({
 
 export const DeploymentViewOptionsSchema = yup.object().shape({
   selected: yup.string().required(),
-  textToSearch: yup.string().required()
+  textToSearch: yup.string()
 });

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     minHeight: 400,
     maxHEight: 800
   },
-  buttonProgress: {
+  spinnerProgress: {
     color: "rgb(223,223,223)",
     position: "absolute",
     top: "50%",
@@ -25,7 +25,7 @@ const SpinnerContainer: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <CircularProgress size={24} className={classes.buttonProgress} />
+      <CircularProgress size={24} className={classes.spinnerProgress} />
     </div>
   );
 };
