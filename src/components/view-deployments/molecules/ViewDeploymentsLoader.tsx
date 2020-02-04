@@ -12,9 +12,10 @@ const ViewDeploymentsLoader: React.FC<DeploymentViewOptionsProps> = ({
 }: DeploymentViewOptionsProps) => {
   const { view } = optionsState;
   if (!optionsState) return null;
+  // add Switch for dark/light theme table?
   return (
     <MuiThemeProvider theme={darkTheme}>
-      <FlexContainer width="100%" marginBottom="50px" flow="row">
+      <FlexContainer center="true" width="100%" marginBottom="50px" flow="row">
         {view === "all" ? (
           <AllDeploymentsTable />
         ) : (

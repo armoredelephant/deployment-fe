@@ -50,5 +50,6 @@ export interface Column {
     | "ticketNumber";
   label: string;
   minWidth?: number;
+  disablePadding?: "none";
   align?: "right" | "left";
 }

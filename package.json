@@ -80,6 +80,8 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/types": "^5.0.0",
+    "@types/material-ui": "^0.21.7",
     "@types/styled-components": "^4.4.1",
     "@types/webpack": "^4.41.0",
     "@typescript-eslint/parser": "^2.12.0",
