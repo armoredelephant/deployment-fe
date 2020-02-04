@@ -115,7 +115,7 @@ export type DeploymentCreateStatusAction =
 interface SetDeploymentViewOptions {
   type: "SET_DEPLOYMENT_VIEW_OPTIONS";
   selected: string;
-  textToSearch: string;
+  textToSearch: string | number;
 }
 
 interface ResetDeploymentViewOptions {

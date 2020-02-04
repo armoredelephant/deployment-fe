@@ -1,5 +1,4 @@
 import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
-import { GraphQLDeploymentData } from "../components/view-deployments/deploymentViewInterfaces";
 
 export interface DeploymentCreateOptions {
   userCount: number | string;
@@ -12,7 +11,7 @@ export interface DeploymentCreateOptions {
 
 export interface DeploymentViewOptions {
   selected: string;
-  textToSearch: string;
+  textToSearch: string | number;
   view: string;
 }
 

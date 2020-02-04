@@ -7,6 +7,7 @@ interface Props {
   margin?: string;
   marginBottom?: string;
   width?: string;
+  height?: string;
 }
 
 const SimplyFlexContainer = styled.div<Props>`
@@ -17,6 +18,7 @@ const SimplyFlexContainer = styled.div<Props>`
     props.center && "center"};
   margin-bottom: ${(props: Props): string | undefined => props.marginBottom};
   width: ${(props: Props): string | undefined => props.width};
+  height: ${(props: Props): string | undefined => props.height};
 `;
 
 const FlexContainer: React.FC<Props> = (props: Props) => {

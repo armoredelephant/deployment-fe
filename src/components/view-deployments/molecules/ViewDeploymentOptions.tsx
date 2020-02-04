@@ -31,11 +31,21 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
         <Formik
           initialValues={deploymentViewOptionsInitialState}
           validationSchema={DeploymentViewOptionsSchema}
+          /**
+           * if Ticket is selected, textToSearch needs to be parsed
+           * backend expects a number
+           */
           onSubmit={async (data): Promise<void> => {
+            const text = data.textToSearch;
+            let num;
+            console.log(text);
+            if (data.selected === "Ticket") {
+              num = parseInt(text);
+            }
             await optionsDispatch({
               type: "SET_DEPLOYMENT_VIEW_OPTIONS",
               selected: data.selected,
-              textToSearch: data.textToSearch
+              textToSearch: text
             });
           }}
         >

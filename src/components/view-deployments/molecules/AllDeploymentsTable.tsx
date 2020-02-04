@@ -12,7 +12,6 @@ import TableBody from "@material-ui/core/TableBody";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { Column, GraphQLDeploymentData } from "../deploymentViewInterfaces";
-import SpinnerContainer from "../../_containers/SpinnerContainer";
 import TablePagination from "@material-ui/core/TablePagination";
 import CustomTableHead from "../atoms/CustomTableHead";
 import {
@@ -20,14 +19,17 @@ import {
   getSorting,
   Order
 } from "../../_helper-functions/tableHelpers";
+import SpinnerContainer from "../../_containers/SpinnerContainer";
 import FlexContainer from "../../_containers/FlexContainer";
+import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
 
 const useStyles = makeStyles({
   root: {
     width: "100%"
   },
   container: {
-    maxHeight: 800
+    maxHeight: 700,
+    minHeight: 400
   }
 });
 
@@ -43,8 +45,6 @@ const AllDeploymentsTable: React.FC = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [dense, setDense] = React.useState(false);
-
-  // display error
 
   // display loading
 
@@ -143,6 +143,7 @@ const AllDeploymentsTable: React.FC = () => {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+      {error && <ViewDeploymentsSnackbar />}
     </FlexContainer>
   );
 };

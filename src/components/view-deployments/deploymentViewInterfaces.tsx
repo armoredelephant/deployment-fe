@@ -16,7 +16,7 @@ export interface GraphQLDeploymentData {
 
 export interface DeploymentViewOptions {
   selected: string;
-  textToSearch: string;
+  textToSearch: string | number;
   view: string;
 }
 

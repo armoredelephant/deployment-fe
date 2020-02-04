@@ -1,7 +1,6 @@
 import {
   DeploymentCreateOptions,
   DeploymentCreateStatus,
-  // DeploymentViewOptions,
   DeploymentViewStatus,
   DeploymentViewOptions
 } from "./stateInterfaces";
