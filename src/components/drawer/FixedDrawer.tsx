@@ -26,11 +26,11 @@ const FixedDrawer: React.FC = () => {
   return (
     <StyledDrawer variant="permanent" anchor="left">
       <List>
-        <NavList list={navItemsNew} category="New" />
+        <NavList list={navItemsNew} category="new" />
         <Divider />
-        <NavList list={navItemsView} category="View" />
+        <NavList list={navItemsView} category="view" />
         <Divider />
-        <NavList list={navItemsAdmin} category="Admin" />
+        <NavList list={navItemsAdmin} category="admin" />
       </List>
     </StyledDrawer>
   );
