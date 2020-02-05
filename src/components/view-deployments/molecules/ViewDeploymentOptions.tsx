@@ -61,7 +61,7 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
                   title="Search By"
                 />
                 <RequiredTextField
-                  placeholder="search"
+                  placeholder="Search For"
                   name="textToSearch"
                   type="input"
                 />
