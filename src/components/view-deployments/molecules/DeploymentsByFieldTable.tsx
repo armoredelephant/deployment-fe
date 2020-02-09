@@ -39,7 +39,6 @@ const tableColumns = columns;
 const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
   optionsState
 }: DeploymentViewOptionsProps) => {
-  console.log(optionsState.textToSearch);
   const { loading, error, data } = useQuery(
     querySelector(optionsState.selected),
     {
@@ -97,7 +96,6 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
     rowsPerPage -
     Math.min(rowsPerPage, findDeploymentsByField.length - page * rowsPerPage);
 
-  console.log(data);
   return (
     <FlexContainer width="100%" flow="column">
       <Paper className={classes.root}>

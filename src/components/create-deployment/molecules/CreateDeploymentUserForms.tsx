@@ -68,7 +68,6 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
     gqlMutationData: GraphQLDeployment[]
   ): Promise<void> => {
     for (const deploymentData of gqlMutationData) {
-      console.log(deploymentData);
       try {
         await createDeployment({
           variables: {

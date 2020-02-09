@@ -39,6 +39,7 @@ const CreateDeploymentOptions: React.FC<DeploymentCreateOptionsProps> = ({
   const { showSnackbar } = optionsState;
 
   if (error) {
+    optionsDispatch({ type: "SET_QUERY_ERROR" });
     return (
       <FlexContainer height="100%" flow="row">
         <OptionsSnackbar
@@ -103,27 +104,27 @@ const CreateDeploymentOptions: React.FC<DeploymentCreateOptionsProps> = ({
         >
           {({ values, isSubmitting }): ReactChild => (
             <Form>
-              <FlexContainer marginBottom="0" flow="row">
-                <OptionsContainer>
-                  <CustomSelect
-                    options={userCountArray}
-                    name="userCount"
-                    title="User Count"
-                  />
-                  <RemoteCheckbox
-                    name="remoteSetup"
-                    remoteSetup={values.remoteSetup}
-                    title="Remote Setup"
-                  />
-                </OptionsContainer>
-                <OptionsContainer center="center">
-                  <PrimaryMachineRadio
-                    name="primaryMachine"
-                    primaryMachine={values.primaryMachine}
-                  />
-                </OptionsContainer>
-              </FlexContainer>
-              <FlexContainer center="center" flow="column">
+              <FlexContainer flow="column">
+                <FlexContainer marginBottom="0" flow="row">
+                  <OptionsContainer>
+                    <CustomSelect
+                      options={userCountArray}
+                      name="userCount"
+                      title="User Count"
+                    />
+                    <RemoteCheckbox
+                      name="remoteSetup"
+                      remoteSetup={values.remoteSetup}
+                      title="Remote Setup"
+                    />
+                  </OptionsContainer>
+                  <OptionsContainer center="center">
+                    <PrimaryMachineRadio
+                      name="primaryMachine"
+                      primaryMachine={values.primaryMachine}
+                    />
+                  </OptionsContainer>
+                </FlexContainer>
                 <FlexContainer
                   marginBottom="1.25rem"
                   center="center"

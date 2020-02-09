@@ -52,18 +52,12 @@ const CreateDeploymentPage: React.FC = () => {
       </SpacingWrapper>
       <StyledDivider />
       {optionsState.formValues.length >= 1 && (
-        <DeploymentCreateOptionsDispatchContext.Provider
-          value={optionsDispatch}
-        >
-          <DeploymentCreateOptionsStateContext.Provider value={optionsState}>
-            <CreateDeploymentUserForms
-              optionsDispatch={optionsDispatch}
-              optionsState={optionsState}
-              deploymentState={deploymentState}
-              deploymentDispatch={deploymentDispatch}
-            />
-          </DeploymentCreateOptionsStateContext.Provider>
-        </DeploymentCreateOptionsDispatchContext.Provider>
+        <CreateDeploymentUserForms
+          optionsDispatch={optionsDispatch}
+          optionsState={optionsState}
+          deploymentState={deploymentState}
+          deploymentDispatch={deploymentDispatch}
+        />
       )}
       <DeploymentSnackbar
         deploymentState={deploymentState}

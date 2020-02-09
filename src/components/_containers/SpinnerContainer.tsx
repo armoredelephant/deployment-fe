@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     width: "100%",
     minHeight: 400,
-    maxHEight: 800
+    maxHEight: 750
   },
   spinnerProgress: {
     color: "rgb(223,223,223)",

@@ -19,7 +19,6 @@ const PrimaryMachineRadio: React.FC<FieldAttributes<{
   const [field] = useField<{}>(props);
 
   const machines: string[] = ["desktop", "igel", "laptop"];
-  console.log(primaryMachine);
 
   return (
     <FormControl>
