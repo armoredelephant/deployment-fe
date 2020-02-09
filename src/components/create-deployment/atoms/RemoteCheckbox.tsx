@@ -1,31 +1,25 @@
 import React from "react";
-import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import CustomFormControlLabel from "../../custom-fields/CustomFormControlLabel";
-import CustomCheckBox from "../../custom-fields/CustomCheckBox";
+import { FieldAttributes, useField } from "formik";
+import MuiCheckbox from "@material-ui/core/Checkbox";
 
 /**
  * Checkbox component for selecting whether the deployments will be remote setups
  * Used within CreateDeploymentOptions
  */
 
-const RemoteCheckbox: React.FC<DeploymentCreateOptionsProps> = ({
-  optionsDispatch,
-  optionsState
-}: DeploymentCreateOptionsProps) => {
-  const handleRemoteOption = (): void => {
-    optionsDispatch({ type: "SET_REMOTE_SETUP" });
-  };
-
+const RemoteCheckbox: React.FC<FieldAttributes<{
+  title: string;
+  remoteSetup: boolean;
+}>> = ({
+  title,
+  remoteSetup,
+  ...props
+}: FieldAttributes<{ title: string; remoteSetup: boolean }>) => {
+  const [field] = useField<{}>(props);
   return (
     <CustomFormControlLabel
-      control={
-        <CustomCheckBox
-          checked={optionsState.remoteSetup}
-          onChange={handleRemoteOption}
-          value="remote-setup"
-          inputProps={{ "aria-label": "Remote Setup" }}
-        />
-      }
+      control={<MuiCheckbox color="default" checked={remoteSetup} {...field} />}
       label="Remote setups"
     />
   );

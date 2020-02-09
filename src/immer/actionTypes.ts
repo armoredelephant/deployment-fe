@@ -1,4 +1,7 @@
-import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
+import {
+  EndUserDeploymentFormField,
+  GraphQLTech
+} from "../components/create-deployment/deploymentCreateInterfaces";
 
 /**
  * Action for DeploymentOptions
@@ -19,9 +22,29 @@ interface SetPrimaryMachine {
   primaryMachine: string;
 }
 
+interface SetTech {
+  type: "SET_TECH";
+  techName: string;
+  techId?: number;
+}
+
+interface ResetQueryError {
+  type: "RESET_QUERY_ERROR";
+}
+
+interface SetDeploymentTechSelected {
+  type: "SET_DEPLOYMENT_TECH_SELECTED";
+}
+
+interface SetDeploymentTechTouched {
+  type: "SET_DEPLOYMENT_TECH_TOUCHED";
+}
+
 interface SetInitialFormValues {
   type: "SET_INITIAL_FORM_VALUES";
   formValues: EndUserDeploymentFormField[];
+  techName: string;
+  techId: number;
 }
 
 interface ResetForm {
@@ -33,6 +56,11 @@ export type DeploymentCreateOptionsAction =
   | SetRemoteSetup
   | SetPrimaryMachine
   | SetInitialFormValues
+  | SetDeploymentTechSelected
+  | SetDeploymentTechTouched
+  | SetTech
+  | SetQueryError
+  | ResetQueryError
   | ResetForm;
 
 export type DeploymentCreateOptionsDispatch = (
@@ -148,3 +176,16 @@ export type DeploymentViewStatusAction =
 export type DeploymentViewStatusDispatch = (
   action: DeploymentViewStatusAction
 ) => void;
+
+/**
+ *  Actions for CreateTechStatus
+ */
+
+interface ResetCreateTechStatus {
+  type: "RESET_CREATE_TECH_STATUS";
+}
+
+export type CreateTechStatusAction =
+  | SetPostError
+  | SetPostSuccessful
+  | ResetCreateTechStatus;

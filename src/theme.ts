@@ -62,6 +62,11 @@ export const theme = createMuiTheme({
       colorInherit: {
         color: colors.primary
       }
+    },
+    MuiCheckbox: {
+      root: {
+        color: colors.primary
+      }
     }
   }
 });

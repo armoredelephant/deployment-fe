@@ -2,7 +2,8 @@ import {
   DeploymentCreateOptions,
   DeploymentCreateStatus,
   DeploymentViewStatus,
-  DeploymentViewOptions
+  DeploymentViewOptions,
+  CreateTechStatus
 } from "./stateInterfaces";
 
 export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
@@ -11,7 +12,11 @@ export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
   formValues: [],
   remoteSetup: false,
   primaryMachine: "igel",
-  tech: "Keith Alleman"
+  techName: "",
+  queryError: false,
+  showSnackbar: false,
+  deploymentTechSelected: false,
+  deploymentTechTouched: false
 };
 
 export const deploymentViewOptionsInitialState: DeploymentViewOptions = {
@@ -29,4 +34,9 @@ export const deploymentCreateStatusInitialState: DeploymentCreateStatus = {
   postError: false,
   postSuccessful: false,
   showDeploymentSnackbar: false
+};
+
+export const createTechStatusInitialState: CreateTechStatus = {
+  postError: false,
+  showSnackbar: false
 };

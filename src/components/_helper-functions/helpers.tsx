@@ -1,20 +1,34 @@
 import {
-  DeploymentCreateOptionsProps,
   EndUserDeploymentFormField,
   IndividualDeploymentItem
 } from "../create-deployment/deploymentCreateInterfaces";
 
+interface Props {
+  userCount: string;
+  remoteSetup: boolean;
+  techName: string;
+  primaryMachine: string;
+}
+
+interface DeploymentOptionsFormValues {
+  data: Props;
+  userCountArray: string[];
+}
+
 export const generateInitialFormValues = ({
-  optionsState
-}: Partial<DeploymentCreateOptionsProps>):
-  | EndUserDeploymentFormField[]
-  | void => {
+  data,
+  userCountArray
+}: DeploymentOptionsFormValues): EndUserDeploymentFormField[] | void => {
   const maxEquipmentRemoteWithLaptop = 7;
   const maxEquipmentRemoteWithDesktop = 6;
 
   const forms: EndUserDeploymentFormField[] = [];
 
-  if (!optionsState) return;
+  const sliceCount = parseInt(data.userCount);
+
+  const formCount: string[] = userCountArray.slice(0, sliceCount);
+
+  if (!data) return;
 
   const itemValues: IndividualDeploymentItem = {
     product: "",
@@ -38,13 +52,13 @@ export const generateInitialFormValues = ({
     "Phone"
   ];
 
-  optionsState.formCounts.forEach(() => {
+  formCount.forEach(() => {
     const initialFormValue = { ...initialFormValues, items: [] };
     forms.push(initialFormValue);
   });
 
-  if (optionsState.remoteSetup) {
-    if (optionsState.primaryMachine === "laptop") {
+  if (data.remoteSetup) {
+    if (data.primaryMachine === "laptop") {
       forms.forEach(endUser => {
         for (let i = 0; i < maxEquipmentRemoteWithLaptop; i++) {
           endUser.items.push({ ...itemValues, product: laptopDeployment[i] });

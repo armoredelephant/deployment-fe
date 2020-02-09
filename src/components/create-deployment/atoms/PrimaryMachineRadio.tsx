@@ -1,44 +1,40 @@
 import React from "react";
-import { DeploymentCreateOptionsProps } from "../deploymentCreateInterfaces";
 import CustomFormControlLabel from "../../custom-fields/CustomFormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
+import { FieldAttributes, useField } from "formik";
 
 /**
  * Custom radio button component used within the CreateDeploymentOptions component.
  */
 
-const PrimaryMachineRadio: React.FC<DeploymentCreateOptionsProps> = ({
-  optionsDispatch,
-  optionsState
-}: DeploymentCreateOptionsProps) => {
-  const handlePrimaryMachineOption = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const machine = (event.target as HTMLInputElement).value;
-    optionsDispatch({ type: "SET_PRIMARY_MACHINE", primaryMachine: machine });
-  };
+const PrimaryMachineRadio: React.FC<FieldAttributes<{
+  primaryMachine: string;
+}>> = ({
+  primaryMachine,
+  ...props
+}: FieldAttributes<{ primaryMachine: string }>) => {
+  const [field] = useField<{}>(props);
+
   const machines: string[] = ["desktop", "igel", "laptop"];
+  console.log(primaryMachine);
+
   return (
     <FormControl>
       <FormLabel color="primary">Primary machine for majority?</FormLabel>
       <RadioGroup
+        {...field}
         aria-label="primary-machine"
-        name="primary-machine"
-        value={optionsState.primaryMachine}
-        onChange={handlePrimaryMachineOption}
+        value={primaryMachine}
         row
       >
-        {machines.map(machine => {
-          const rdmKey = Math.random()
-            .toString(36)
-            .substring(7);
+        {machines.map((machine, index: number) => {
           return (
             <CustomFormControlLabel
               control={<Radio color="default" />}
-              key={rdmKey}
+              key={`${machine}-${index}`}
               label={machine}
               labelPlacement="bottom"
               value={machine}

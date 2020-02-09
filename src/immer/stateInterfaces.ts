@@ -6,7 +6,12 @@ export interface DeploymentCreateOptions {
   formValues: EndUserDeploymentFormField[];
   remoteSetup: boolean;
   primaryMachine: string;
-  tech: string;
+  techName: string;
+  techId?: number;
+  queryError: boolean;
+  showSnackbar: boolean;
+  deploymentTechSelected: boolean;
+  deploymentTechTouched: boolean;
 }
 
 export interface DeploymentViewOptions {
@@ -33,4 +38,9 @@ export interface DeploymentCreateStatus {
 
 export interface DeploymentViewStatus {
   queryError: boolean;
+}
+
+export interface CreateTechStatus {
+  postError: boolean;
+  showSnackbar: boolean;
 }

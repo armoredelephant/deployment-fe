@@ -25,7 +25,7 @@ const CustomSelect: React.FC<FieldAttributes<{
   return (
     <SpacingWrapper>
       <FormControl>
-        <InputLabel id="option">{title}</InputLabel>
+        <InputLabel id={`${title}-option`}>{title}</InputLabel>
         <Select
           labelId="option"
           {...field}
@@ -36,7 +36,7 @@ const CustomSelect: React.FC<FieldAttributes<{
         >
           {options.map((option: string, index: number) => {
             return (
-              <MenuItem key={`option-${index}`} value={option}>
+              <MenuItem key={`${option}-${index}`} value={option}>
                 {option}
               </MenuItem>
             );

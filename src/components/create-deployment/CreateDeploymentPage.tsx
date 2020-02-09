@@ -9,13 +9,13 @@ import {
   deploymentCreateStatusInitialState
 } from "../../immer/initialStates";
 import MainContainer from "../_containers/MainContainer";
-import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 import StyledDivider from "../_dividers/StyledDivider";
 import CreateDeploymentUserForms from "./molecules/CreateDeploymentUserForms";
-import GenerateFormButton from "./atoms/GenerateFormButton";
 import DeploymentSnackbar from "./atoms/DeploymentSnackbar";
 import { DeploymentCreateOptions } from "../../immer/stateInterfaces";
 import { DeploymentCreateOptionsDispatch } from "../../immer/actionTypes";
+import SpacingWrapper from "../_wrappers/SpacingWrapper";
+import CreateDeploymentOptions from "./molecules/CreateDeploymentOptions";
 
 /**
  * This component contaains the entirety of
@@ -44,14 +44,12 @@ const CreateDeploymentPage: React.FC = () => {
 
   return (
     <MainContainer content="flex-start">
-      <CreateDeploymentOptions
-        optionsDispatch={optionsDispatch}
-        optionsState={optionsState}
-      />
-      <GenerateFormButton
-        optionsDispatch={optionsDispatch}
-        optionsState={optionsState}
-      />
+      <SpacingWrapper>
+        <CreateDeploymentOptions
+          optionsDispatch={optionsDispatch}
+          optionsState={optionsState}
+        />
+      </SpacingWrapper>
       <StyledDivider />
       {optionsState.formValues.length >= 1 && (
         <DeploymentCreateOptionsDispatchContext.Provider

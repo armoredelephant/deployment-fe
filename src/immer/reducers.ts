@@ -2,22 +2,23 @@ import { Draft } from "immer";
 import {
   DeploymentCreateOptions,
   DeploymentCreateStatus,
-  // DeploymentViewOptions,
   DeploymentViewStatus,
-  DeploymentViewOptions
+  DeploymentViewOptions,
+  CreateTechStatus
 } from "./stateInterfaces";
 import {
   DeploymentCreateOptionsAction,
   DeploymentCreateStatusAction,
-  // DeploymentViewOptionsAction,
   DeploymentViewStatusAction,
-  DeploymentViewOptionsAction
+  DeploymentViewOptionsAction,
+  CreateTechStatusAction
 } from "./actionTypes";
 import {
   deploymentCreateOptionsInitialState,
   deploymentCreateStatusInitialState,
   deploymentViewStatusInitialState,
-  deploymentViewOptionsInitialState
+  deploymentViewOptionsInitialState,
+  createTechStatusInitialState
 } from "./initialStates";
 
 /**
@@ -39,8 +40,28 @@ export function deploymentCreateOptionsReducer(
     case "SET_PRIMARY_MACHINE":
       draft.primaryMachine = action.primaryMachine;
       return;
+    case "SET_QUERY_ERROR":
+      draft.queryError = true;
+      draft.showSnackbar = true;
+      return;
+    case "SET_TECH":
+      draft.techName = action.techName;
+      draft.techId = action.techId;
+      return;
     case "SET_INITIAL_FORM_VALUES":
       draft.formValues = action.formValues;
+      draft.techId = action.techId;
+      draft.techName = action.techName;
+      return;
+    case "SET_DEPLOYMENT_TECH_TOUCHED":
+      draft.deploymentTechTouched = true;
+      return;
+    case "SET_DEPLOYMENT_TECH_SELECTED":
+      draft.deploymentTechSelected = true;
+      return;
+    case "RESET_QUERY_ERROR":
+      draft.queryError = false;
+      draft.showSnackbar = false;
       return;
     case "RESET":
       return deploymentCreateOptionsInitialState;
@@ -116,33 +137,22 @@ export function deploymentViewOptionsReducer(
 }
 
 /**
- * Reducer for the DeploymentForms logic
+ * Reducer for the CreateTechStatus logic
  */
 
-// export function deploymentFormsReducer(
-//   draft: Draft<DeploymentForms>,
-//   action: DeploymentFormsAction
-// ): Draft<DeploymentForms> | void {
-//   switch (action.type) {
-//     case "SET_ENDUSER":
-//       draft.endUser = action.endUser;
-//       return;
-//     case "SET_MODEL_TYPE":
-//       draft.modelType = action.modelType;
-//       return;
-//     case "SET_PRODUCT":
-//       draft.product = action.product;
-//       return;
-//     case "SET_SERIAL_NUMBER":
-//       draft.serialNumber = action.serialNumber;
-//       return;
-//     case "SET_TECH_NAME":
-//       draft.techName = action.techName;
-//       return;
-//     case "SET_TICKET_NUMBER":
-//       draft.ticketNumber = action.ticketNumber;
-//       return;
-//     default:
-//       return draft;
-//   }
-// }
+export function createTechStatusReducer(
+  draft: Draft<CreateTechStatus>,
+  action: CreateTechStatusAction
+): Draft<CreateTechStatus> | void {
+  switch (action.type) {
+    case "SET_POST_ERROR":
+      draft.postError = true;
+      draft.showSnackbar = true;
+      return;
+    case "SET_POST_SUCCESSFUL":
+      draft.showSnackbar = true;
+      return;
+    case "RESET_CREATE_TECH_STATUS":
+      return createTechStatusInitialState;
+  }
+}

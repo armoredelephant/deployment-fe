@@ -84,5 +84,10 @@ export interface GraphQLDeployment {
   serialNumber: string;
   timeStamp: string;
   ticketNumber: number;
-  techId?: number;
+  techId: number;
+}
+
+export interface GraphQLTech {
+  id: number;
+  name: string;
 }

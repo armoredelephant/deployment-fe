@@ -5,12 +5,14 @@ import {
 
 interface DeploymentMutationProps {
   deploymentData: EndUserDeploymentFormField;
-  tech: string;
+  techName: string;
+  techId: number;
 }
 
 export const flattenDeploymentData = ({
   deploymentData,
-  tech
+  techName,
+  techId
 }: DeploymentMutationProps): GraphQLDeployment[] => {
   const { endUser, ticketNumber, items } = deploymentData;
   const date = new Date();
@@ -21,9 +23,9 @@ export const flattenDeploymentData = ({
       ...deploymentValues,
       endUser: endUser,
       ticketNumber: parseInt(ticketNumber),
-      techName: tech,
+      techName: techName,
       timeStamp: timestamp,
-      techId: 1
+      techId: techId
     };
   });
   return toBeDeployed;

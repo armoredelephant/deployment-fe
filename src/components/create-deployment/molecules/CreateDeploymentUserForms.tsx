@@ -61,13 +61,14 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
 }: DeploymentStatusAndOptionsProps) => {
   const [initialValues, setInitialValues] = useState(initialFormValues);
   const [createDeployment] = useMutation(CREATE_DEPLOYMENT);
-  const { tech } = optionsState;
+  const { techName, techId } = optionsState;
   const { postError } = deploymentState;
 
   const createDeploymentMutation = async (
     gqlMutationData: GraphQLDeployment[]
   ): Promise<void> => {
     for (const deploymentData of gqlMutationData) {
+      console.log(deploymentData);
       try {
         await createDeployment({
           variables: {
@@ -85,6 +86,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   }, [optionsState.formValues]);
 
   if (!initialValues.deployments.length) return <></>;
+  if (!techId) return <></>;
 
   return (
     <FlexContainer flow="row">
@@ -96,7 +98,8 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
           for (const deploymentData of data.deployments) {
             const gqlMutationData = await flattenDeploymentData({
               deploymentData,
-              tech
+              techName,
+              techId
             });
             try {
               await createDeploymentMutation(gqlMutationData);

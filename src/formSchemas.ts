@@ -53,6 +53,11 @@ export const DeploymentInitialFormValues = yup.object().shape({
     .required()
 });
 
+export const CreateDeploymentOptionsSchema = yup.object().shape({
+  userCount: yup.string().required(),
+  techName: yup.string().required()
+});
+
 export const CreateDeploymentSchema = yup.object().shape({
   deployments: yup.array().of(DeploymentInitialFormValues)
 });
