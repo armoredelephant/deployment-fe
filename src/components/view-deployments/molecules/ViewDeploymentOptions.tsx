@@ -52,7 +52,7 @@ const ViewDeploymentOptions: React.FC<DeploymentViewOptionsAndStatusProps> = ({
             resetForm();
           }}
         >
-          {({ values, isSubmitting }): ReactChild => (
+          {({ isSubmitting }): ReactChild => (
             <Form>
               <FlexContainer flow="row">
                 <CustomSelect

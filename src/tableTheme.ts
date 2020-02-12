@@ -18,3 +18,16 @@ export const darkTheme = createMuiTheme({
     type: "dark"
   }
 });
+
+export const lightTheme = createMuiTheme({
+  overrides: {
+    MuiFormControlLabel: {
+      root: {
+        color: colors.primary
+      }
+    }
+  },
+  palette: {
+    type: "light"
+  }
+});

@@ -1,31 +1,82 @@
 import React from "react";
 import FlexContainer from "../../_containers/FlexContainer";
-import AllDeploymentsTable from "./AllDeploymentsTable";
-import DeploymentsByFieldTable from "./DeploymentsByFieldTable";
 import { DeploymentViewOptionsProps } from "../deploymentViewInterfaces";
-import { MuiThemeProvider } from "@material-ui/core";
-import { darkTheme } from "../../../tableTheme";
+import { MuiThemeProvider, FormControlLabel } from "@material-ui/core";
+import { darkTheme, lightTheme } from "../../../tableTheme";
+import loadable from "@loadable/component";
+import SpinnerContainer from "../../_containers/SpinnerContainer";
+import CustomSwitch from "../atoms/CustomSwitch";
+
+const LoadableAllDeploymentsTable = loadable(
+  () => import("./AllDeploymentsTable"),
+  {
+    fallback: <SpinnerContainer />
+  }
+);
+
+const LoadableDeploymentsByFieldTable = loadable(
+  () => import("./DeploymentsByFieldTable"),
+  {
+    fallback: <SpinnerContainer />
+  }
+);
 
 const ViewDeploymentsLoader: React.FC<DeploymentViewOptionsProps> = ({
-  optionsDispatch,
   optionsState
 }: DeploymentViewOptionsProps) => {
+  const [dense, setDense] = React.useState(false);
+  const [changeTheme, setChangeTheme] = React.useState(false);
   const { view } = optionsState;
+
   if (!optionsState) return null;
+
+  const handleChangeDense = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setDense(event.target.checked);
+  };
+
+  const handleChangeTheme = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setChangeTheme(event.target.checked);
+  };
+
   // add Switch for dark/light theme table?
   return (
-    <MuiThemeProvider theme={darkTheme}>
-      <FlexContainer center="true" width="100%" marginBottom="50px" flow="row">
-        {view === "all" ? (
-          <AllDeploymentsTable />
-        ) : (
-          <DeploymentsByFieldTable
-            optionsDispatch={optionsDispatch}
-            optionsState={optionsState}
-          />
-        )}
+    <FlexContainer center="true" width="100%" marginBottom="50px" flow="column">
+      <MuiThemeProvider theme={changeTheme ? darkTheme : lightTheme}>
+        <FlexContainer
+          center="true"
+          width="100%"
+          marginBottom="50px"
+          flow="column"
+        >
+          {view === "all" ? (
+            <LoadableAllDeploymentsTable dense={dense} />
+          ) : (
+            <LoadableDeploymentsByFieldTable
+              dense={dense}
+              optionsState={optionsState}
+            />
+          )}
+        </FlexContainer>
+      </MuiThemeProvider>
+      <FlexContainer flow="row">
+        <FormControlLabel
+          control={
+            <CustomSwitch checked={dense} onChange={handleChangeDense} />
+          }
+          label="Dense padding"
+        />
+        <FormControlLabel
+          control={
+            <CustomSwitch checked={changeTheme} onChange={handleChangeTheme} />
+          }
+          label="Dark mode"
+        />
       </FlexContainer>
-    </MuiThemeProvider>
+    </FlexContainer>
   );
 };
 

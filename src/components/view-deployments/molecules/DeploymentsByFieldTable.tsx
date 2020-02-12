@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { querySelector } from "../../_helper-functions/querySelector";
-import { DeploymentViewOptionsProps } from "../deploymentViewInterfaces";
+import { DeploymentViewOptions } from "../deploymentViewInterfaces";
 import FlexContainer from "../../_containers/FlexContainer";
 import SpinnerContainer from "../../_containers/SpinnerContainer";
 import { columns } from "../atoms/tableHelpers";
@@ -12,8 +12,6 @@ import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import { Column, GraphQLDeploymentData } from "../deploymentViewInterfaces";
 import TablePagination from "@material-ui/core/TablePagination";
 import CustomTableHead from "../atoms/CustomTableHead";
@@ -36,9 +34,15 @@ const useStyles = makeStyles({
 
 const tableColumns = columns;
 
-const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
+interface Props {
+  dense: boolean;
+  optionsState: DeploymentViewOptions;
+}
+
+const DeploymentsByFieldTable: React.FC<Props> = ({
+  dense,
   optionsState
-}: DeploymentViewOptionsProps) => {
+}: Props) => {
   const { loading, error, data } = useQuery(
     querySelector(optionsState.selected),
     {
@@ -53,7 +57,6 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
   );
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
-  const [dense, setDense] = React.useState(false);
 
   if (error) {
     return (
@@ -69,12 +72,6 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
-  };
-
-  const handleChangeDense = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setDense(event.target.checked);
   };
 
   const handleChangePage = (event: unknown, newPage: number): void => {
@@ -153,10 +150,6 @@ const DeploymentsByFieldTable: React.FC<DeploymentViewOptionsProps> = ({
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </FlexContainer>
   );
 };

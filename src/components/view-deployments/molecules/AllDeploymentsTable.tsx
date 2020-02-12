@@ -9,8 +9,6 @@ import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import { Column, GraphQLDeploymentData } from "../deploymentViewInterfaces";
 import TablePagination from "@material-ui/core/TablePagination";
 import CustomTableHead from "../atoms/CustomTableHead";
@@ -33,10 +31,16 @@ const useStyles = makeStyles({
   }
 });
 
+interface DenseProp {
+  dense: boolean;
+}
+
 const tableColumns = columns;
 
-const AllDeploymentsTable: React.FC = () => {
-  const { loading, error, data } = useQuery(querySelector("All"));
+const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
+  const { loading, error, data } = useQuery(querySelector("All"), {
+    pollInterval: 500
+  });
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof GraphQLDeploymentData>(
@@ -44,7 +48,6 @@ const AllDeploymentsTable: React.FC = () => {
   );
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
-  const [dense, setDense] = React.useState(false);
 
   if (error) {
     return (
@@ -61,12 +64,6 @@ const AllDeploymentsTable: React.FC = () => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
-  };
-
-  const handleChangeDense = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setDense(event.target.checked);
   };
 
   const handleChangePage = (event: unknown, newPage: number): void => {
@@ -145,10 +142,6 @@ const AllDeploymentsTable: React.FC = () => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </FlexContainer>
   );
 };

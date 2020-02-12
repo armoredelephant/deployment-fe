@@ -58,6 +58,11 @@ export const theme = createMuiTheme({
         minWidth: "9.375rem"
       }
     },
+    MuiFormControlLabel: {
+      root: {
+        color: colors.primary
+      }
+    },
     MuiButton: {
       colorInherit: {
         color: colors.primary
@@ -67,6 +72,22 @@ export const theme = createMuiTheme({
       root: {
         color: colors.primary
       }
+    },
+    MuiSwitch: {
+      root: {
+        color: colors.primary,
+        "&$checked": {
+          color: colors.primary
+        },
+        "&$checked + $track": {
+          backgroundColor: colors.primary
+        }
+      },
+      colorSecondary: {
+        color: colors.primary
+      },
+      checked: {},
+      track: {}
     }
   }
 });
