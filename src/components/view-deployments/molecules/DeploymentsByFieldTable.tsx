@@ -56,7 +56,7 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
     "ticketNumber"
   );
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   if (error) {
     return (
@@ -141,7 +141,7 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[25, 50, 100]}
+          rowsPerPageOptions={[10, 25, 50, 100]}
           component="div"
           count={findDeploymentsByField.length}
           rowsPerPage={rowsPerPage}

@@ -2,23 +2,33 @@ import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
-import styled from "styled-components";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { ListItemIcon } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { iconSelect } from "../drawer/helpers/drawerHelpers";
+import NavIcon from "../drawer/atoms/NavIcon";
+import { makeStyles } from "@material-ui/core/styles";
 
 interface NavListItems {
   list: string[];
   category: string;
+  drawerOpen: boolean;
 }
 
-const CustomListItemText = styled(ListItemText)`
-  && {
-    padding-left: 1.5rem;
+const useStyles = makeStyles({
+  innerList: {
+    paddingTop: "0"
+  },
+  itemText: {
+    paddingLeft: "1.5rem"
   }
-`;
+});
 
-const NavList: React.FC<NavListItems> = ({ list, category }: NavListItems) => {
+const NavList: React.FC<NavListItems> = ({
+  list,
+  category,
+  drawerOpen
+}: NavListItems) => {
+  const classes = useStyles();
   const listKey = Math.random()
     .toString(36)
     .substring(7);
@@ -34,15 +44,12 @@ const NavList: React.FC<NavListItems> = ({ list, category }: NavListItems) => {
       <ListItem key={listKey}>
         <ListItemText primary={category} />
       </ListItem>
-      <List>
+      <List className={classes.innerList}>
         {list.map((item, index) => {
-          const rdmKey = Math.random()
-            .toString(36)
-            .substring(7);
-
           const route = `/${lowerCaseCategory}-${formatedList[index]}`;
 
           const disabledRoute = route.match(/return/g);
+          const iconContent = iconSelect({ item: item });
 
           return (
             <ListItem
@@ -50,12 +57,19 @@ const NavList: React.FC<NavListItems> = ({ list, category }: NavListItems) => {
               to={route !== "/view-deployments" ? route : "/"}
               button
               disabled={!!disabledRoute}
-              key={rdmKey}
+              key={`${item}-${index}`}
             >
-              <CustomListItemText primary={item} />
-              <ListItemIcon>
-                <ArrowForwardIcon />
-              </ListItemIcon>
+              {!drawerOpen && (
+                <ListItemIcon>
+                  <NavIcon content={iconContent} />
+                </ListItemIcon>
+              )}
+              <ListItemText className={classes.itemText} primary={item} />
+              {/* {drawerOpen && (
+                <ListItemIcon>
+                  <ArrowForwardIcon />
+                </ListItemIcon>
+              )} */}
             </ListItem>
           );
         })}
