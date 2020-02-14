@@ -7,11 +7,13 @@ interface Props {
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    textAlign: "center"
+    height: 32,
+    width: "100%",
+    textAlign: "center",
+    paddingTop: 8,
+    paddingBottom: 8
   },
   icon: {
-    marginLeft: "10px",
     "&::before": {
       fontSize: "16px",
       fontWeight: "bold",

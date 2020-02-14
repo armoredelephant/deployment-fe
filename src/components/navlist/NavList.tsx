@@ -2,7 +2,6 @@ import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ListItemIcon } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { iconSelect } from "../drawer/helpers/drawerHelpers";
 import NavIcon from "../drawer/atoms/NavIcon";
@@ -14,12 +13,18 @@ interface NavListItems {
   drawerOpen: boolean;
 }
 
+interface ListItemProps {
+  visibility: "hidden" | "collapse" | "visible";
+}
+
 const useStyles = makeStyles({
   innerList: {
     paddingTop: "0"
   },
   itemText: {
-    paddingLeft: "1.5rem"
+    paddingLeft: "1.5rem",
+    display: (props: ListItemProps): "hidden" | "collapse" | "visible" =>
+      props.visibility
   }
 });
 
@@ -28,7 +33,19 @@ const NavList: React.FC<NavListItems> = ({
   category,
   drawerOpen
 }: NavListItems) => {
-  const classes = useStyles();
+  let hide: ListItemProps;
+
+  if (drawerOpen) {
+    hide = {
+      visibility: "visible"
+    };
+  } else {
+    hide = {
+      visibility: "hidden"
+    };
+  }
+
+  const classes = useStyles({ visibility: hide.visibility });
   const listKey = Math.random()
     .toString(36)
     .substring(7);
@@ -59,12 +76,11 @@ const NavList: React.FC<NavListItems> = ({
               disabled={!!disabledRoute}
               key={`${item}-${index}`}
             >
-              {!drawerOpen && (
-                <ListItemIcon>
-                  <NavIcon content={iconContent} />
-                </ListItemIcon>
+              {!drawerOpen ? (
+                <NavIcon content={iconContent} />
+              ) : (
+                <ListItemText className={classes.itemText} primary={item} />
               )}
-              <ListItemText className={classes.itemText} primary={item} />
               {/* {drawerOpen && (
                 <ListItemIcon>
                   <ArrowForwardIcon />
