@@ -22,6 +22,8 @@ import {
 } from "../../_helper-functions/tableHelpers";
 import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
 import DownloadButton from "../atoms/DownloadButton";
+import SpinnerButton from "../../_spinner/SpinnerButton";
+import { ApolloQueryResult } from "apollo-boost";
 
 const useStyles = makeStyles({
   root: {
@@ -44,7 +46,7 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
   dense,
   optionsState
 }: Props) => {
-  const { loading, error, data } = useQuery(
+  const { loading, error, data, refetch } = useQuery(
     querySelector(optionsState.selected),
     {
       variables: { option: optionsState.textToSearch }
@@ -153,7 +155,14 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <DownloadButton data={findDeploymentsByField} />
+      <FlexContainer flow="row">
+        <DownloadButton data={findDeploymentsByField} />
+        <SpinnerButton
+          isSubmitting={false}
+          handleClick={(): Promise<ApolloQueryResult<unknown>> => refetch()}
+          title="Refresh"
+        />
+      </FlexContainer>
     </FlexContainer>
   );
 };

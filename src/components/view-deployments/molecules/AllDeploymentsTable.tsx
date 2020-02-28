@@ -21,7 +21,6 @@ import SpinnerContainer from "../../_containers/SpinnerContainer";
 import FlexContainer from "../../_containers/FlexContainer";
 import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
 import DownloadButton from "../atoms/DownloadButton";
-import Button from "@material-ui/core/Button";
 import { ApolloQueryResult } from "apollo-boost";
 import SpinnerButton from "../../_spinner/SpinnerButton";
 
@@ -152,7 +151,7 @@ const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
         <DownloadButton data={findDeployments} />
         <SpinnerButton
           isSubmitting={false}
-          handleClick={(): Promise<ApolloQueryResult<any>> => refetch()}
+          handleClick={(): Promise<ApolloQueryResult<unknown>> => refetch()}
           title="Refresh"
         />
       </FlexContainer>
