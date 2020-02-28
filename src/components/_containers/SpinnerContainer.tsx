@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     display: "flex",
+    flexFlow: "column",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -13,7 +14,6 @@ const useStyles = makeStyles({
   },
   spinnerProgress: {
     color: "rgb(223,223,223)",
-    position: "absolute",
     top: "50%",
     left: "50%",
     marginTop: -12,
@@ -25,7 +25,7 @@ const SpinnerContainer: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <CircularProgress size={24} className={classes.spinnerProgress} />
+      <CircularProgress size={40} className={classes.spinnerProgress} />
     </div>
   );
 };

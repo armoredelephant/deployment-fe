@@ -46,12 +46,7 @@ const ViewDeploymentsLoader: React.FC<DeploymentViewOptionsProps> = ({
   return (
     <FlexContainer center="true" width="100%" marginBottom="50px" flow="column">
       <MuiThemeProvider theme={changeTheme ? darkTheme : lightTheme}>
-        <FlexContainer
-          center="true"
-          width="100%"
-          marginBottom="50px"
-          flow="column"
-        >
+        <FlexContainer center="true" width="100%" flow="column">
           {view === "all" ? (
             <LoadableAllDeploymentsTable dense={dense} />
           ) : (

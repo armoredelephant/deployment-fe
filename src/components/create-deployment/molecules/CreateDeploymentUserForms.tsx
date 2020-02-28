@@ -148,7 +148,6 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
                 title="Submit Deployments"
               />
             </SpacingWrapper>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
         )}
       </Formik>

@@ -6803,6 +6803,11 @@ json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
+json-to-csv-export@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/json-to-csv-export/-/json-to-csv-export-1.0.2.tgz#79e3d9b00a932eee0a2455a0a974cfd0c25b5e0c"
+  integrity sha512-8yim1kx6h6KoAGDanN65KnFb2rTB60QBUbVqq1302AVSbj9bvzL7f7druqzSNEA5hMMGsqI5G5WcU0tnKWks1Q==
+
 json3@^3.3.2:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/json3/-/json3-3.3.3.tgz#7fc10e375fc5ae42c4705a5cc0aa6f62be305b81"
@@ -9518,6 +9523,13 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+
+react-json-to-csv@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-json-to-csv/-/react-json-to-csv-1.0.4.tgz#42b5fcc44642ef0f1b91f01e528d4fa8745dc3b2"
+  integrity sha512-WiLLNrJ3ruyLxPN6HS5kX5EOv5I1Wj3rB2/gS3uzz3gKHTvqUMaTEVIt2lLpvLoHHWRsRy0p629qiTsTN8hemw==
+  dependencies:
+    json-to-csv-export "^1.0.2"
 
 react-router-dom@^5.1.2:
   version "5.1.2"

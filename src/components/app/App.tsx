@@ -25,7 +25,7 @@ const App: React.FC = () => {
             <Route exact path="/">
               <ViewDeploymentsPage />
             </Route>
-            <Route path="/new-deployment">
+            <Route path="/new-deployments">
               <CreateDeploymentPage />
             </Route>
             <Route path="/admin-create-tech">

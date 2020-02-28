@@ -21,6 +21,7 @@ import {
   Order
 } from "../../_helper-functions/tableHelpers";
 import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
+import DownloadButton from "../atoms/DownloadButton";
 
 const useStyles = makeStyles({
   root: {
@@ -60,9 +61,11 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
 
   if (error) {
     return (
-      <FlexContainer height="100%" flow="row">
-        <ViewDeploymentsSnackbar message="Search returned no data." />
-      </FlexContainer>
+      <div className={classes.container}>
+        <FlexContainer height="100%" flow="row">
+          <ViewDeploymentsSnackbar message="Search returned no data." />
+        </FlexContainer>
+      </div>
     );
   }
   const handleRequestSort = (
@@ -150,6 +153,7 @@ const DeploymentsByFieldTable: React.FC<Props> = ({
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      <DownloadButton data={findDeploymentsByField} />
     </FlexContainer>
   );
 };

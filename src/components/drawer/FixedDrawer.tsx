@@ -4,14 +4,16 @@ import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
-import NavList from "../navlist/NavList";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import AddList from "./navlists/AddList";
+import AdminList from "./navlists/AdminList";
+import ViewList from "./navlists/ViewList";
 
 const drawerWidth = "15rem";
 
-const navItemsNew = ["Deployment", "Return"];
+const navItemsNew = ["Deployments", "Returns"];
 
 const navItemsView = ["Deployments", "Returns"];
 
@@ -91,15 +93,15 @@ const FixedDrawer: React.FC = () => {
         </div>
         <Divider />
         <List className={classes.mainList}>
-          <NavList list={navItemsNew} drawerOpen={drawerOpen} category="New" />
+          <AddList list={navItemsNew} drawerOpen={drawerOpen} category="New" />
           <Divider />
-          <NavList
+          <ViewList
             list={navItemsView}
             drawerOpen={drawerOpen}
             category="View"
           />
           <Divider />
-          <NavList
+          <AdminList
             list={navItemsAdmin}
             drawerOpen={drawerOpen}
             category="Admin"

@@ -20,6 +20,10 @@ import {
 import SpinnerContainer from "../../_containers/SpinnerContainer";
 import FlexContainer from "../../_containers/FlexContainer";
 import ViewDeploymentsSnackbar from "../atoms/ViewDeploymentsSnackbar";
+import DownloadButton from "../atoms/DownloadButton";
+import Button from "@material-ui/core/Button";
+import { ApolloQueryResult } from "apollo-boost";
+import SpinnerButton from "../../_spinner/SpinnerButton";
 
 const useStyles = makeStyles({
   root: {
@@ -38,9 +42,7 @@ interface DenseProp {
 const tableColumns = columns;
 
 const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
-  const { loading, error, data } = useQuery(querySelector("All"), {
-    pollInterval: 500
-  });
+  const { loading, error, data, refetch } = useQuery(querySelector("All"));
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof GraphQLDeploymentData>(
@@ -51,9 +53,11 @@ const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
 
   if (error) {
     return (
-      <FlexContainer height="100%" flow="row">
-        <ViewDeploymentsSnackbar message="Unable to fetch data at this time." />
-      </FlexContainer>
+      <div className={classes.container}>
+        <FlexContainer height="100%" flow="column">
+          <ViewDeploymentsSnackbar message="Unable to fetch data at this time." />
+        </FlexContainer>
+      </div>
     );
   }
 
@@ -76,6 +80,8 @@ const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  console.log(data);
 
   if (loading) return <SpinnerContainer />;
 
@@ -142,6 +148,14 @@ const AllDeploymentsTable: React.FC<DenseProp> = ({ dense }: DenseProp) => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      <FlexContainer flow="row">
+        <DownloadButton data={findDeployments} />
+        <SpinnerButton
+          isSubmitting={false}
+          handleClick={(): Promise<ApolloQueryResult<any>> => refetch()}
+          title="Refresh"
+        />
+      </FlexContainer>
     </FlexContainer>
   );
 };

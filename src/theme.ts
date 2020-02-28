@@ -88,6 +88,11 @@ export const theme = createMuiTheme({
       },
       checked: {},
       track: {}
+    },
+    MuiListItem: {
+      gutters: {
+        paddingLeft: "1.5rem"
+      }
     }
   }
 });
