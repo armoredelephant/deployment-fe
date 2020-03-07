@@ -40,6 +40,11 @@ interface SetDeploymentTechTouched {
   type: "SET_DEPLOYMENT_TECH_TOUCHED";
 }
 
+interface SetDeploymentToView {
+  type: "SET_DEPLOYMENT_TO_VIEW";
+  deploymentToView: number;
+}
+
 interface SetInitialFormValues {
   type: "SET_INITIAL_FORM_VALUES";
   formValues: EndUserDeploymentFormField[];
@@ -58,6 +63,7 @@ export type DeploymentCreateOptionsAction =
   | SetInitialFormValues
   | SetDeploymentTechSelected
   | SetDeploymentTechTouched
+  | SetDeploymentToView
   | SetTech
   | SetQueryError
   | ResetQueryError

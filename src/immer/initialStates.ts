@@ -16,7 +16,8 @@ export const deploymentCreateOptionsInitialState: DeploymentCreateOptions = {
   queryError: false,
   showSnackbar: false,
   deploymentTechSelected: false,
-  deploymentTechTouched: false
+  deploymentTechTouched: false,
+  deploymentToView: 1
 };
 
 export const deploymentViewOptionsInitialState: DeploymentViewOptions = {

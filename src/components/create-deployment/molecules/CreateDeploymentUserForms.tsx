@@ -17,6 +17,7 @@ import { flattenDeploymentData } from "../../_helper-functions/flattenDeployment
 import SpinnerButton from "../../_spinner/SpinnerButton";
 import { PostError } from "../../../utils/customErrors";
 import AddRemoveFieldsButton from "../atoms/AddRemoveFieldsButton";
+import DeploymentSelector from "../atoms/DeploymentSelector";
 
 const initialFormValues: DeploymentFormValues = {
   deployments: []
@@ -56,12 +57,13 @@ const CREATE_DEPLOYMENT = gql`
 
 const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   optionsState,
+  optionsDispatch,
   deploymentState,
   deploymentDispatch
 }: DeploymentStatusAndOptionsProps) => {
   const [initialValues, setInitialValues] = useState(initialFormValues);
   const [createDeployment] = useMutation(CREATE_DEPLOYMENT);
-  const { techName, techId } = optionsState;
+  const { techName, techId, deploymentToView } = optionsState;
   const { postError } = deploymentState;
 
   const createDeploymentMutation = async (
@@ -88,7 +90,7 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
   if (!techId) return <></>;
 
   return (
-    <FlexContainer flow="row">
+    <FlexContainer flow="column">
       <Formik
         initialValues={initialValues}
         enableReinitialize={true}
@@ -110,46 +112,59 @@ const CreateDeploymentUserForms: React.FC<DeploymentStatusAndOptionsProps> = ({
           if (!postError) deploymentDispatch({ type: "SET_POST_SUCCESSFUL" });
         }}
       >
-        {({ values, isSubmitting }): ReactChild => (
-          <Form>
-            <FieldArray
-              name="deployments"
-              render={(arrayHelpers): React.ReactNode => (
-                <>
-                  {values.deployments.map((value, i) => {
-                    return (
-                      <FlexContainer key={`enduser-${i}`} flow="column">
+        {({ values, isSubmitting }): ReactChild => {
+          const count = values.deployments.length;
+          return (
+            <>
+              <FlexContainer flow="row" margin="15px" center="true">
+                <DeploymentSelector
+                  count={count}
+                  optionsState={optionsState}
+                  optionsDispatch={optionsDispatch}
+                />
+              </FlexContainer>
+              <Form>
+                <FieldArray
+                  name="deployments"
+                  render={(arrayHelpers): React.ReactNode => (
+                    <>
+                      <FlexContainer
+                        key={`enduser-${deploymentToView}`}
+                        flow="column"
+                      >
                         <EndUserDeploymentsFieldArray
                           formValues={values}
-                          deploymentIndex={i}
-                          handleRemove={(): void => arrayHelpers.remove(i)}
+                          deploymentIndex={deploymentToView - 1}
+                          handleRemove={(): void =>
+                            arrayHelpers.remove(deploymentToView - 1)
+                          }
                         />
                       </FlexContainer>
-                    );
-                  })}
-                  <FlexContainer flow="row">
-                    <AddRemoveFieldsButton
-                      onClick={(): void =>
-                        arrayHelpers.push({
-                          ...additionalDeployment,
-                          items: [{ ...deploymentItems }]
-                        })
-                      }
-                      add={true}
-                      text="Add User"
-                    />
-                  </FlexContainer>
-                </>
-              )}
-            />
-            <SpacingWrapper>
-              <SpinnerButton
-                isSubmitting={isSubmitting}
-                title="Submit Deployments"
-              />
-            </SpacingWrapper>
-          </Form>
-        )}
+                      <FlexContainer flow="row">
+                        <AddRemoveFieldsButton
+                          onClick={(): void =>
+                            arrayHelpers.push({
+                              ...additionalDeployment,
+                              items: [{ ...deploymentItems }]
+                            })
+                          }
+                          add={true}
+                          text="Add User"
+                        />
+                      </FlexContainer>
+                    </>
+                  )}
+                />
+                <SpacingWrapper>
+                  <SpinnerButton
+                    isSubmitting={isSubmitting}
+                    title="Submit Deployments"
+                  />
+                </SpacingWrapper>
+              </Form>
+            </>
+          );
+        }}
       </Formik>
     </FlexContainer>
   );

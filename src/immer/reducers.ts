@@ -59,6 +59,9 @@ export function deploymentCreateOptionsReducer(
     case "SET_DEPLOYMENT_TECH_SELECTED":
       draft.deploymentTechSelected = true;
       return;
+    case "SET_DEPLOYMENT_TO_VIEW":
+      draft.deploymentToView = action.deploymentToView;
+      return;
     case "RESET_QUERY_ERROR":
       draft.queryError = false;
       draft.showSnackbar = false;

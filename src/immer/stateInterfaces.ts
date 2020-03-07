@@ -12,6 +12,7 @@ export interface DeploymentCreateOptions {
   showSnackbar: boolean;
   deploymentTechSelected: boolean;
   deploymentTechTouched: boolean;
+  deploymentToView: number;
 }
 
 export interface DeploymentViewOptions {

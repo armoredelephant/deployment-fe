@@ -29,6 +29,10 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
 }: FieldArrayProps) => {
   if (!formValues.deployments[deploymentIndex]) return <> </>;
 
+  // function that take the product and then determines the model options.
+  // change model from textfield to select
+  // if a product is selected, then run function and update options.
+
   return (
     <>
       <FlexContainer flow="row">
