@@ -125,18 +125,12 @@ const CreateDeploymentOptions: React.FC<DeploymentCreateOptionsProps> = ({
                     />
                   </OptionsContainer>
                 </FlexContainer>
-                <FlexContainer
-                  marginBottom="1.25rem"
-                  center="center"
-                  flow="row"
-                >
+                <FlexContainer center="center" flow="row">
                   <CustomSelect
                     options={techNames}
                     name="techName"
                     title="Deployment Tech"
                   />
-                </FlexContainer>
-                <FlexContainer center="center" flow="row">
                   <SpinnerButton
                     isSubmitting={isSubmitting}
                     title="Generate Form"
