@@ -1,7 +1,4 @@
-import {
-  EndUserDeploymentFormField,
-  GraphQLTech
-} from "../components/create-deployment/deploymentCreateInterfaces";
+import { EndUserDeploymentFormField } from "../components/create-deployment/deploymentCreateInterfaces";
 
 /**
  * Action for DeploymentOptions

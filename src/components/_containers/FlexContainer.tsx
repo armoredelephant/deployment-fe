@@ -1,30 +1,33 @@
 import React from "react";
-import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
 interface Props {
   center?: string;
   flow: string;
   margin?: string;
-  marginBottom?: string;
+  mb?: string;
   width?: string;
   height?: string;
   minHeight?: string;
 }
 
-const SimplyFlexContainer = styled.div<Props>`
-  display: flex;
-  flex-flow: ${(props: Props): string => props.flow};
-  margin: ${(props: Props): string | undefined => props.margin};
-  justify-content: ${(props: Props): string | undefined =>
-    props.center && "center"};
-  margin-bottom: ${(props: Props): string | undefined => props.marginBottom};
-  width: ${(props: Props): string | undefined => props.width};
-  height: ${(props: Props): string | undefined => props.height};
-  min-height: ${(props: Props): string | undefined => props.minHeight};
-`;
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexFlow: ({ flow }: Props): string => flow,
+    margin: ({ margin }: Props): string | undefined => margin,
+    justifyContent: ({ center }: Props): string | undefined =>
+      center && "center",
+    marginBottom: ({ mb }: Props): string | undefined => mb,
+    width: ({ width }: Props): string | undefined => width,
+    height: ({ height }: Props): string | undefined => height,
+    minHeight: ({ minHeight }: Props): string | undefined => minHeight
+  }
+});
 
 const FlexContainer: React.FC<Props> = (props: Props) => {
-  return <SimplyFlexContainer {...props} />;
+  const { root } = useStyles(props);
+  return <div data-testid="flex" className={root} {...props} />;
 };
 
 export default FlexContainer;

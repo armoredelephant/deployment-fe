@@ -15,11 +15,21 @@ interface Props extends DeploymentCreateOptionsProps {
 const useStyles = makeStyles({
   root: {
     color: "rgb(223, 223, 223)",
+    "&&:hover": {
+      color: "#212121",
+      backgroundColor: "rgb(178, 223, 219)"
+    },
     "&&:selected": {
-      backgroundColor: "rgba(0, 0, 0 , 0.18)"
+      color: "#212121",
+      backgroundColor: "#b2dfdb"
+    },
+    "&$hover": {
+      color: "#212121",
+      backgroundColor: "rgb(178, 223, 219)"
     },
     "&$selected": {
-      backgroundColor: "rgba(0, 0, 0, 0.18)"
+      color: "#212121",
+      backgroundColor: "#b2dfdb"
     }
   },
   selected: {}

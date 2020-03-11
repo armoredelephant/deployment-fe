@@ -105,7 +105,7 @@ const CreateDeploymentOptions: React.FC<DeploymentCreateOptionsProps> = ({
           {({ values, isSubmitting }): ReactChild => (
             <Form>
               <FlexContainer flow="column">
-                <FlexContainer marginBottom="0" flow="row">
+                <FlexContainer mb="0" flow="row">
                   <OptionsContainer>
                     <CustomSelect
                       options={userCountArray}
