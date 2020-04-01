@@ -8,6 +8,7 @@ const ENDUSER_QUERY = gql`
       product
       modelType
       serialNumber
+      asset
       timeStamp
       ticketNumber
     }
@@ -22,6 +23,7 @@ const TICKET_QUERY = gql`
       product
       modelType
       serialNumber
+      asset
       timeStamp
       ticketNumber
     }
@@ -36,6 +38,7 @@ const PRODUCT_QUERY = gql`
       product
       modelType
       serialNumber
+      asset
       timeStamp
       ticketNumber
     }
@@ -50,6 +53,7 @@ const ALL_QUERY = gql`
       product
       modelType
       serialNumber
+      asset
       timeStamp
       ticketNumber
     }

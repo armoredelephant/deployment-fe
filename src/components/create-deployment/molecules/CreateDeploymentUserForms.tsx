@@ -26,7 +26,8 @@ const initialFormValues: DeploymentFormValues = {
 const deploymentItems: IndividualDeploymentItem = {
   product: "",
   modelType: "",
-  serialNumber: ""
+  serialNumber: "",
+  asset: ""
 };
 
 const additionalDeployment: EndUserDeploymentFormField = {
@@ -48,6 +49,7 @@ const CREATE_DEPLOYMENT = gql`
       product
       modelType
       serialNumber
+      asset
       timeStamp
       techId
       ticketNumber

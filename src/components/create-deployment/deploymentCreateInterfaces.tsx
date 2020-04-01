@@ -1,10 +1,8 @@
 import {
   DeploymentCreateOptions,
-  DeploymentForms,
   DeploymentCreateStatus
 } from "../../immer/stateInterfaces";
 import {
-  DeploymentFormsAction,
   DeploymentCreateOptionsAction,
   DeploymentCreateStatusAction
 } from "../../immer/actionTypes";
@@ -38,23 +36,24 @@ export interface DeploymentStatusAndOptionsProps {
 /**
  * Props interface from deploymentFormsReducer
  */
-export interface DeploymentFormProps {
-  deploymentFormDispatch: React.Dispatch<DeploymentFormsAction>;
-  deploymentFormState: DeploymentForms;
-}
+// export interface DeploymentFormProps {
+//   deploymentFormDispatch: React.Dispatch<DeploymentFormsAction>;
+//   deploymentFormState: DeploymentForms;
+// }
 
 /**
  * Props interface from both deploymentFormsReducer & deploymentOptionsReducer
  */
-export interface CreateDeploymentStateProps {
-  optionsProps: DeploymentCreateOptionsProps;
-  formsProps: DeploymentFormProps;
-}
+// export interface CreateDeploymentStateProps {
+//   optionsProps: DeploymentCreateOptionsProps;
+//   formsProps: DeploymentFormProps;
+// }
 
 export interface IndividualDeploymentItem {
   product: string;
   modelType: string;
   serialNumber: string;
+  asset: string;
 }
 
 /**
@@ -82,6 +81,7 @@ export interface GraphQLDeployment {
   product: string;
   modelType: string;
   serialNumber: string;
+  asset: string;
   timeStamp: string;
   ticketNumber: number;
   techId: number;

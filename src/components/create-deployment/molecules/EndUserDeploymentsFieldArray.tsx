@@ -9,6 +9,7 @@ import StyledDivider from "../../_dividers/StyledDivider";
 import SpacingWrapper from "../../_wrappers/SpacingWrapper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import ModelSelect from "../atoms/ModelSelect";
 
 /**
  * This component displays the inner array of deployments for each user being deployed to.
@@ -61,22 +62,31 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                         title="Products"
                         name={`deployments[${deploymentIndex}].items[${index}].product`}
                       />
-                      <RequiredTextField
-                        placeholder="model"
-                        name={`deployments[${deploymentIndex}].items[${index}].modelType`}
-                      />
-                      <RequiredTextField
-                        placeholder="serial number"
-                        name={`deployments[${deploymentIndex}].items[${index}].serialNumber`}
-                      />
-                      {formValues.deployments[deploymentIndex].items.length >
-                        1 && (
-                        <IconButton
-                          aria-label="delete"
-                          onClick={(): void => arrayHelpers.remove(index)}
-                        >
-                          <DeleteForeverIcon color="error" />
-                        </IconButton>
+                      {val.product !== "" && (
+                        <>
+                          <ModelSelect
+                            options={val.product}
+                            title="model"
+                            name={`deployments[${deploymentIndex}].items[${index}].modelType`}
+                          />
+                          <RequiredTextField
+                            placeholder="serial number"
+                            name={`deployments[${deploymentIndex}].items[${index}].serialNumber`}
+                          />
+                          <RequiredTextField
+                            placeholder="asset"
+                            name={`deployments[${deploymentIndex}].items[${index}].asset`}
+                          />
+                          {formValues.deployments[deploymentIndex].items
+                            .length > 1 && (
+                            <IconButton
+                              aria-label="delete"
+                              onClick={(): void => arrayHelpers.remove(index)}
+                            >
+                              <DeleteForeverIcon color="error" />
+                            </IconButton>
+                          )}
+                        </>
                       )}
                     </FlexContainer>
                   );
@@ -88,7 +98,8 @@ const EndUserDeploymentsFieldArray: React.FC<FieldArrayProps> = ({
                     arrayHelpers.push({
                       product: "",
                       modelType: "",
-                      serialNumber: ""
+                      serialNumber: "",
+                      asset: ""
                     })
                   }
                   add={true}

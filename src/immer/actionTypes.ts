@@ -74,43 +74,50 @@ export type DeploymentCreateOptionsDispatch = (
  * Action for DeploymentForms
  */
 
-interface SetEndUser {
-  type: "SET_ENDUSER";
-  endUser: string;
-}
+// interface SetEndUser {
+//   type: "SET_ENDUSER";
+//   endUser: string;
+// }
 
-interface SetProduct {
-  type: "SET_PRODUCT";
-  product: string;
-}
+// interface SetProduct {
+//   type: "SET_PRODUCT";
+//   product: string;
+// }
 
-interface SetModelType {
-  type: "SET_MODEL_TYPE";
-  modelType: string;
-}
+// interface SetModelType {
+//   type: "SET_MODEL_TYPE";
+//   modelType: string;
+// }
 
-interface SetSerialNumber {
-  type: "SET_SERIAL_NUMBER";
-  serialNumber: string;
-}
-// may be moved out
-interface SetTechName {
-  type: "SET_TECH_NAME";
-  techName: string;
-}
+// interface SetSerialNumber {
+//   type: "SET_SERIAL_NUMBER";
+//   serialNumber: string;
+// }
 
-interface SetTicketNumber {
-  type: "SET_TICKET_NUMBER";
-  ticketNumber: number;
-}
+// interface SetAsset {
+//   type: "SET_ASSET";
+//   asset: string;
+// }
 
-export type DeploymentFormsAction =
-  | SetEndUser
-  | SetProduct
-  | SetModelType
-  | SetSerialNumber
-  | SetTechName
-  | SetTicketNumber;
+// // may be moved out
+// interface SetTechName {
+//   type: "SET_TECH_NAME";
+//   techName: string;
+// }
+
+// interface SetTicketNumber {
+//   type: "SET_TICKET_NUMBER";
+//   ticketNumber: number;
+// }
+
+// export type DeploymentFormsAction =
+//   | SetEndUser
+//   | SetProduct
+//   | SetModelType
+//   | SetSerialNumber
+//   | SetAsset
+//   | SetTechName
+//   | SetTicketNumber;
 
 /**
  * Actions for DeploymentStatus

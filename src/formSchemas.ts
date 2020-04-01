@@ -30,7 +30,11 @@ const DeploymentItemValues = yup.object().shape({
     .string()
     .min(5, "Invalid serial number.")
     .max(35, "Invalid serial number.")
-    .required()
+    .required(),
+  asset: yup
+    .string()
+    .min(2, "Invalid asset.")
+    .max(20, "Invalid asset.")
 });
 
 /**

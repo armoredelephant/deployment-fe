@@ -26,6 +26,7 @@ export interface DeploymentForms {
   product: string;
   modelType: string;
   serialNumber: string;
+  asset: string;
   techName: string;
   ticketNumber: number;
 }

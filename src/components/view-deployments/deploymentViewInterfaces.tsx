@@ -10,6 +10,7 @@ export interface GraphQLDeploymentData {
   product: string;
   modelType: string;
   serialNumber: string;
+  asset: string;
   timeStamp: string;
   ticketNumber: string;
 }
@@ -46,6 +47,7 @@ export interface Column {
     | "product"
     | "modelType"
     | "serialNumber"
+    | "asset"
     | "timeStamp"
     | "ticketNumber";
   label: string;

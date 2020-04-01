@@ -33,7 +33,8 @@ export const generateInitialFormValues = ({
   const itemValues: IndividualDeploymentItem = {
     product: "",
     modelType: "",
-    serialNumber: ""
+    serialNumber: "",
+    asset: ""
   };
 
   const initialFormValues: EndUserDeploymentFormField = {
