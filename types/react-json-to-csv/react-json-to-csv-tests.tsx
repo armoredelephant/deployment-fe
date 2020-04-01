@@ -1,5 +1,5 @@
 import * as React from "react";
-import CsvDownload from "./index";
+import CsvDownload from "react-json-to-csv";
 
 const mockData = {
   test: "data"
