@@ -1,6 +1,7 @@
 const models = {
   computer: [
     "Dell 5175",
+    "Dell 5400",
     "Dell 5480",
     "Dell 5520",
     "Dell 5530",
@@ -20,12 +21,16 @@ const models = {
     "HP 400",
     "Igel UD3",
     "Lenovo T495",
+    "Lenovo P53",
     "Lenovo X1"
   ],
   network: ["Meraki Z1", "Meraki Z3", "Meraki MX64"],
   other: [
     "SID700",
     "Dell WD19",
+    "HP UltraSlim Dock",
+    "HP 90W Dock",
+    "Lenovo Dock Gen2",
     "Viewsonic VA2446mh",
     "Viewsonic VA2446m",
     "Viewsonic VA2406m"
