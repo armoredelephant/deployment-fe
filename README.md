@@ -17,3 +17,10 @@ This app was created to store my hardware deployments at my current job. I creat
 - Typeorm
 - Type-GraphQL
 - SQLite & PostgreSQL
+
+![Sidebar](deployment_sidebar.gif)
+![Add a tech](deployment_tech.gif)
+![Single deployment](deployment_multiDep.gif)
+![Multiple deployments](deployment_singleDep.gif)
+![Submit a deployment](deployment_submitDep.gif)
+![View deployments](deployment_view.gif)
