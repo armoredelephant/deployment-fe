@@ -18,6 +18,7 @@ This app was created to store my hardware deployments at my current job. I creat
 - Type-GraphQL
 - SQLite & PostgreSQL
 
+## Demo:
 ![Sidebar](deployment_demo/deployment_sidebar.gif)
 ![Add a tech](deployment_demo/deployment_tech.gif)
 ![Single deployment](deployment_demo/deployment_multiDep.gif)
